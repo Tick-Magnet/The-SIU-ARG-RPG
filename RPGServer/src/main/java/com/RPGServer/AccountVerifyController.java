@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.SecureRandom;
 
-import java.util.Arrays;
+import java.util.UUID;
+
 
 @RestController
 public class AccountVerifyController
@@ -17,15 +18,16 @@ public class AccountVerifyController
 	private UserAccountRepository userAccountRepository;
 	
 	@GetMapping("/verify/{username}/{token}")
-	public String verify(@PathVariable("username") String username, @PathVariable("token") byte[] token)
+	public String verify(@PathVariable("username") String username, @PathVariable("token") String token)
 	{
 		String response = "Unable to verify account";
 		//retrieve account
 		UserAccount account = userAccountRepository.findByUsername(username);
-		if(Arrays.equals(account.getVerifyToken(), token))
+		if(account.getVerifyToken().equals(UUID.fromString(token)))
 		{
 			account.setVerified(true);
 			userAccountRepository.save(account);
+			response = "Account verified";
 		}
 		
 		return response;

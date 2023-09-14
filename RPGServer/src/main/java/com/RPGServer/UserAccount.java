@@ -14,6 +14,8 @@ import java.math.BigInteger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.UUID;
+
 @Entity
 public class UserAccount
 {
@@ -32,7 +34,7 @@ public class UserAccount
 	
 	private byte[] sessionToken;
 	
-	private byte[] verifyToken;
+	private UUID verifyToken;
 	
 	private String tokenExpiration;
 	
@@ -53,12 +55,12 @@ public class UserAccount
 		passwordHash = newPasswordHash;
 	}
 	
-	public void setVerifyToken(byte[] token)
+	public void setVerifyToken(UUID token)
 	{
 		this.verifyToken = token;
 	}
 	
-	public byte[] getVerifyToken()
+	public UUID getVerifyToken()
 	{
 		return this.verifyToken;
 	}

@@ -20,6 +20,9 @@ import java.time.*;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.SimpleMailMessage;
 
+import java.util.UUID;
+
+
 @RestController
 public class RegisterController
 {
@@ -53,14 +56,13 @@ public class RegisterController
 			//Set user email
 			tempUser.setEmail(email);
 			//Generate verification token
-			byte[] tokenArray = new byte[16];
-			tokenGen.nextBytes(tokenArray);
-			tempUser.setVerifyToken(tokenArray);
+			UUID token = UUID.randomUUID();
+			tempUser.setVerifyToken(token);
 			//Send verification email 
 			SimpleMailMessage verifyMessage = new SimpleMailMessage();
 			verifyMessage.setFrom(MAIL_USER_NAME);
 			verifyMessage.setTo(email);
-			verifyMessage.setText("Test message");
+			verifyMessage.setText("Click on the link to activate your account\n" + "localhost:8080/verify/" + username + "/" + token.toString());
 			verifyMessage.setSubject("CS435 RPG Email Verification");
 			mailSender.send(verifyMessage);
 			//Write new user account to database
