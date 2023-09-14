@@ -44,7 +44,7 @@ public class LoginController
 		//Retrieve users password hash from database and compare
 		UserAccount tempAccount = userAccountRepository.findByUsername(username);
 		//If valid, generate session token------------------
-		if(Arrays.equals(passwordHash, tempAccount.getPasswordHash()))
+		if(tempAccount.getVerified() && Arrays.equals(passwordHash, tempAccount.getPasswordHash()))
 		{
 			System.out.println("Old token: " + tempAccount.getSessionToken());
 			System.out.println("Sucessful login for" + username);

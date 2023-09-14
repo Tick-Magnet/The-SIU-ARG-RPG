@@ -25,10 +25,15 @@ public class UserAccount
 	
 	private String email;
 	
+	private boolean verified;
+	
 	@Column(columnDefinition="BLOB(32)")
 	private byte passwordHash[];
 	
 	private byte[] sessionToken;
+	
+	private byte[] verifyToken;
+	
 	private String tokenExpiration;
 	
 	public UserAccount()
@@ -36,6 +41,7 @@ public class UserAccount
 		this.username = null;
 		this.passwordHash = null;
 		this.email = null;
+		this.verified = false;
 	}
 	
 	public void setPassword(String newPassword) throws NoSuchAlgorithmException
@@ -45,6 +51,26 @@ public class UserAccount
 		byte newPasswordHash[] = messageDigest.digest();
 		
 		passwordHash = newPasswordHash;
+	}
+	
+	public void setVerifyToken(byte[] token)
+	{
+		this.verifyToken = token;
+	}
+	
+	public byte[] getVerifyToken()
+	{
+		return this.verifyToken;
+	}
+	
+	public void setVerified(boolean verified)
+	{
+		this.verified = verified;
+	}
+	
+	public boolean getVerified()
+	{
+		return verified;
 	}
 	
 	public void setUsername(String newUsername)

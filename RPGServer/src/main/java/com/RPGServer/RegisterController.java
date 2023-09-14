@@ -30,11 +30,13 @@ public class RegisterController
 	private JavaMailSender mailSender;
 	
 	final private int MIN_PASSWORD_LENGTH = 8;
+	final private String MAIL_USER_NAME = "CS435RPGProject";
 	
 	@GetMapping("/register")
 	public RegistrationResult register(@RequestParam(value = "username", required = true) String username, @RequestParam(value = "email", required = true) String email, @RequestParam(value = "password", required = true) String password) throws NoSuchAlgorithmException
 	{
 		RegistrationResult result = null;
+		SecureRandom tokenGen = new SecureRandom();
 		//create new UserAccount object
 		UserAccount tempUser = new UserAccount();
 		//Check if username is taken
@@ -48,6 +50,19 @@ public class RegisterController
 			tempUser.setUsername(username);
 			//Set user password
 			tempUser.setPassword(password);
+			//Set user email
+			tempUser.setEmail(email);
+			//Generate verification token
+			byte[] tokenArray = new byte[16];
+			tokenGen.nextBytes(tokenArray);
+			tempUser.setVerifyToken(tokenArray);
+			//Send verification email 
+			SimpleMailMessage verifyMessage = new SimpleMailMessage();
+			verifyMessage.setFrom(MAIL_USER_NAME);
+			verifyMessage.setTo(email);
+			verifyMessage.setText("Test message");
+			verifyMessage.setSubject("CS435 RPG Email Verification");
+			mailSender.send(verifyMessage);
 			//Write new user account to database
 			userAccountRepository.save(tempUser);
 			//update result
