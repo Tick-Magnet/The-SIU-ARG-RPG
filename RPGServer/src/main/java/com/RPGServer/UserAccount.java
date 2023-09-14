@@ -23,6 +23,8 @@ public class UserAccount
 	
 	private String username; 
 	
+	private String email;
+	
 	@Column(columnDefinition="BLOB(32)")
 	private byte passwordHash[];
 	
@@ -33,6 +35,7 @@ public class UserAccount
 	{
 		this.username = null;
 		this.passwordHash = null;
+		this.email = null;
 	}
 	
 	public void setPassword(String newPassword) throws NoSuchAlgorithmException
@@ -47,6 +50,16 @@ public class UserAccount
 	public void setUsername(String newUsername)
 	{
 		this.username = newUsername;
+	}
+	
+	public void setEmail(String email)
+	{
+		this.email = email;
+	}
+	
+	public String getEmail()
+	{
+		return this.email;
 	}
 	
 	public byte[] getPasswordHash()

@@ -17,16 +17,22 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.*;
 
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.SimpleMailMessage;
+
 @RestController
 public class RegisterController
 {
 	@Autowired
 	private UserAccountRepository userAccountRepository;
 	
+	@Autowired
+	private JavaMailSender mailSender;
+	
 	final private int MIN_PASSWORD_LENGTH = 8;
 	
 	@GetMapping("/register")
-	public RegistrationResult register(@RequestParam(value = "username", required = true) String username, @RequestParam(value = "password", required = true) String password) throws NoSuchAlgorithmException
+	public RegistrationResult register(@RequestParam(value = "username", required = true) String username, @RequestParam(value = "email", required = true) String email, @RequestParam(value = "password", required = true) String password) throws NoSuchAlgorithmException
 	{
 		RegistrationResult result = null;
 		//create new UserAccount object
