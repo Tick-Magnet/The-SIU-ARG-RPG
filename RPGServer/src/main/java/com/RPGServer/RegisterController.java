@@ -2,7 +2,7 @@ package com.RPGServer;
 
 import java.util.concurrent.atomic.AtomicLong;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +35,7 @@ public class RegisterController
 	final private int MIN_PASSWORD_LENGTH = 8;
 	final private String MAIL_USER_NAME = "CS435RPGProject";
 	
-	@GetMapping("/register")
+	@PostMapping("/register")
 	public RegistrationResult register(@RequestParam(value = "username", required = true) String username, @RequestParam(value = "email", required = true) String email, @RequestParam(value = "password", required = true) String password) throws NoSuchAlgorithmException
 	{
 		RegistrationResult result = null;
@@ -62,7 +62,7 @@ public class RegisterController
 			SimpleMailMessage verifyMessage = new SimpleMailMessage();
 			verifyMessage.setFrom(MAIL_USER_NAME);
 			verifyMessage.setTo(email);
-			verifyMessage.setText("Click on the link to activate your account\n" + "localhost:8080/verify/" + username + "/" + token.toString());
+			verifyMessage.setText("Click on the link to activate your account\n" + "http://localhost:8080/verify/" + username + "/" + token.toString());
 			verifyMessage.setSubject("CS435 RPG Email Verification");
 			mailSender.send(verifyMessage);
 			//Write new user account to database

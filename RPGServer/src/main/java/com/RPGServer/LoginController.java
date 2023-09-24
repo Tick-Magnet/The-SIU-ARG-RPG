@@ -2,7 +2,7 @@ package com.RPGServer;
 
 import java.util.concurrent.atomic.AtomicLong;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class LoginController
 	@Autowired
 	private UserAccountRepository userAccountRepository;
 	
-	@GetMapping("/login")
+	@PostMapping("/login")
 	public SessionToken login(@RequestParam(value = "username", required = true) String username, @RequestParam(value = "password", required = true) String password) throws NoSuchAlgorithmException
 	{
 		SessionToken token = null;

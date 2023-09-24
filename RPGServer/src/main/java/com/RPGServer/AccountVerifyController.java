@@ -10,6 +10,8 @@ import java.security.SecureRandom;
 
 import java.util.UUID;
 
+import org.springframework.web.servlet.ModelAndView;
+
 
 @RestController
 public class AccountVerifyController
@@ -18,7 +20,7 @@ public class AccountVerifyController
 	private UserAccountRepository userAccountRepository;
 	
 	@GetMapping("/verify/{username}/{token}")
-	public String verify(@PathVariable("username") String username, @PathVariable("token") String token)
+	public ModelAndView verify(@PathVariable("username") String username, @PathVariable("token") String token)
 	{
 		String response = "Unable to verify account";
 		//retrieve account
@@ -29,7 +31,8 @@ public class AccountVerifyController
 			userAccountRepository.save(account);
 			response = "Account verified";
 		}
-		
-		return response;
+		//Redirect to verification page
+		ModelAndView view = new ModelAndView("verify.html");
+		return view;
 	}
 }
