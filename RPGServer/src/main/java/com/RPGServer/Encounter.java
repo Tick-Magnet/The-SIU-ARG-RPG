@@ -7,6 +7,8 @@ import com.fasterxml.jackson.databind.*;
 import java.io.IOException;
 import java.util.HashMap;
 
+import org.springframework.core.io.ClassPathResource;
+
 //Encounter system written in a way so that JSON files can be used to create new game content
 public class Encounter
 {
@@ -16,7 +18,7 @@ public class Encounter
 	private UserAccount playerAccount;
 	
 	//Contains all steps of encounter, used so generated steps can refer to steps by name
-	private EncounterStep[] encounterSteps;
+	public EncounterStep[] encounterSteps;
 	
 	public EncounterEntity[] entityArray;
 	
@@ -27,9 +29,8 @@ public class Encounter
 	{
 		playerAccount = user;
 		ObjectMapper objectMapper = new ObjectMapper();
-		entityMap = new HashMap<String, EncounterEntity>();
 		
-		JsonNode rootNode = objectMapper.readTree(new File(encounterDefinitionPath));
+		JsonNode rootNode = objectMapper.readTree((new ClassPathResource(encounterDefinitionPath)).getFile());
 		//Fill fields in Encounter class from JSON tree
 		encounterName = rootNode.get("encounterName").asText();
 		//Read encounter steps array
@@ -88,6 +89,23 @@ public class Encounter
 	public void updateCurrentStep(EncounterStep nextStep)
 	{
 		this.currentStep = nextStep;
+	}
+	
+	public String listEntities()
+	{
+		String output = "";
+		for(int i = 0; i < entityArray.length; i++)
+		{
+			output = output + entityArray[i].name + "\n";
+			output = output + entityArray[i].imagePath + "\n";
+			output = output + entityArray[i].strength + "\n";
+			output = output + entityArray[i].dexterity + "\n";
+			output = output + entityArray[i].constitution + "\n";
+			output = output + entityArray[i].intelligence + "\n";
+			output = output + "\n";
+		}
+		
+		return output;
 	}
 	
 	//Class to contain data about enemies, player, and other information that may need to be persistent between encounter steps

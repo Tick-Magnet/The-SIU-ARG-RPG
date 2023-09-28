@@ -49,4 +49,16 @@ public class DialogueStep implements EncounterStep
 			this.nextStep = nextStep;
 		}
 	}
+	
+	@Override
+	public String toString()
+	{
+		String output = "";
+		for(int i = 0; i < dialogueOptions.size(); i++)
+		{
+			output = output + dialogueOptions.get(i).text;
+		}
+		
+		return output;
+	}
 }
