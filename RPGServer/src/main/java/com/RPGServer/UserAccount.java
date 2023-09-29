@@ -15,6 +15,9 @@ import java.math.BigInteger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.UUID;
+import java.util.Arrays;
+
+import java.time.*;
 
 @Entity
 public class UserAccount
@@ -53,6 +56,22 @@ public class UserAccount
 		byte newPasswordHash[] = messageDigest.digest();
 		
 		passwordHash = newPasswordHash;
+	}
+	
+	//Check if a given session token is valid
+	public boolean isValidSessionToken(byte[] token)
+	{
+		boolean output = false;
+		//Check that current session token is not expired
+		if(LocalDateTime.now().isBefore(LocalDateTime.parse(tokenExpiration)))
+		{
+			//Compare passed token to stored token
+			if(Arrays.equals(token, this.sessionToken))
+			{
+				output = true;
+			}
+		}
+		return output;
 	}
 	
 	public void setVerifyToken(UUID token)

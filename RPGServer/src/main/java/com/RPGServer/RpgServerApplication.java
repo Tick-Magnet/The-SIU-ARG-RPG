@@ -14,6 +14,9 @@ public class RpgServerApplication {
 	@Autowired 
 	private JavaMailSender mailSender; 
 	
+	@Autowired 
+	private QRCodeRepository qrCodeRepository;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(RpgServerApplication.class, args);
 	}

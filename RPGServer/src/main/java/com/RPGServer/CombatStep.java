@@ -34,7 +34,8 @@ public class CombatStep extends EncounterStep
 	public StepUpdate getInitialStepUpdate()
 	{
 		CombatStepUpdate output = new CombatStepUpdate();
-		
+		output.playerHealth = 0;
+		output.enemyHealth = parentEncounter.entityArray[enemyIndex].health;
 		
 		return output;
 	}
