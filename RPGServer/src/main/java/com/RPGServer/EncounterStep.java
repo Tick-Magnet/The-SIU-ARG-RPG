@@ -1,14 +1,13 @@
 package com.RPGServer;
 
 
-public interface EncounterStep
+public abstract class EncounterStep
 {
-	//Should return a reference to the next encounter step
-	public EncounterStep nextStep();
+	public Encounter parentEncounter;
 	//Actions that should be completed upon completion of this step
-	public void endStep();
+	public abstract void endStep();
 	//Merge StepUpdate from client to state of current step
-	public StepUpdate postStepUpdate(StepUpdate update);
+	public abstract StepUpdate postStepUpdate(StepUpdate update);
 	//Return initial step update to begin step for client
-	public StepUpdate getInitialStepUpdate();
+	public abstract StepUpdate getInitialStepUpdate();
 }

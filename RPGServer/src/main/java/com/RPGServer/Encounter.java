@@ -22,7 +22,26 @@ public class Encounter
 	
 	public EncounterEntity[] entityArray;
 	
-	private EncounterStep currentStep;
+	public EncounterStep currentStep;
+	
+	public void nextEncounterStep(int stepIndex)
+	{
+		//a negative index will signal end of encounter
+		if(stepIndex < 0)
+		{
+			endEncounter();
+		}
+		else
+		{
+			currentStep = encounterSteps[stepIndex];
+		}
+	}
+	
+	//Actions to be completed when encounter is over
+	private void endEncounter()
+	{
+		
+	}
 	
 	//Construct encounter based on the JSON file passed
 	public Encounter(UserAccount user, String encounterDefinitionPath) throws IOException
@@ -46,6 +65,7 @@ public class Encounter
 				//Dialogue step
 				case 0:
 					encounterSteps[i] = new DialogueStep();
+					encounterSteps[i].parentEncounter = this;
 					//Add dialogue options
 					JsonNode optionArrayNode = tempNode.get("dialogueOptions");
 					for(int j = 0; j < optionArrayNode.size(); j++)
@@ -59,7 +79,8 @@ public class Encounter
 				break;
 				//Combat step
 				case 1:
-				
+					encounterSteps[i] = new CombatStep(tempNode.get("enemyIndex").asInt(), tempNode.get("nextStepIndex").asInt());
+					encounterSteps[i].parentEncounter = this;
 				break;
 			}
 		}
@@ -78,6 +99,7 @@ public class Encounter
 			entityArray[i].dexterity = tempNode.get("dexterity").asInt();
 			entityArray[i].constitution = tempNode.get("constitution").asInt();
 			entityArray[i].intelligence = tempNode.get("intelligence").asInt();
+			entityArray[i].health = entityArray[i].constitution;
 		}
 	}
 	
@@ -109,7 +131,7 @@ public class Encounter
 	}
 	
 	//Class to contain data about enemies, player, and other information that may need to be persistent between encounter steps
-	private class EncounterEntity
+	public class EncounterEntity
 	{
 		public String name;
 		public String imagePath;

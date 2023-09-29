@@ -1,8 +1,8 @@
 package com.RPGServer;
 
-public abstract class StepUpdate
+public class StepUpdate
 {
 	public String[] choices;
-	
+	public int stepType;
 	public int selectedChoice;
 }

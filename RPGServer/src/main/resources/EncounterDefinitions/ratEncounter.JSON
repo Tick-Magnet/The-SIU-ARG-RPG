@@ -16,6 +16,10 @@
 					"nextStepIndex": 1
 				}
 			] 
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0
 		}
 	],
 	"encounterEntities":
