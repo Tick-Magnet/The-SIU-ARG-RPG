@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import org.springframework.core.io.ClassPathResource;
+import java.util.UUID;
+
 
 //Encounter system written in a way so that JSON files can be used to create new game content
 public class Encounter
@@ -23,6 +25,8 @@ public class Encounter
 	public EncounterEntity[] entityArray;
 	
 	public EncounterStep currentStep;
+	
+	public UUID uuid;
 	
 	public void nextEncounterStep(int stepIndex)
 	{
@@ -48,6 +52,7 @@ public class Encounter
 	{
 		playerAccount = user;
 		ObjectMapper objectMapper = new ObjectMapper();
+		uuid = UUID.randomUUID();
 		
 		JsonNode rootNode = objectMapper.readTree((new ClassPathResource(encounterDefinitionPath)).getFile());
 		//Fill fields in Encounter class from JSON tree

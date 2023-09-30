@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.UUID;
 
 @Entity
-public class UserAccount
+public class QRCodeEntity
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

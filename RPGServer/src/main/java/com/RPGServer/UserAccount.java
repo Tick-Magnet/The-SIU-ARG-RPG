@@ -22,6 +22,13 @@ import java.time.*;
 @Entity
 public class UserAccount
 {
+	//User roles to track permissions for certain API calls
+	public enum UserRole
+	{
+		USER,
+		ADMIN
+	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Integer Id;
@@ -40,6 +47,8 @@ public class UserAccount
 	private UUID verifyToken;
 	
 	private String tokenExpiration;
+	
+	public UserRole userRole;
 	
 	public UserAccount()
 	{
