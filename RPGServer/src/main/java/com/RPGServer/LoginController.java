@@ -2,7 +2,7 @@ package com.RPGServer;
 
 import java.util.concurrent.atomic.AtomicLong;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class LoginController
 	@Autowired
 	private UserAccountRepository userAccountRepository;
 	
-	@GetMapping("/login")
+	@PostMapping("/login")
 	public SessionToken login(@RequestParam(value = "username", required = true) String username, @RequestParam(value = "password", required = true) String password) throws NoSuchAlgorithmException
 	{
 		SessionToken token = null;
@@ -44,7 +44,7 @@ public class LoginController
 		//Retrieve users password hash from database and compare
 		UserAccount tempAccount = userAccountRepository.findByUsername(username);
 		//If valid, generate session token------------------
-		if(Arrays.equals(passwordHash, tempAccount.getPasswordHash()))
+		if(tempAccount.getVerified() && Arrays.equals(passwordHash, tempAccount.getPasswordHash()))
 		{
 			System.out.println("Old token: " + tempAccount.getSessionToken());
 			System.out.println("Sucessful login for" + username);
@@ -59,6 +59,24 @@ public class LoginController
 		}
 		//Return response
 		return token;
+	}
+	
+	//Simple request to verify session token is still valid
+	@PostMapping("/checktoken")
+	public boolean checkToken(@RequestParam(value = "username", required = true) String username, @RequestParam(value = "token", required = true) byte[] token)
+	{
+		boolean output = false;
+		System.out.println(token.toString());
+		UserAccount tempAccount = userAccountRepository.findByUsername(username);
+		if(tempAccount != null)
+		{
+			if(tempAccount.isValidSessionToken(token) == true)
+			{
+				output = true;
+			}
+		}
+		
+		return output;
 	}
 	
 }
