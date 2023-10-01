@@ -4,6 +4,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -21,7 +22,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.SimpleMailMessage;
 
 import java.util.UUID;
-
+import java.util.Map;
 
 @RestController
 public class RegisterController
@@ -36,15 +37,19 @@ public class RegisterController
 	final private String MAIL_USER_NAME = "CS435RPGProject";
 	
 	@PostMapping("/register")
-	public RegistrationResult register(@RequestParam(value = "username", required = true) String username, @RequestParam(value = "email", required = true) String email, @RequestParam(value = "password", required = true) String password) throws NoSuchAlgorithmException
+	public RegistrationResult register(@RequestBody Map<String, Object> payload) throws NoSuchAlgorithmException
 	{
+		String username = (String)payload.get("username");
+		String email = (String)payload.get("email");
+		String password = (String)payload.get("password");
+		
 		RegistrationResult result = null;
 		SecureRandom tokenGen = new SecureRandom();
 		//create new UserAccount object
 		UserAccount tempUser = new UserAccount();
 		//Check if username is taken
 		boolean usernameAvailable = false;
-		if(userAccountRepository.findByUsername(username) == null)
+		if(userAccountRepository.findByUsername(username) == null && username != null)
 			usernameAvailable = true;
 		//check if password is valid
 		if(isValidPassword(password) && usernameAvailable)

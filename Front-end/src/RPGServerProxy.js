@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const apiURL = 'http://localhost:8080/test';
+const apiURL = 'http://localhost:8080';
 //axios.defaults.headers.get['Acess-Control-Allow-Origin'] = '*';
 
 class RPGServerProxy
@@ -16,6 +16,23 @@ class RPGServerProxy
 			console.log(response.status);	
 		});
 		return "test"
+	}
+	
+	register(inputUsername, inputEmail, inputPassword)
+	{
+		var url = "";
+		url = url.concat(apiURL, "/register");
+		console.log(url);
+		axios.post(url,
+		{
+			username: inputUsername,
+			email: inputEmail,
+			password: inputPassword
+		})
+		.then(function (response)
+		{
+			console.log(response.data);
+		});
 	}
 }
 

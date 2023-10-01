@@ -15,7 +15,7 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    console.log(RPGServerProxy.testAPI());
+    RPGServerProxy.register(name, email, pass);
     /*
     console.log(name);
     console.log(email);
