@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.UUID;
 import java.util.Arrays;
+import java.util.Base64; 
 
 import java.time.*;
 
@@ -68,14 +69,17 @@ public class UserAccount
 	}
 	
 	//Check if a given session token is valid
-	public boolean isValidSessionToken(byte[] token)
+	public boolean isValidSessionToken(String token)
 	{
 		boolean output = false;
 		//Check that current session token is not expired
 		if(LocalDateTime.now().isBefore(LocalDateTime.parse(tokenExpiration)))
 		{
+			//Decode token
+			Base64.Decoder decoder = Base64.getUrlDecoder();
+			byte[] tokenBytes = decoder.decode(token);
 			//Compare passed token to stored token
-			if(Arrays.equals(token, this.sessionToken))
+			if(Arrays.equals(tokenBytes, this.sessionToken))
 			{
 				output = true;
 			}

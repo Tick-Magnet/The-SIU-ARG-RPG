@@ -24,7 +24,7 @@ public class QRCodeRedeemController
 	
 	//Using UUID for QR code token, not as secure but easier to include in a URL
 	@PostMapping("/redeemQR")
-	public QRRedeemResult redeem(@RequestParam(value = "username", required = true) String username, @RequestParam(value = "sessionToken", required = true) byte[] sessionToken, @RequestParam(value = "uuid", required= true) UUID uuid)
+	public QRRedeemResult redeem(@RequestParam(value = "username", required = true) String username, @RequestParam(value = "sessionToken", required = true) String sessionToken, @RequestParam(value = "uuid", required= true) UUID uuid)
 	{
 		QRRedeemResult result = null;
 		//Retrieve user account by username

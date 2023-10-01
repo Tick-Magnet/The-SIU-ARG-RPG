@@ -14,6 +14,7 @@ import java.security.NoSuchAlgorithmException;
 import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 import java.math.BigInteger;
+import java.util.Base64;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -37,6 +38,7 @@ public class LoginController
 	{
 		SessionToken token = null;
 		SecureRandom tokenGen = new SecureRandom();
+		Base64.Encoder encoder = Base64.getUrlEncoder();
 		//Validate user-----------------------
 		//Hash password from HTTP request using SHA-256
 		MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
@@ -52,9 +54,9 @@ public class LoginController
 			//Generate a 32 byte token for future API access for user
 			byte[] tokenArray = new byte[32];
 			tokenGen.nextBytes(tokenArray);
-			token = new SessionToken(tokenArray, LocalDateTime.now(ZoneId.of("UTC")).plusHours(HOURS_TOKEN_VALID).toString());
+			token = new SessionToken(encoder.encodeToString(tokenArray), LocalDateTime.now(ZoneId.of("UTC")).plusHours(HOURS_TOKEN_VALID).toString());
 			//Store token to user account and update in database
-			tempAccount.setSessionToken(token.getToken());
+			tempAccount.setSessionToken(tokenArray);
 			tempAccount.setTokenExpiration(token.getExpirationDate());
 			userAccountRepository.save(tempAccount);
 		}
@@ -64,10 +66,10 @@ public class LoginController
 	
 	//Simple request to verify session token is still valid
 	@PostMapping("/checktoken")
-	public boolean checkToken(@RequestParam(value = "username", required = true) String username, @RequestParam(value = "token", required = true) byte[] token)
+	public boolean checkToken(@RequestParam(value = "username", required = true) String username, @RequestParam(value = "token", required = true) String token)
 	{
 		boolean output = false;
-		System.out.println(token.toString());
+		System.out.println(token);
 		UserAccount tempAccount = userAccountRepository.findByUsername(username);
 		if(tempAccount != null)
 		{
