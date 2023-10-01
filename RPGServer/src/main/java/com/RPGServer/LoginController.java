@@ -21,6 +21,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.*;
 
 import java.util.Arrays;
+import org.springframework.web.bind.annotation.RequestBody;
+import java.util.Map;
 
 
 @RestController
@@ -34,8 +36,11 @@ public class LoginController
 	private UserAccountRepository userAccountRepository;
 	
 	@PostMapping("/login")
-	public SessionToken login(@RequestParam(value = "username", required = true) String username, @RequestParam(value = "password", required = true) String password) throws NoSuchAlgorithmException
+	public SessionToken login(@RequestBody Map<String, Object> payload) throws NoSuchAlgorithmException
 	{
+		String username = (String)payload.get("username");
+		String password = (String)payload.get("password");
+		
 		SessionToken token = null;
 		SecureRandom tokenGen = new SecureRandom();
 		Base64.Encoder encoder = Base64.getUrlEncoder();
@@ -66,8 +71,11 @@ public class LoginController
 	
 	//Simple request to verify session token is still valid
 	@PostMapping("/checktoken")
-	public boolean checkToken(@RequestParam(value = "username", required = true) String username, @RequestParam(value = "token", required = true) String token)
+	public boolean checkToken(@RequestBody Map<String, Object> payload)
 	{
+		String username = (String)payload.get("username");
+		String token = (String)payload.get("token");
+		
 		boolean output = false;
 		System.out.println(token);
 		UserAccount tempAccount = userAccountRepository.findByUsername(username);
