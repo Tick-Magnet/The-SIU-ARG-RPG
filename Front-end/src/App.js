@@ -1,6 +1,8 @@
 import Popup from './components/Popup';
 import {useState} from 'react';
 
+import RPGServerProxy from './RPGServerProxy';
+
 function App() {
   const [loginPopup, setLoginPopup] = useState(false);
   const [registerPopup, setRegisterPopup] = useState(false);
@@ -12,9 +14,26 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    console.log(RPGServerProxy.testAPI());
+    /*
     console.log(name);
     console.log(email);
     console.log(pass);
+    var http = new XMLHttpRequest();
+    http.open('POST', "localhost:8080/register", true);
+    http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    var content = "";
+    content.concat("username=",name,"&","email=",email,"&","password=",pass);
+    http.onreadystatechange = function()
+    {
+		console.log(http.responseText);
+		console.log(http.readyState);
+		console.log(http.status);
+	}
+    
+    http.send(content);
+    */
   }
 
   function toRegister() {

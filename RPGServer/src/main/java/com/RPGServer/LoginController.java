@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 
 
 import java.security.MessageDigest;
@@ -79,4 +80,10 @@ public class LoginController
 		return output;
 	}
 	
+	//test request
+	@GetMapping("/test")
+	public String test()
+	{
+		return "Test String";
+	}
 }

@@ -11,6 +11,8 @@ import org.springframework.mail.SimpleMailMessage;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.UUID;
 
+import org.springframework.web.servlet.config.annotation.*;
+import org.springframework.context.annotation.Configuration;
 
 @SpringBootApplication
 public class RpgServerApplication {
@@ -26,5 +28,17 @@ public class RpgServerApplication {
 		
 	public static void main(String[] args) {
 		SpringApplication.run(RpgServerApplication.class, args);
+	}
+	
+	@Configuration
+	@EnableWebMvc
+	public class Config implements WebMvcConfigurer
+	{
+		//Allows cross origin resource sharing (CORS)
+		@Override
+		public void addCorsMappings(CorsRegistry registry)
+		{
+			registry.addMapping("/**");
+		}
 	}
 }
