@@ -61,4 +61,22 @@ public class LoginController
 		return token;
 	}
 	
+	//Simple request to verify session token is still valid
+	@PostMapping("/checktoken")
+	public boolean checkToken(@RequestParam(value = "username", required = true) String username, @RequestParam(value = "token", required = true) byte[] token)
+	{
+		boolean output = false;
+		System.out.println(token.toString());
+		UserAccount tempAccount = userAccountRepository.findByUsername(username);
+		if(tempAccount != null)
+		{
+			if(tempAccount.isValidSessionToken(token) == true)
+			{
+				output = true;
+			}
+		}
+		
+		return output;
+	}
+	
 }
