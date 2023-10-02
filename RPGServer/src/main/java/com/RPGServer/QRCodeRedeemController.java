@@ -1,7 +1,7 @@
 package com.RPGServer;
 
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +11,9 @@ import java.util.UUID;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
+
+import java.util.Map;
+
 
 
 @RestController
@@ -24,8 +27,13 @@ public class QRCodeRedeemController
 	
 	//Using UUID for QR code token, not as secure but easier to include in a URL
 	@PostMapping("/redeemQR")
-	public QRRedeemResult redeem(@RequestParam(value = "username", required = true) String username, @RequestParam(value = "sessionToken", required = true) String sessionToken, @RequestParam(value = "uuid", required= true) UUID uuid)
+	public QRRedeemResult redeem(@RequestBody Map<String, Object> payload)
 	{
+		//Read JSON values from HTTP payload
+		String username = (String)payload.get("username");
+		UUID uuid = UUID.fromString((String)payload.get("uuid"));
+		String sessionToken = (String)payload.get("sessionToken");
+		
 		QRRedeemResult result = null;
 		//Retrieve user account by username
 		UserAccount account = userAccountRepository.findByUsername(username);
