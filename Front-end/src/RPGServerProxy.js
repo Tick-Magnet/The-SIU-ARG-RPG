@@ -32,6 +32,29 @@ class RPGServerProxy
 		.then(function (response)
 		{
 			console.log(response.data);
+			return response.data;
+		});
+	}
+	
+	login(inputUsername, inputPassword)
+	{
+		var url = "";
+		url = url.concat(apiURL, "/login");
+		axios.post(url,
+		{
+			username: inputUsername,
+			password: inputPassword
+		})
+		.then(function (response)
+		{
+			//Store session token as a cookie
+			var cookieString = "SessionToken=";
+			cookieString = cookieString.concat(response.data.token);
+			//Cookie expires in 23 hours
+			cookieString = cookieString.concat(";SameSite=None;max-age=82800");
+			document.cookie = cookieString;
+			console.log(response.data);
+			return response.data;
 		});
 	}
 }

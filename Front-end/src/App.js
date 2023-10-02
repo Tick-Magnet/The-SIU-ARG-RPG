@@ -12,7 +12,7 @@ function App() {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleRegisterSubmit = (e) => {
     e.preventDefault();
     
     RPGServerProxy.register(name, email, pass);
@@ -34,6 +34,11 @@ function App() {
     
     http.send(content);
     */
+  }
+  
+  const handleLoginSubmit = (e) => {
+	  e.preventDefault();
+	  RPGServerProxy.login(email, pass);
   }
 
   function toRegister() {
@@ -67,9 +72,9 @@ function App() {
       <Popup trigger={loginPopup} setTrigger={setLoginPopup}>
         <div className='auth-form-container'>
           <h1>Log In</h1>
-          <form className="login-form" onSubmit={handleSubmit}>            
-            <label htmlFor="email">Email: </label>
-            <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Placeholder@email.com" id="email" name="email" />
+          <form className="login-form" onSubmit={handleLoginSubmit}>            
+            <label htmlFor="email">Username: </label>
+            <input value={email} onChange={(e) => setEmail(e.target.value)} type="text" placeholder="username" id="email" name="email" />
             <label htmlFor="password">Password: </label>
             <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="********" id="password" name="password" />
             <button type="submit">Log In</button>
@@ -81,7 +86,7 @@ function App() {
       <Popup trigger={registerPopup} setTrigger={setRegisterPopup}>
         <h1>Register</h1>
         <div className='auth-form-container'>
-          <form className="register-form" onSubmit={handleSubmit}>    
+          <form className="register-form" onSubmit={handleRegisterSubmit}>    
             <label htmlFor="name">Full Name: </label>
             <input onChange={(e) => setName(e.target.value)} placeholder="John Doe" id="name" name="name" />      
             <label htmlFor="email">Email: </label>
