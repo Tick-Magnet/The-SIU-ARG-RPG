@@ -1,5 +1,6 @@
 import Popup from './components/Popup';
 import {useState} from 'react';
+import Cookies from 'universal-cookie';
 
 import RPGServerProxy from './RPGServerProxy';
 

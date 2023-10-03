@@ -75,7 +75,7 @@ public class LoginController
 	{
 		String username = (String)payload.get("username");
 		String token = (String)payload.get("token");
-		
+		System.out.println("checking token: " + token);
 		boolean output = false;
 		System.out.println(token);
 		UserAccount tempAccount = userAccountRepository.findByUsername(username);

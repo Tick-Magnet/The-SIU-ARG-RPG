@@ -1,10 +1,27 @@
 import axios from 'axios'
+import Cookies from 'universal-cookie';
 
 const apiURL = 'http://localhost:8080';
 //axios.defaults.headers.get['Acess-Control-Allow-Origin'] = '*';
+const cookies = new Cookies();
 
 class RPGServerProxy
 {
+	
+	checkToken(inputUsername)
+	{
+		var url ="";
+		url = url.concat(apiURL, "/checktoken");
+		axios.post(url,
+		{
+			username: inputUsername,
+			token: cookies.get('sessionToken')
+		})
+		.then(function (response)
+		{
+			console.log(response.data);
+		});
+	}
 	
 	testAPI()
 	{
@@ -38,6 +55,7 @@ class RPGServerProxy
 	
 	login(inputUsername, inputPassword)
 	{
+		//this.checkToken(inputUsername);
 		var url = "";
 		url = url.concat(apiURL, "/login");
 		axios.post(url,
@@ -48,11 +66,7 @@ class RPGServerProxy
 		.then(function (response)
 		{
 			//Store session token as a cookie
-			var cookieString = "SessionToken=";
-			cookieString = cookieString.concat(response.data.token);
-			//Cookie expires in 23 hours
-			cookieString = cookieString.concat(";SameSite=None;max-age=82800");
-			document.cookie = cookieString;
+			cookies.set('sessionToken', response.data.token, {path:'/', maxAge:82800});
 			console.log(response.data);
 			return response.data;
 		});
