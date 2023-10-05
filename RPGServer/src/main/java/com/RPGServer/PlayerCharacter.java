@@ -11,7 +11,14 @@ import jakarta.persistence.Embeddable;
 //@Entity
 public class PlayerCharacter
 {
+	public static final int BASE_HEALTH = 20;
+
 	public CharacterType characterType;
+	public int experience;
+	public int level;
+
+	public boolean creationComplete;
+	public boolean statsRolled;
 	private int health;
 	private int strength;
 	private int dexterity;
@@ -20,27 +27,105 @@ public class PlayerCharacter
 	
 	private int weaponModifier;
 	private int armorModifier;
+
 	
-	/*
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	public Integer Id;
-	*/
-	
-	public PlayerCharacter(int strength, int dexterity, int constitution, int intelligence, CharacterType characterType)
+	public PlayerCharacter()
 	{
-		this.strength = strength;
-		this.dexterity = dexterity;
-		this.constitution = constitution;
-		this.intelligence = intelligence;
-		this.characterType = characterType;
+		//Generate stats with random rolls
+		//Using sum of 4 d6 rolls
+		strength = Dice.d6(4);
+		dexterity = Dice.d6(4);
+		intelligence = Dice.d6(4);
+		constitution = Dice.d6(4);
+		health = constitution + BASE_HEALTH;
+		level = 0;
+		experience = 0;
+		statsRolled = true;
+		//User will be able to select race and class after they roll their stats
+		creationComplete = false;
 	}
-	
+
+	public boolean setCharacterType(CharacterType type)
+	{
+		if(creationComplete != true)
+		{
+			this.characterType = type;
+			creationComplete = true;
+			//Apply stat modifiers
+			strength += characterType.strengthModifier;
+			dexterity += characterType.dexterityModifier;
+			intelligence += characterType.intelligenceModifier;
+			constitution += characterType.constitutionModifier;
+			resetHealth();
+
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	public void levelUp()
+	{
+		//Check how many stat gains need to be applied
+		int levelsGained = (int)Math.floor(Math.sqrt(experience)) - level;
+		//Apply stat gains and increase level
+		//Modify attack stat (+2 points)
+		//Modify weak stat (+1 point every other level up
+		//Modify other stats (+1 point)
+		strength += figureStatIncrease(CharacterType.Stat.STRENGTH);
+		dexterity += figureStatIncrease(CharacterType.Stat.DEXTERITY);
+		intelligence += figureStatIncrease(CharacterType.Stat.INTELLIGENCE);
+		constitution += figureStatIncrease(CharacterType.Stat.CONSTITUTION);
+	}
+	//Function to return stat increases based on the character type enum values
+	private int figureStatIncrease(CharacterType.Stat currentStat)
+	{
+		int output = 0;
+		//Attack stat case
+		if(this.characterType.attackStat == currentStat)
+		{
+			output = 2;
+		}
+		//Weak stat case
+		else if(this.characterType.weakStat == currentStat)
+		{
+			if(this.level % 2 == 1)
+			{
+				output = 1;
+			}
+		}
+		else
+		{
+			output = 1;
+		}
+		//other stat case
+		return output;
+	}
+	//Add experience returning true if a level up occured
+	public boolean applyExperience(int xp)
+	{
+		boolean output = false;
+		experience += xp;
+		if(experience >= Math.pow((level + 1), 2))
+		{
+			output = true;
+			levelUp();
+		}
+		return output;
+	}
+	//Reset health back to full, should be used after a stat change is applied
+	public void resetHealth()
+	{
+		health = BASE_HEALTH + constitution;
+	}
+
 	public int figureDamage()
 	{
 		int damage = 0;
 		//Add D8 dice roll
-		damage += Dice.d8();
+		damage += Dice.d8(1);
 		//Add attack stat
 		switch (characterType.attackStat)
 		{

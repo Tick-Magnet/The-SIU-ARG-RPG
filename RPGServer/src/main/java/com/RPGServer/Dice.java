@@ -7,24 +7,31 @@ public class Dice
 {
 	private static Random randomGenerator = new Random();
 	
-	public static int d6()
+	public static int d6(int rolls)
 	{
-		return randomGenerator.nextInt(6) + 1;
+		int output = 0;
+		for(int i = 0; i < rolls; i++, output += randomGenerator.nextInt(6)+1);
+		return output;
 	}
 	
-	public static int d8()
+	public static int d8(int rolls)
 	{
-		//Excludes 8, adding 1 to exclude 0;
-		return randomGenerator.nextInt(8) + 1;
+		int output = 0;
+		for(int i = 0; i < rolls; i++, output += randomGenerator.nextInt(8)+1);
+		return output;
 	}
 	
-	public static int d4()
+	public static int d4(int rolls)
 	{
-		return randomGenerator.nextInt(4) + 1;
+		int output = 0;
+		for(int i = 0; i < rolls; i++, output += randomGenerator.nextInt(4)+1);
+		return output;
 	}
 	
-	public static int d20()
+	public static int d20(int rolls)
 	{
-		return randomGenerator.nextInt(20) + 1;
+		int output = 0;
+		for(int i = 0; i < rolls; i++, output += randomGenerator.nextInt(20)+1);
+		return output;
 	}
 }
