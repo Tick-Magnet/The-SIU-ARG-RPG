@@ -14,7 +14,11 @@ public class CharacterType
 	public Stat attackStat;
 	public Stat weakStat;
 	public WeaponType weaponType;
-	
+	//Default constructor required by jakarta, ideally should not be used
+	public CharacterType()
+	{
+
+	}
 	public CharacterType(CharacterClass characterClass, CharacterRace characterRace)
 	{
 		switch(characterClass)

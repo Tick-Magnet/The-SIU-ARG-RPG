@@ -24,5 +24,5 @@ public class QRCodeEntity
 	//Array containing awards for redeeming
 	
 	//Path to encounter definition file
-	String encounterDefinitionPath;
+	public String encounterDefinitionPath;
 }

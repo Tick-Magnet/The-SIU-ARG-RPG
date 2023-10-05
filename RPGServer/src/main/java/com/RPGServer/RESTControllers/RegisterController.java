@@ -1,7 +1,9 @@
-package com.RPGServer;
+package com.RPGServer.RESTControllers;
 
 import java.util.concurrent.atomic.AtomicLong;
 
+import com.RPGServer.UserAccount;
+import com.RPGServer.UserAccountRepository;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestBody;

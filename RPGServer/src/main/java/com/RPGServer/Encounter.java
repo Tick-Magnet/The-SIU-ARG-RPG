@@ -1,4 +1,5 @@
 package com.RPGServer;
+import com.RPGServer.ItemSystem.*;
 
 import java.io.File;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,6 +10,7 @@ import java.util.HashMap;
 
 import org.springframework.core.io.ClassPathResource;
 import java.util.UUID;
+import java.util.ArrayList;
 
 
 //Encounter system written in a way so that JSON files can be used to create new game content
@@ -25,6 +27,9 @@ public class Encounter
 	public EncounterEntity[] entityArray;
 	
 	public EncounterStep currentStep;
+
+	//Rewards to be granted to player on completion of encounter
+	public Reward encounterReward;
 	
 	public UUID uuid;
 	
@@ -53,6 +58,7 @@ public class Encounter
 		playerAccount = user;
 		ObjectMapper objectMapper = new ObjectMapper();
 		uuid = UUID.randomUUID();
+		encounterReward = new Reward();
 		
 		JsonNode rootNode = objectMapper.readTree((new ClassPathResource(encounterDefinitionPath)).getFile());
 		//Fill fields in Encounter class from JSON tree
@@ -153,5 +159,29 @@ public class Encounter
 		
 		public int health;
 		
+	}
+	//store rewards added by encounter steps
+	public class Reward
+	{
+		int experienceReward;
+		int goldReward;
+		ArrayList<Item> itemRewards;
+
+		public Reward()
+		{
+			itemRewards = new ArrayList<Item>();
+			experienceReward = 0;
+			goldReward = 0;
+		}
+
+		public void grantReward(UserAccount player)
+		{
+			//Add experience
+			player.playerCharacter.applyExperience(experienceReward);
+			//Add gold reward
+			player.playerCharacter.gold += goldReward;
+
+			//Add items to player inventory
+		}
 	}
 }

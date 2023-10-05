@@ -1,5 +1,8 @@
-package com.RPGServer;
+package com.RPGServer.RESTControllers;
 
+
+import com.RPGServer.Encounter;
+import com.RPGServer.UserAccountRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;

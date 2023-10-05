@@ -15,6 +15,7 @@ public class PlayerCharacter
 
 	public CharacterType characterType;
 	public int experience;
+	public int gold;
 	public int level;
 
 	public boolean creationComplete;
@@ -39,6 +40,7 @@ public class PlayerCharacter
 		constitution = Dice.d6(4);
 		health = constitution + BASE_HEALTH;
 		level = 0;
+		gold = 0;
 		experience = 0;
 		statsRolled = true;
 		//User will be able to select race and class after they roll their stats

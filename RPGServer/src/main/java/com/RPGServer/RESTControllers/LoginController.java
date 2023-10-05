@@ -1,7 +1,9 @@
-package com.RPGServer;
+package com.RPGServer.RESTControllers;
 
-import java.util.concurrent.atomic.AtomicLong;
 
+import com.RPGServer.SessionToken;
+import com.RPGServer.UserAccount;
+import com.RPGServer.UserAccountRepository;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,7 +15,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
-import java.math.BigInteger;
+
 import java.util.Base64;
 
 import java.time.LocalDateTime;
