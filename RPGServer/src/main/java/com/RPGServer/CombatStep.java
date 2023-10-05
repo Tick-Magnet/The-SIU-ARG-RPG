@@ -16,7 +16,7 @@ public class CombatStep extends EncounterStep
 	@Override
 	public void endStep()
 	{
-		
+		//Grant reward
 	}
 	
 	@Override
@@ -24,6 +24,25 @@ public class CombatStep extends EncounterStep
 	{
 		CombatStepUpdate output = new CombatStepUpdate();
 		//Process step update
+		switch(update.selectedChoice)
+		{
+			//Player attacks
+			case 0:
+			//Figure damage using players character
+			
+			break;
+			//Use item 
+			case 1:
+			
+			break;
+			
+			default:
+			break;
+		}
+		
+		//Process entity's attack
+		//Figure damage from entities stats
+		
 		//cast input to combat step update
 		CombatStepUpdate input = (CombatStepUpdate)update;
 		

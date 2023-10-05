@@ -21,7 +21,7 @@ public class DialogueStep extends EncounterStep
 	//Update Entities in the encounter or grant rewards
 	public void endStep()
 	{
-		
+		//Grant reward
 	}
 	//Should select appropriate next step and return its initial StepUpdate. Also update the current step in the encounter object
 	public StepUpdate postStepUpdate(StepUpdate update)

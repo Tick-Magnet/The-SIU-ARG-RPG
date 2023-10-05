@@ -51,6 +51,8 @@ public class UserAccount
 	
 	public UserRole userRole;
 	
+	public PlayerCharacter playerCharacter;
+	
 	public UserAccount()
 	{
 		this.username = null;

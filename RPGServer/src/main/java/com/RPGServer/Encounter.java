@@ -135,6 +135,11 @@ public class Encounter
 		return output;
 	}
 	
+	public UserAccount getUserAccount()
+	{
+		return this.playerAccount;
+	}
+	
 	//Class to contain data about enemies, player, and other information that may need to be persistent between encounter steps
 	public class EncounterEntity
 	{

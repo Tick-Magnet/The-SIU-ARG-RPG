@@ -1,3 +1,8 @@
+package com.RPGServer;
+
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public class CharacterType
 {
 	
