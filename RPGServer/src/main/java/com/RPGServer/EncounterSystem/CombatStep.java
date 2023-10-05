@@ -1,6 +1,4 @@
-package com.RPGServer;
-
-import java.util.ArrayList;
+package com.RPGServer.EncounterSystem;
 
 public class CombatStep extends EncounterStep
 {

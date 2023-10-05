@@ -1,12 +1,12 @@
 package com.RPGServer;
 
+import com.RPGServer.EncounterSystem.Encounter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.SimpleMailMessage;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.UUID;

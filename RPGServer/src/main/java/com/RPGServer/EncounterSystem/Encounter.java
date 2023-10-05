@@ -1,12 +1,11 @@
-package com.RPGServer;
+package com.RPGServer.EncounterSystem;
 import com.RPGServer.ItemSystem.*;
 
-import java.io.File;
+import com.RPGServer.UserAccount;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.*;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 import org.springframework.core.io.ClassPathResource;
 import java.util.UUID;

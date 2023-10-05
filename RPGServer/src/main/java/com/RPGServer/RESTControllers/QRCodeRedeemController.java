@@ -1,15 +1,13 @@
 package com.RPGServer.RESTControllers;
 
 import com.RPGServer.*;
+import com.RPGServer.EncounterSystem.Encounter;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
-
-import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
 

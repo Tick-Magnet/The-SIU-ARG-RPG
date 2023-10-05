@@ -1,19 +1,11 @@
 package com.RPGServer.RESTControllers;
 
 
-import com.RPGServer.Encounter;
+import com.RPGServer.EncounterSystem.Encounter;
 import com.RPGServer.UserAccountRepository;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.security.SecureRandom;
-
-import java.util.UUID;
-
-import org.springframework.web.servlet.ModelAndView;
 
 
 @RestController

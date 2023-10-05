@@ -1,4 +1,4 @@
-package com.RPGServer;
+package com.RPGServer.EncounterSystem;
 
 public class StepUpdate
 {
