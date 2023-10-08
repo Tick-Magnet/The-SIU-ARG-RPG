@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<style>
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+.bgimg {
+  background-image: url("smoke.png");
+  height: 125%;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  background-color: black;
+  color: white;
+  font-family: "Papyrus", fantasy;
+  font-size: 25px;
+}
+
+.topleft {
+  position: absolute;
+  top: 0;
+  left: 16px;
+  font-style: italic;
+}
+
+.bottomleft {
+  position: absolute;
+  bottom: 0;
+  left: 16px;
+}
+
+.bottomcenter {
+  position:absolute;
+  bottom:-0px;
+  left:25%;
+  margin-left:-150px;
+  
+}
+
+.middle {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+hr {
+  margin: auto;
+  width: 80%;
+}
+
+img {
+  width:85%;
+  height: 85%;
+  text-align: center;
+  bottom: -0px;
+}
+
+</style>
+<body>
+
+  <div class="bgimg">
+    <div class="topleft">
+      <p>THE SIU ARG RPG</p>
+    </div>
+    <div class="middle">
+      <h1>HEROES  SNEEDED!</h1>
+      <hr>
+      <p id="demo" style="font-size:30px"></p>
+      <p>11/13/2023 - 9:00 | Faner Plaza</p>
+      <hr>
+      <p>Our once great kingdom has descended into chaos. <br/>
+        Monsters roam the land, and our once mighty king has become inept with age. <br/>
+        Now is the time for the forces of Good must muster. <br/>
+        Human, dwarven, and elven heroes heed my call, and at the appointed hour, we shall strike. <br/>
+      </p>
+      
+     </div>
+
+    <div class="bottomcenter">
+      <img src="King&Advisor(2).png" alt="The King and his advisor.">
+    </div>
+
+
+  </div>
+
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("Nov 13, 2023 9:00:00").getTime();
+
+// Update the count down every 1 second
+var countdownfunction = setInterval(function() {
+
+  // Get todays date and time
+  var now = new Date().getTime();
+  
+  // Find the distance between now an the count down date
+  var distance = countDownDate - now;
+  
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  
+  // Output the result in an element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+  
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(countdownfunction);
+    document.getElementById("demo").innerHTML = "EXPIRED";
+  }
+}, 1000);
+</script>
+
+</body>
+</html>
