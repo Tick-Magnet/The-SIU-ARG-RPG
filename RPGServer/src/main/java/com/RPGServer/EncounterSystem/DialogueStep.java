@@ -6,7 +6,7 @@ public class DialogueStep extends EncounterStep
 {
 	private ArrayList<DialogueOption> dialogueOptions;
 	private int nextStep;
-	private Encounter parentEncounter;
+
 	
 	public DialogueStep()
 	{
@@ -33,6 +33,7 @@ public class DialogueStep extends EncounterStep
 			//Update parent encounter's current step to the proper next step and get its initial stateupdate
 			parentEncounter.currentStep = parentEncounter.encounterSteps[dialogueOptions.get(update.selectedChoice).nextStep];
 			output = parentEncounter.currentStep.getInitialStepUpdate();
+
 		}
 		return output;
 	}
@@ -40,13 +41,22 @@ public class DialogueStep extends EncounterStep
 	public StepUpdate getInitialStepUpdate()
 	{
 		StepUpdate update = new StepUpdate();
-		update.choices = (String[])dialogueOptions.toArray();
+		update.choices = getChoiceArray();
 		update.selectedChoice = -1;
 		update.stepType = 0;
 		
 		return update;
 	}
-	
+
+	private String[] getChoiceArray()
+	{
+		String[] output = new String[dialogueOptions.size()];
+		for(int i = 0; i < dialogueOptions.size(); i++)
+			output[i] = dialogueOptions.get(i).text;
+
+		return output;
+	}
+
 	private class DialogueOption
 	{
 		public String text;

@@ -1,5 +1,6 @@
 package com.RPGServer;
 
+import com.RPGServer.ItemSystem.Item;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,6 +23,11 @@ public class QRCodeEntity
 	public int type;
 	
 	//Array containing awards for redeeming
+	//public Item[] items;
+	//gold reward for item QR codes
+	public int goldReward;
+	//Experience rewards for item QR codes
+	public int experienceReward;
 	
 	//Path to encounter definition file
 	public String encounterDefinitionPath;

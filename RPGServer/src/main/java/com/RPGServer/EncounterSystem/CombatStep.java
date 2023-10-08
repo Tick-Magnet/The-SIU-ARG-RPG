@@ -1,9 +1,12 @@
 package com.RPGServer.EncounterSystem;
 
+import com.RPGServer.UserAccount;
+
 public class CombatStep extends EncounterStep
 {
 	private int enemyIndex;
 	private int nextStepIndex;
+
 	
 	public CombatStep(int enemyIndex, int nextStepIndex)
 	{
@@ -39,10 +42,8 @@ public class CombatStep extends EncounterStep
 		}
 		
 		//Process entity's attack
+
 		//Figure damage from entities stats
-		
-		//cast input to combat step update
-		CombatStepUpdate input = (CombatStepUpdate)update;
 		
 		return output;
 	}
@@ -53,7 +54,7 @@ public class CombatStep extends EncounterStep
 		CombatStepUpdate output = new CombatStepUpdate();
 		output.playerHealth = 0;
 		output.enemyHealth = parentEncounter.entityArray[enemyIndex].health;
-		
+		output.stepType = 1;
 		return output;
 	}
 	

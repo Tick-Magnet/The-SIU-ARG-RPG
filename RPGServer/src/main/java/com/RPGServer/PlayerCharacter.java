@@ -34,11 +34,12 @@ public class PlayerCharacter
 	{
 		//Generate stats with random rolls
 		//Using sum of 4 d6 rolls
-		strength = Dice.d6(4);
-		dexterity = Dice.d6(4);
-		intelligence = Dice.d6(4);
-		constitution = Dice.d6(4);
+		strength = Dice.d6(3);
+		dexterity = Dice.d6(3);
+		intelligence = Dice.d6(3);
+		constitution = Dice.d6(3);
 		health = constitution + BASE_HEALTH;
+		//Maybe change to 1 later
 		level = 0;
 		gold = 0;
 		experience = 0;

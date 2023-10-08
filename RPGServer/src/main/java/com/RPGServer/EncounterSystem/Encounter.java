@@ -5,9 +5,14 @@ import com.RPGServer.UserAccount;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.*;
 
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 import org.springframework.core.io.ClassPathResource;
+
+import java.io.InputStreamReader;
 import java.util.UUID;
 import java.util.ArrayList;
 
@@ -58,8 +63,13 @@ public class Encounter
 		ObjectMapper objectMapper = new ObjectMapper();
 		uuid = UUID.randomUUID();
 		encounterReward = new Reward();
-		
-		JsonNode rootNode = objectMapper.readTree((new ClassPathResource(encounterDefinitionPath)).getFile());
+
+		//ClassLoader loader = Thread.currentThread().getContextClassLoader();
+		//File jsonFile = new File(loader.getResource(encounterDefinitionPath).getPath());
+		InputStream inputStream = getClass().getResourceAsStream(encounterDefinitionPath);
+		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+		//JsonNode rootNode = objectMapper.readTree((new ClassPathResource(encounterDefinitionPath)).getFile());
+		JsonNode rootNode = objectMapper.readTree(inputStream);
 		//Fill fields in Encounter class from JSON tree
 		encounterName = rootNode.get("encounterName").asText();
 		//Read encounter steps array
@@ -93,7 +103,9 @@ public class Encounter
 					encounterSteps[i].parentEncounter = this;
 				break;
 			}
+				encounterSteps[i].parentEncounter = this;
 		}
+		currentStep = encounterSteps[0];
 		//Read encounter entities array
 		JsonNode entityArrayNode = rootNode.get("encounterEntities");
 		entityArray = new EncounterEntity[entityArrayNode.size()];
@@ -115,7 +127,14 @@ public class Encounter
 	
 	public StepUpdate postStepUpdate(StepUpdate update)
 	{
-		return currentStep.postStepUpdate(update);
+		if(update.selectedChoice == -1)
+		{
+			return currentStep.getInitialStepUpdate();
+		}
+		else
+		{
+			return currentStep.postStepUpdate(update);
+		}
 	}
 	
 	public void updateCurrentStep(EncounterStep nextStep)
