@@ -31,7 +31,13 @@ export const Combat = (props) => {
         <input type='image' src='./Images/compass.png' alt='Map' className='compass' onClick={() => setMapPopup(true)}/>
         <input type='image' src='./Images/profile.jfif' alt='Login' className='loginbutt' onClick={() => setLoginPopup(true)}/>
       <main>
-        <h1>COMBAT</h1>
+        <img class='Monster' src='./Images/Dragon.png' alt='Red Dragon'/>
+        <div class="ButtonContainer">
+          <button class="Button1">Attack</button>
+          <button class="Button2">Flee</button>
+          <button class="Button3">Item</button>
+          <button class="Button4">Emote</button>
+        </div>
       </main>
 
       <Popup trigger={mapPopup} setTrigger={setMapPopup}>
