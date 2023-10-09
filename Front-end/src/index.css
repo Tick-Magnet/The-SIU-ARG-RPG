@@ -9,12 +9,13 @@ main {
 
   font-family: papyrus;
 
-  background-image: url('/public/Stoneback.jpg');
+  background-image: url('/public/Images/Stoneback.jpg');
   background-size: cover;
 }
 
 .prompt {
   color: white;
+  font-size: 8vw;
   text-decoration: bold;
   text-shadow: 2px 2px black;
 }
