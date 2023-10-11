@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
@@ -21,9 +22,9 @@ public class EncounterController
     private UserAccountRepository userAccountRepository;
 
     @PostMapping("/postEncounterUpdate")
-    public StepUpdate postEncounterUpdate(@RequestBody Map<String, Object> payload)
+    public Map<String,Object> postEncounterUpdate(@RequestBody Map<String, Object> payload)
     {
-        StepUpdate output = null;
+        HashMap<String,Object> output = new HashMap<String,Object>();
         //Retrieve player account by username
         UserAccount player = userAccountRepository.findByUsername((String)payload.get("username"));
         if(player != null)
@@ -39,7 +40,7 @@ public class EncounterController
                 {
                     StepUpdate input = new StepUpdate(payload);
                     //Post update and return result
-                    output = encounter.postStepUpdate(input);
+                    output = (HashMap<String, Object>)encounter.postStepUpdate(input).toMap();
                 }
             }
         }

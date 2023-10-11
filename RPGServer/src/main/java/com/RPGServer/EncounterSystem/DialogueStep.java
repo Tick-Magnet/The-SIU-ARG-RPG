@@ -1,6 +1,7 @@
 package com.RPGServer.EncounterSystem;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class DialogueStep extends EncounterStep
 {
@@ -27,6 +28,7 @@ public class DialogueStep extends EncounterStep
 	public StepUpdate postStepUpdate(StepUpdate update)
 	{
 		StepUpdate output = null;
+
 		//Check if choice is in range and select next step
 		if(update.selectedChoice >= 0 && update.selectedChoice < dialogueOptions.size())
 		{

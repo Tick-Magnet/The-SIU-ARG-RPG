@@ -1,5 +1,6 @@
 package com.RPGServer.EncounterSystem;
 
+import java.util.Map;
 
 public abstract class EncounterStep
 {
@@ -12,4 +13,6 @@ public abstract class EncounterStep
 	public abstract StepUpdate postStepUpdate(StepUpdate update);
 	//Return initial step update to begin step for client
 	public abstract StepUpdate getInitialStepUpdate();
+
+
 }

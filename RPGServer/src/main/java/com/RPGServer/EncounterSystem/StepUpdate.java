@@ -1,5 +1,6 @@
 package com.RPGServer.EncounterSystem;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class StepUpdate
@@ -14,5 +15,14 @@ public class StepUpdate
 	}
 	public StepUpdate()
 	{
+	}
+
+	public Map<String, Object> toMap()
+	{
+		HashMap<String, Object> output = new HashMap<String, Object>();
+		output.put("choices", choices);
+		output.put("stepType", stepType);
+		output.put("selectedChoice", selectedChoice);
+		return output;
 	}
 }

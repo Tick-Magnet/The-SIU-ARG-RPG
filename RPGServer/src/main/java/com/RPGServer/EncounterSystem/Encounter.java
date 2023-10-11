@@ -1,4 +1,5 @@
 package com.RPGServer.EncounterSystem;
+import com.RPGServer.Dice;
 import com.RPGServer.ItemSystem.*;
 
 import com.RPGServer.UserAccount;
@@ -23,7 +24,7 @@ public class Encounter
 	public String encounterName;
 	
 	//Reference to the player who initiated the encounter
-	private UserAccount playerAccount;
+	public UserAccount playerAccount;
 	
 	//Contains all steps of encounter, used so generated steps can refer to steps by name
 	public EncounterStep[] encounterSteps;
@@ -176,6 +177,22 @@ public class Encounter
 		public int intelligence;
 		
 		public int health;
+
+		public int figureDamage()
+		{
+			int output = 0;
+			//Defaulting to using strength unless combat rules become more complex later
+			output += Dice.d8(1) + strength;
+			return output;
+		}
+
+		public void applyDamage(int damage)
+		{
+			if(health >= damage)
+				health -= damage;
+			else
+				health = 0;
+		}
 		
 	}
 	//store rewards added by encounter steps
