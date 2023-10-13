@@ -38,8 +38,7 @@ public class CharacterCreationController
             if (player.playerCharacter == null || !player.playerCharacter.statsRolled)
             {
                 System.out.println("Rolling stats");
-                //Roll character stats and return new character object
-                player.playerCharacter = new PlayerCharacter();
+                player.playerCharacter.rollStats();
                 //Create a default character type (for jakarta null column restriction)
                 player.playerCharacter.characterType = new CharacterType();
                 userAccountRepository.save(player);

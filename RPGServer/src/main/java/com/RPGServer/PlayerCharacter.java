@@ -6,6 +6,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.*;
 import jakarta.persistence.Embeddable;
+import jakarta.validation.constraints.*;
+import jakarta.annotation.*;
 
 @Embeddable
 //@Entity
@@ -26,11 +28,33 @@ public class PlayerCharacter
 	private int constitution;
 	private int intelligence;
 	
+	@Nullable
 	private int weaponModifier;
+	@Nullable
 	private int armorModifier;
 
 	
 	public PlayerCharacter()
+	{
+		strength = 0;
+		dexterity = 0;
+		intelligence = 0;
+		constitution = 0;;
+		health = 0;
+		//Maybe change to 1 later
+		level = 0;
+		gold = 0;
+		experience = 0;
+		weaponModifier = 0;
+		armorModifier = 0;
+		
+		setCharacterType(new CharacterType(CharacterType.CharacterClass.KNIGHT, CharacterType.CharacterRace.HUMAN));
+		statsRolled = false;
+		
+		creationComplete = false;
+	}
+	
+	public void rollStats()
 	{
 		//Generate stats with random rolls
 		//Using sum of 4 d6 rolls
@@ -44,6 +68,7 @@ public class PlayerCharacter
 		gold = 0;
 		experience = 0;
 		statsRolled = true;
+		
 		//User will be able to select race and class after they roll their stats
 		creationComplete = false;
 	}

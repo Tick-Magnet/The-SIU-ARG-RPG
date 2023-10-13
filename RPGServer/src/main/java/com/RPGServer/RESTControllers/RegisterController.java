@@ -4,6 +4,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import com.RPGServer.UserAccount;
 import com.RPGServer.UserAccountRepository;
+import com.RPGServer.PlayerCharacter;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -65,6 +66,7 @@ public class RegisterController
 			//Generate verification token
 			UUID token = UUID.randomUUID();
 			tempUser.setVerifyToken(token);
+			tempUser.playerCharacter = new PlayerCharacter();
 			//Send verification email 
 			SimpleMailMessage verifyMessage = new SimpleMailMessage();
 			verifyMessage.setFrom(MAIL_USER_NAME);
@@ -73,6 +75,7 @@ public class RegisterController
 			verifyMessage.setSubject("CS435 RPG Email Verification");
 			mailSender.send(verifyMessage);
 			//Write new user account to database
+			//NEED TO DO THIS BEFORE SENDING EMAIL. EMAIL BEING SENT EVEN ON JAKARATA EXCEPTIONS
 			userAccountRepository.save(tempUser);
 			//update result
 			result = new RegistrationResult(true, "Account created with username: " + username);

@@ -14,17 +14,23 @@ public class CombatStep extends EncounterStep
 {
 	private int enemyIndex;
 	private int nextStepIndex;
+	private boolean stepWon;
 	
 	public CombatStep(int enemyIndex, int nextStepIndex)
 	{
 		this.enemyIndex = enemyIndex;
 		this.nextStepIndex = nextStepIndex;
+		stepWon = false;
 	}	
 	
 	@Override
-	public void endStep()
+	public void endStep(int selectedChoice)
 	{
 		//Grant reward
+		if(rewards[0] != null && stepWon)
+		{
+			parentEncounter.encounterRewards.add(rewards[0]);
+		}
 	}
 	
 	@Override
@@ -32,20 +38,23 @@ public class CombatStep extends EncounterStep
 	{
 		Encounter.EncounterEntity enemy = parentEncounter.entityArray[enemyIndex];
 		PlayerCharacter player = parentEncounter.playerAccount.playerCharacter;
-
-		CombatStepUpdate output = new CombatStepUpdate();
-		output.choices = new String[]{"attack", "leave"};
+		StepUpdate output;
+		
+		CombatStepUpdate combatUpdate = new CombatStepUpdate();
+		combatUpdate.choices = new String[]{"attack", "leave"};
 		//Process step update
 		switch(update.selectedChoice)
 		{
 			//Player attacks
 			case 0:
-			//Figure damage using players character
-			enemy.applyDamage(player.figureDamage());
+				//Figure damage using players character
+				enemy.applyDamage(player.figureDamage());
 			break;
 			//Leave encounter
 			case 1:
-			//End step, signal end encounter
+				//End step, signal end encounter
+				endStep(0);
+				
 			break;
 			
 			default:
@@ -53,12 +62,31 @@ public class CombatStep extends EncounterStep
 		}
 		
 		//Process entity's attack
-		player.applyDamage(enemy.figureDamage());
+		if(enemy.health > 0)
+		{
+			player.applyDamage(enemy.figureDamage());
+		}
 		//Figure damage from entities stats
-		output.enemyHealth = enemy.health;
-		output.playerHealth = player.getHealth();
+		combatUpdate.enemyHealth = enemy.health;
+		combatUpdate.playerHealth = player.getHealth();
 
-		
+		//If player health is zero, end encounter
+		if(player.getHealth() <= 0)
+		{
+			parentEncounter.endEncounter();
+		}
+		//If enemy health is zero, end step
+		//Return next initial step
+		if(enemy.health <= 0)
+		{
+			endStep(0);
+			parentEncounter.currentStep = parentEncounter.encounterSteps[nextStepIndex];
+			output = parentEncounter.currentStep.getInitialStepUpdate();
+		}
+		else
+		{
+			output = combatUpdate;
+		}
 		return output;
 	}
 
@@ -85,7 +113,7 @@ public class CombatStep extends EncounterStep
 			//Add each relevant field to map
 			output.put("playerHealth", playerHealth);
 			output.put("enemyHealth", enemyHealth);
-
+			
 			return output;
 		}
 	}
