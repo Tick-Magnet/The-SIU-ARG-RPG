@@ -1,5 +1,6 @@
 package com.RPGServer.ItemSystem;
 
+import com.RPGServer.CharacterType;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -50,44 +51,65 @@ public class ItemFactory
 
     public class Weapon extends Item
     {
+        public CharacterType.WeaponType weaponType;
+        public int attackModifier;
         public Weapon(JsonNode jsonNode)
         {
-
+            super(jsonNode);
+            this.attackModifier = jsonNode.get("attackModifier").asInt();
+            this.weaponType = CharacterType.WeaponType.valueOf(jsonNode.get("weaponType").asText());
+            this.canEquip = true;
         }
     }
     public class ChestArmor extends Item
     {
+        int armorBonus;
         public ChestArmor(JsonNode jsonNode)
         {
-
+            super(jsonNode);
+            this.canEquip = true;
+            this.armorBonus = jsonNode.get("armorBonus").asInt();
         }
     }
     public class LegArmor extends Item
     {
+        int armorBonus;
         public LegArmor(JsonNode jsonNode)
         {
-
+            super(jsonNode);
+            this.canEquip = true;
+            this.armorBonus = jsonNode.get("armorBonus").asInt();
         }
     }
     public class Boots extends Item
     {
+        int armorBonus;
         public Boots(JsonNode jsonNode)
         {
-
+            super(jsonNode);
+            this.canEquip = true;
+            this.armorBonus = jsonNode.get("armorBonus").asInt();
         }
     }
     public class Helmet extends Item
     {
+        int armorBonus;
         public Helmet(JsonNode jsonNode)
         {
-
+            super(jsonNode);
+            this.canEquip = true;
+            this.armorBonus = jsonNode.get("armorBonus").asInt();
         }
     }
     public class ResourceItem extends Item
     {
+        public int stackSize;
+        public int maxStackSize;
         public ResourceItem(JsonNode jsonNode)
         {
-
+            super(jsonNode);
+            this.stackSize = jsonNode.get("stackSize").asInt();
+            this.maxStackSize = jsonNode.get("maxStackSize").asInt();
         }
     }
 }

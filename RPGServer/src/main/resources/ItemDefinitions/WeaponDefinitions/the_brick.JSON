@@ -1,0 +1,12 @@
+{
+  "itemType": "WEAPON",
+  "name": "THE BRICK",
+  "itemDescription": "A large and heavy brick",
+  "itemGrade": "MAGIC",
+  "imagePath": "brick.png",
+  "goldValue": 100000,
+
+
+  "weaponType": "SPECIAL",
+  "attackModifier": 9999999
+}

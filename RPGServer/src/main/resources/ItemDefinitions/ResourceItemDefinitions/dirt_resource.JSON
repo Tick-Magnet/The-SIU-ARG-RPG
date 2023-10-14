@@ -1,0 +1,11 @@
+{
+  "itemType": "RESOURCE",
+  "name": "Dirt",
+  "itemDescription": "A pile of dirt",
+  "itemGrade": "WOOD",
+  "imagePath": "dirt.png",
+  "goldValue": 1,
+
+  "stackSize": 1,
+  "maxStackSize": 1000
+}

@@ -106,6 +106,7 @@ public class CharacterType
 		SWORD,
 		AXE,
 		BOW,
-		WAND;
+		WAND,
+		SPECIAL
 	}
 }
