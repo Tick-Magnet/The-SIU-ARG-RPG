@@ -17,7 +17,11 @@ public class QRCodeEntity
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Integer Id;
-		
+
+	public QRCodeEntity()
+	{
+		uuid = UUID.randomUUID();
+	}
 	public UUID uuid;
 	
 	public int type;

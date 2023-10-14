@@ -11,6 +11,7 @@ import com.google.zxing.qrcode.QRCodeWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -19,7 +20,7 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
-
+@RestController
 public class QRCodeCreatorController
 {
     private final static String DECODE_URL = "http://localhost/redeemQR?uuid=";
