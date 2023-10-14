@@ -1,6 +1,7 @@
 package com.RPGServer.EncounterSystem;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class DialogueStep extends EncounterStep
@@ -11,6 +12,7 @@ public class DialogueStep extends EncounterStep
 	
 	public DialogueStep()
 	{
+		rewards = new HashMap<Integer, Encounter.Reward>();
 		dialogueOptions = new ArrayList<DialogueOption>();
 	}
 	
@@ -23,9 +25,9 @@ public class DialogueStep extends EncounterStep
 	public void endStep(int selectedChoice)
 	{
 		//Grant reward from the rewards array corrsponding to the selected dialogue option
-		if(rewards[selectedChoice] != null)
+		if(rewards.get(selectedChoice) != null)
 		{
-			parentEncounter.encounterRewards.add(rewards[selectedChoice]);
+			parentEncounter.encounterRewards.add(rewards.get(selectedChoice));
 		}
 	}
 	//Should select appropriate next step and return its initial StepUpdate. Also update the current step in the encounter object
@@ -37,7 +39,8 @@ public class DialogueStep extends EncounterStep
 		if(update.selectedChoice >= 0 && update.selectedChoice < dialogueOptions.size())
 		{
 			//Update parent encounter's current step to the proper next step and get its initial stateupdate
-			parentEncounter.currentStep = parentEncounter.encounterSteps[dialogueOptions.get(update.selectedChoice).nextStep];
+			//parentEncounter.currentStep = parentEncounter.encounterSteps[dialogueOptions.get(update.selectedChoice).nextStep];
+			parentEncounter.nextEncounterStep(dialogueOptions.get(update.selectedChoice).nextStep);
 			endStep(update.selectedChoice);
 			output = parentEncounter.currentStep.getInitialStepUpdate();
 

@@ -52,6 +52,9 @@ public class Encounter
 		if(stepIndex < 0)
 		{
 			endEncounter();
+			//Sets step to default reward step so client can request reward information using postEncounterUpdate
+			currentStep = new RewardStep();
+			currentStep.parentEncounter = this;
 		}
 		else
 		{
@@ -91,6 +94,7 @@ public class Encounter
 		//Read encounter steps array
 		JsonNode encounterStepsNode = rootNode.get("encounterSteps");
 		encounterSteps = new EncounterStep[encounterStepsNode.size()];
+		JsonNode rewardArray;
 		JsonNode tempNode;
 		for(int i = 0; i < encounterStepsNode.size(); i++)
 		{
@@ -113,20 +117,24 @@ public class Encounter
 						currentStep.addDialogueOption(option.get("optionText").asText(), option.get("nextStepIndex").asInt());
 					}
 					//Add rewards
-					JsonNode rewardArray = tempNode.get("rewards");
-					for(int j = 0; j < rewardArray.size(); j++)
+					rewardArray = tempNode.get("rewards");
+					for(int j = 0; rewardArray != null && j < rewardArray.size(); j++)
 					{
 						JsonNode reward = rewardArray.get(j);
 						Encounter.Reward tempReward = new Encounter.Reward();
-						
+						int optionIndex = reward.get("optionIndex").asInt();
+
 						tempReward.experienceReward = reward.get("experienceReward").asInt();
-						tempRewards.goldReward = reward.get("goldReward").asInt();
+						tempReward.goldReward = reward.get("goldReward").asInt();
+
 						JsonNode itemArray = reward.get("itemRewards");
 						for(int k = 0; k < itemArray.size(); k++)
 						{
 							//Add each item to array (items should be paths to JSON definitions)
-							tempRewards.itemRewards.add(Item(itemArray.get("definitionPath"));
+							tempReward.itemRewards.add(new Item(itemArray.get("definitionPath").asText()));
 						}
+						//Add to step reward list
+						encounterSteps[i].rewards.put(optionIndex, tempReward);
 					}
 				break;
 				//Combat step
@@ -135,19 +143,22 @@ public class Encounter
 					encounterSteps[i].parentEncounter = this;
 					
 					//Add reward
-					JsonNode rewardArray = tempNode.get("rewards");
-					JsonNode reward = rewardArray.get(0);
-					Encounter.Reward tempReward = new Encounter.Reward();
-						
-					tempReward.experienceReward = reward.get("experienceReward").asInt();
-					tempRewards.goldReward = reward.get("goldReward").asInt();
-					JsonNode itemArray = reward.get("itemRewards");
-					for(int k = 0; k < itemArray.size(); k++)
+					rewardArray = tempNode.get("rewards");
+					if(rewardArray != null)
 					{
-						//Add each item to array (items should be paths to JSON definitions)
-						tempRewards.itemRewards.add(Item(itemArray.get("definitionPath"));
+						JsonNode reward = rewardArray.get(0);
+						Encounter.Reward tempReward = new Encounter.Reward();
+
+						tempReward.experienceReward = reward.get("experienceReward").asInt();
+						tempReward.goldReward = reward.get("goldReward").asInt();
+						JsonNode itemArray = reward.get("itemRewards");
+						for (int k = 0; k < itemArray.size(); k++) {
+							//Add each item to array (items should be paths to JSON definitions)
+							tempReward.itemRewards.add(new Item(itemArray.get("definitionPath").asText()));
+						}
+						encounterSteps[i].rewards.put(0, tempReward);
 					}
-					
+
 				break;
 			}
 				encounterSteps[i].parentEncounter = this;

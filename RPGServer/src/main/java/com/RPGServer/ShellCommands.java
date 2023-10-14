@@ -48,4 +48,11 @@ public class ShellCommands
 		return encounter.uuid;
 
 	}
+
+	@ShellMethod(key = "healPlayer")
+	public void healPlayer(String username)
+	{
+		UserAccount user = userAccountRepository.findByUsername(username);
+		user.playerCharacter.resetHealth();
+	}
 }

@@ -7,6 +7,7 @@ import com.RPGServer.UserAccountRepository;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,6 +21,7 @@ public class CombatStep extends EncounterStep
 	{
 		this.enemyIndex = enemyIndex;
 		this.nextStepIndex = nextStepIndex;
+		this.rewards = new HashMap<Integer, Encounter.Reward>();
 		stepWon = false;
 	}	
 	
@@ -27,9 +29,9 @@ public class CombatStep extends EncounterStep
 	public void endStep(int selectedChoice)
 	{
 		//Grant reward
-		if(rewards[0] != null && stepWon)
+		if(rewards.get(0) != null && stepWon)
 		{
-			parentEncounter.encounterRewards.add(rewards[0]);
+			parentEncounter.encounterRewards.add(rewards.get(0));
 		}
 	}
 	
@@ -54,7 +56,7 @@ public class CombatStep extends EncounterStep
 			case 1:
 				//End step, signal end encounter
 				endStep(0);
-				
+				parentEncounter.nextEncounterStep(-1);
 			break;
 			
 			default:
@@ -80,7 +82,8 @@ public class CombatStep extends EncounterStep
 		if(enemy.health <= 0)
 		{
 			endStep(0);
-			parentEncounter.currentStep = parentEncounter.encounterSteps[nextStepIndex];
+			//parentEncounter.currentStep = parentEncounter.encounterSteps[nextStepIndex];
+			parentEncounter.nextEncounterStep(nextStepIndex);
 			output = parentEncounter.currentStep.getInitialStepUpdate();
 		}
 		else
@@ -99,6 +102,7 @@ public class CombatStep extends EncounterStep
 		output.playerHealth = 0;
 		output.enemyHealth = parentEncounter.entityArray[enemyIndex].health;
 		output.stepType = 1;
+		output.choices = new String[]{"attack", "leave"};
 		return output;
 	}
 	

@@ -1,5 +1,7 @@
 package com.RPGServer.EncounterSystem;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public abstract class EncounterStep
@@ -8,7 +10,7 @@ public abstract class EncounterStep
 
 	//Should contain a reward object, selected choice should correspond to the index of the reward
 	//Index does not matter for combat steps, all rewards granted on completion of step
-	public Encounter.Reward[] rewards;
+	public HashMap<Integer, Encounter.Reward> rewards;
 	
 	public int stepType;
 	//Actions that should be completed upon completion of this step
