@@ -1,5 +1,7 @@
 package com.RPGServer;
 
+import com.RPGServer.ItemSystem.Item;
+import com.RPGServer.ItemSystem.ItemFactory;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -33,7 +35,8 @@ public class UserAccount
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Integer Id;
-	
+
+
 	private String username; 
 	
 	private String email;
@@ -59,8 +62,12 @@ public class UserAccount
 		this.passwordHash = null;
 		this.email = null;
 		this.verified = false;
+
 	}
-	
+
+
+
+
 	public void setPassword(String newPassword) throws NoSuchAlgorithmException
 	{
 		MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");

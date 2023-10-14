@@ -61,44 +61,42 @@ public class ItemFactory
             this.canEquip = true;
         }
     }
-    public class ChestArmor extends Item
+    public abstract class ArmorItem extends Item
     {
         int armorBonus;
+        public ArmorItem(JsonNode jsonNode)
+        {
+            super(jsonNode);
+            this.canEquip = true;
+            this.armorBonus = jsonNode.get("armorBonus").asInt();
+        }
+    }
+    public class ChestArmor extends ArmorItem
+    {
         public ChestArmor(JsonNode jsonNode)
         {
             super(jsonNode);
-            this.canEquip = true;
-            this.armorBonus = jsonNode.get("armorBonus").asInt();
         }
     }
-    public class LegArmor extends Item
+    public class LegArmor extends ArmorItem
     {
-        int armorBonus;
         public LegArmor(JsonNode jsonNode)
         {
             super(jsonNode);
-            this.canEquip = true;
-            this.armorBonus = jsonNode.get("armorBonus").asInt();
         }
     }
-    public class Boots extends Item
+    public class Boots extends ArmorItem
     {
-        int armorBonus;
         public Boots(JsonNode jsonNode)
         {
             super(jsonNode);
-            this.canEquip = true;
-            this.armorBonus = jsonNode.get("armorBonus").asInt();
         }
     }
-    public class Helmet extends Item
+    public class Helmet extends ArmorItem
     {
-        int armorBonus;
         public Helmet(JsonNode jsonNode)
         {
             super(jsonNode);
-            this.canEquip = true;
-            this.armorBonus = jsonNode.get("armorBonus").asInt();
         }
     }
     public class ResourceItem extends Item

@@ -1,5 +1,7 @@
 package com.RPGServer;
 
+import com.RPGServer.ItemSystem.Item;
+import com.RPGServer.ItemSystem.ItemFactory;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,6 +10,7 @@ import jakarta.persistence.*;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.*;
 import jakarta.annotation.*;
+import org.apache.catalina.User;
 
 @Embeddable
 //@Entity
@@ -27,6 +30,7 @@ public class PlayerCharacter
 	private int dexterity;
 	private int constitution;
 	private int intelligence;
+	private Item[][] inventory;
 	
 	@Nullable
 	private int weaponModifier;
@@ -50,7 +54,7 @@ public class PlayerCharacter
 		
 		setCharacterType(new CharacterType(CharacterType.CharacterClass.KNIGHT, CharacterType.CharacterRace.HUMAN));
 		statsRolled = false;
-		
+		this.inventory = new Item[5][5];
 		creationComplete = false;
 	}
 	
@@ -181,6 +185,9 @@ public class PlayerCharacter
 	//Apply damage or negative number for healing
 	public int applyDamage(int damage)
 	{
+		int armorBonus = 0;
+		//Figure armorBonus from equipped items
+
 		//Apply damage, not allowing health to be negative
 		if(health >= damage)
 		{
@@ -193,7 +200,147 @@ public class PlayerCharacter
 		
 		return health;
 	}
-	
+
+	public boolean addItem(Item newItem)
+	{
+		boolean output = false;
+		//if it is a resource item, attempt to stack it with others
+		if(newItem.itemType == Item.ItemType.RESOURCE)
+		{
+			ItemFactory.ResourceItem newResource = (ItemFactory.ResourceItem)newItem;
+			for(int i = 0; i < inventory.length; i++)
+			{
+				for(int j = 0; j < inventory[0].length; j++)
+				{
+					if(inventory[i][j].name.equals(newItem.name) && inventory[i][j].itemType == Item.ItemType.RESOURCE)
+					{
+						ItemFactory.ResourceItem oldResource = (ItemFactory.ResourceItem)inventory[i][j];
+						if(oldResource.stackSize + newResource.stackSize <= oldResource.maxStackSize)
+						{
+							//Add stack sizes
+							oldResource.stackSize += newResource.stackSize;
+							return true;
+						}
+					}
+				}
+			}
+		}
+		//Attempt to find an empty slot
+		else
+		{
+			for(int i = 0; i < inventory.length; i++)
+			{
+				for(int j = 0; j < inventory.length; j++)
+				{
+					if(inventory[i][j] == null)
+					{
+						inventory[i][j] = newItem;
+						return true;
+					}
+				}
+			}
+		}
+		return output;
+	}
+	public Item removeItem(int row, int column)
+	{
+		Item output = null;
+		if(row >= 0 && row < inventory.length && column >= 0 && column < inventory[0].length)
+		{
+			output = inventory[row][column];
+			inventory[row][column] = null;
+		}
+		return output;
+	}
+	public boolean swapItem(int item1Row, int item1Column, int item2Row, int item2Column)
+	{
+		boolean output = false;
+		if(item1Row >= 0 && item1Row < inventory.length && item1Column >= 0 && item1Column < inventory[0].length)
+		{
+			if(item2Row >= 0 && item2Row < inventory.length && item2Column >= 0 && item2Column < inventory[0].length)
+			{
+				//If item is swapping into rows 2 - 5, just swap
+				if(item1Row > 0)
+				{
+					Item tempItem = inventory[item1Row][item1Column];
+					inventory[item1Row][item1Column] = inventory[item2Row][item2Column];
+					inventory[item2Row][item2Column] = tempItem;
+					output = true;
+				}
+			}
+			else
+			{
+				switch(item1Column)
+				{
+					//weapon slot
+					case 0:
+						if(inventory[item2Row][item2Column] == null || inventory[item2Row][item2Column].itemType == Item.ItemType.WEAPON)
+						{
+							//check that item matches characters weapon type
+							ItemFactory.Weapon weapon = (ItemFactory.Weapon)inventory[item2Row][item2Column];
+							if(weapon.weaponType == characterType.weaponType || weapon.weaponType == CharacterType.WeaponType.SPECIAL)
+							{
+								//Allow swap to occur
+								Item tempItem = inventory[item1Row][item1Column];
+								inventory[item1Row][item1Column] = inventory[item2Row][item2Column];
+								inventory[item2Row][item2Column] = tempItem;
+								output = true;
+							}
+						}
+						break;
+					//Helmet slot
+					case 1:
+						if(inventory[item2Row][item2Column] == null || inventory[item2Row][item2Column].itemType == Item.ItemType.HELMET)
+						{
+							//Allow swap to occur
+							Item tempItem = inventory[item1Row][item1Column];
+							inventory[item1Row][item1Column] = inventory[item2Row][item2Column];
+							inventory[item2Row][item2Column] = tempItem;
+							output = true;
+						}
+						break;
+					//Chest slot
+					case 2:
+						if(inventory[item2Row][item2Column] == null || inventory[item2Row][item2Column].itemType == Item.ItemType.CHEST_ARMOR)
+						{
+							//Allow swap to occur
+							Item tempItem = inventory[item1Row][item1Column];
+							inventory[item1Row][item1Column] = inventory[item2Row][item2Column];
+							inventory[item2Row][item2Column] = tempItem;
+							output = true;
+						}
+						break;
+					//Leg slot
+					case 3:
+						if(inventory[item2Row][item2Column] == null || inventory[item2Row][item2Column].itemType == Item.ItemType.LEG_ARMOR)
+						{
+							//Allow swap to occur
+							Item tempItem = inventory[item1Row][item1Column];
+							inventory[item1Row][item1Column] = inventory[item2Row][item2Column];
+							inventory[item2Row][item2Column] = tempItem;
+							output = true;
+						}
+						break;
+					//Boot slot
+					case 4:
+						if(inventory[item2Row][item2Column] == null || inventory[item2Row][item2Column].itemType == Item.ItemType.BOOTS)
+						{
+							//Allow swap to occur
+							Item tempItem = inventory[item1Row][item1Column];
+							inventory[item1Row][item1Column] = inventory[item2Row][item2Column];
+							inventory[item2Row][item2Column] = tempItem;
+							output = true;
+						}
+						break;
+					default:
+						break;
+				}
+			}
+		}
+		return output;
+	}
+
+
 	public int getHealth()
 	{
 		return health;

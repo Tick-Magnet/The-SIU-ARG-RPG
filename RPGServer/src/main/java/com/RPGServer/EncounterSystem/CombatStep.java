@@ -99,7 +99,7 @@ public class CombatStep extends EncounterStep
 	public StepUpdate getInitialStepUpdate()
 	{
 		CombatStepUpdate output = new CombatStepUpdate();
-		output.playerHealth = 0;
+		output.playerHealth = parentEncounter.playerAccount.playerCharacter.getHealth();
 		output.enemyHealth = parentEncounter.entityArray[enemyIndex].health;
 		output.stepType = 1;
 		output.choices = new String[]{"attack", "leave"};
