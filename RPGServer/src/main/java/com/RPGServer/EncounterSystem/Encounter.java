@@ -82,6 +82,7 @@ public class Encounter
 		ObjectMapper objectMapper = new ObjectMapper();
 		uuid = UUID.randomUUID();
 		encounterRewards = new ArrayList<Reward>();
+		ItemFactory itemFactory = new ItemFactory();
 
 		//ClassLoader loader = Thread.currentThread().getContextClassLoader();
 		//File jsonFile = new File(loader.getResource(encounterDefinitionPath).getPath());
@@ -131,7 +132,8 @@ public class Encounter
 						for(int k = 0; k < itemArray.size(); k++)
 						{
 							//Add each item to array (items should be paths to JSON definitions)
-							tempReward.itemRewards.add(new Item(itemArray.get("definitionPath").asText()));
+							//tempReward.itemRewards.add(new Item(itemArray.get("definitionPath").asText()));
+							tempReward.itemRewards.add(itemFactory.getItem(itemArray.get("definitionPath").asText()));
 						}
 						//Add to step reward list
 						encounterSteps[i].rewards.put(optionIndex, tempReward);
@@ -154,7 +156,8 @@ public class Encounter
 						JsonNode itemArray = reward.get("itemRewards");
 						for (int k = 0; k < itemArray.size(); k++) {
 							//Add each item to array (items should be paths to JSON definitions)
-							tempReward.itemRewards.add(new Item(itemArray.get("definitionPath").asText()));
+							//tempReward.itemRewards.add(new Item(itemArray.get("definitionPath").asText()));
+							tempReward.itemRewards.add(itemFactory.getItem(itemArray.get("definitionPath").asText()));
 						}
 						encounterSteps[i].rewards.put(0, tempReward);
 					}

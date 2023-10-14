@@ -1,12 +1,30 @@
 package com.RPGServer.ItemSystem;
 
 
-public class Item
+public abstract class Item
 {
     public String name;
-    public Item(String definitionPath)
+    public ItemType itemType;
+    public boolean canEquip;
+    public ItemGrade itemGrade;
+
+    public enum ItemType
     {
+        WEAPON,
+        CHEST_ARMOR,
+        LEG_ARMOR,
+        BOOTS,
+        HELMET,
+        RESOURCE
+    }
 
-
+    public enum ItemGrade
+    {
+        WOOD,
+        STONE,
+        BRONZE,
+        IRON,
+        STEEL,
+        MAGIC
     }
 }
