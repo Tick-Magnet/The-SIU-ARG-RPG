@@ -29,7 +29,8 @@ public class UserAccount
 	public enum UserRole
 	{
 		USER,
-		ADMIN
+		ADMIN,
+		GAME_MASTER
 	}
 	
 	@Id

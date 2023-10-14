@@ -24,9 +24,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.shell:spring-shell-starter'
 	implementation 'com.fasterxml.jackson.core:jackson-databind'
+	implementation 'com.google.zxing:core:3.5.2'
+	implementation 'com.google.zxing:javase:3.5.2'
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	
+	implementation 'commons-io:commons-io:2.6'
 }
 
 dependencyManagement{

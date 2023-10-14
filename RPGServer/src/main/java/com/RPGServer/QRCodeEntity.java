@@ -18,7 +18,7 @@ public class QRCodeEntity
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Integer Id;
 		
-	private UUID uuid;
+	public UUID uuid;
 	
 	public int type;
 	
@@ -31,4 +31,7 @@ public class QRCodeEntity
 	
 	//Path to encounter definition file
 	public String encounterDefinitionPath;
+	public String itemDefinitionPath;
+
+
 }
