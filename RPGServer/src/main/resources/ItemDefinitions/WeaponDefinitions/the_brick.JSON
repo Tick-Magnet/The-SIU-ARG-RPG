@@ -5,6 +5,7 @@
   "itemGrade": "MAGIC",
   "imagePath": "brick.png",
   "goldValue": 100000,
+  "canEquip": true,
 
 
   "weaponType": "SPECIAL",

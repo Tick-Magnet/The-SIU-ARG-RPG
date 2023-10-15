@@ -12,6 +12,9 @@ import jakarta.validation.constraints.*;
 import jakarta.annotation.*;
 import org.apache.catalina.User;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Embeddable
 //@Entity
 public class PlayerCharacter
@@ -30,7 +33,9 @@ public class PlayerCharacter
 	private int dexterity;
 	private int constitution;
 	private int intelligence;
-	private Item[][] inventory;
+	//private Item[][] inventory;
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Item> inventory;
 	
 	@Nullable
 	private int weaponModifier;
@@ -54,7 +59,8 @@ public class PlayerCharacter
 		
 		setCharacterType(new CharacterType(CharacterType.CharacterClass.KNIGHT, CharacterType.CharacterRace.HUMAN));
 		statsRolled = false;
-		this.inventory = new Item[5][5];
+		//this.inventory = new Item[5][5];
+		inventory = new ArrayList<Item>();
 		creationComplete = false;
 	}
 	
@@ -106,10 +112,14 @@ public class PlayerCharacter
 		//Modify attack stat (+2 points)
 		//Modify weak stat (+1 point every other level up
 		//Modify other stats (+1 point)
-		strength += figureStatIncrease(CharacterType.Stat.STRENGTH);
-		dexterity += figureStatIncrease(CharacterType.Stat.DEXTERITY);
-		intelligence += figureStatIncrease(CharacterType.Stat.INTELLIGENCE);
-		constitution += figureStatIncrease(CharacterType.Stat.CONSTITUTION);
+		for(int i = 0; i < levelsGained; i++) {
+			strength += figureStatIncrease(CharacterType.Stat.STRENGTH);
+			dexterity += figureStatIncrease(CharacterType.Stat.DEXTERITY);
+			intelligence += figureStatIncrease(CharacterType.Stat.INTELLIGENCE);
+			constitution += figureStatIncrease(CharacterType.Stat.CONSTITUTION);
+			level++;
+			resetHealth();
+		}
 	}
 	//Function to return stat increases based on the character type enum values
 	private int figureStatIncrease(CharacterType.Stat currentStat)
@@ -142,6 +152,7 @@ public class PlayerCharacter
 		experience += xp;
 		if(experience >= Math.pow((level + 1), 2))
 		{
+			System.out.println(experience + " " + Math.pow((level + 1), 2));
 			output = true;
 			levelUp();
 		}
@@ -200,7 +211,14 @@ public class PlayerCharacter
 		
 		return health;
 	}
+	public boolean addItem(Item newItem)
+	{
+		inventory.add(newItem);
 
+		System.out.println(inventory.get(0).name);
+		return true;
+	}
+/*
 	public boolean addItem(Item newItem)
 	{
 		boolean output = false;
@@ -339,7 +357,7 @@ public class PlayerCharacter
 		}
 		return output;
 	}
-
+*/
 
 	public int getHealth()
 	{

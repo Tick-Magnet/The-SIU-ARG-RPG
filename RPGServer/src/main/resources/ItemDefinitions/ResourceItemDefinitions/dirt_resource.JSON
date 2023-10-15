@@ -5,6 +5,7 @@
   "itemGrade": "WOOD",
   "imagePath": "dirt.png",
   "goldValue": 1,
+  "canEquip": false,
 
   "stackSize": 1,
   "maxStackSize": 1000

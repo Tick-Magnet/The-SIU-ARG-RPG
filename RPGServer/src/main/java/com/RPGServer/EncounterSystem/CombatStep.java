@@ -81,6 +81,7 @@ public class CombatStep extends EncounterStep
 		//Return next initial step
 		if(enemy.health <= 0)
 		{
+			stepWon = true;
 			endStep(0);
 			//parentEncounter.currentStep = parentEncounter.encounterSteps[nextStepIndex];
 			parentEncounter.nextEncounterStep(nextStepIndex);

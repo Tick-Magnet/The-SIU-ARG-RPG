@@ -39,8 +39,14 @@ public class EncounterController
                 if(encounter != null)
                 {
                     StepUpdate input = new StepUpdate(payload);
+
                     //Post update and return result
                     output = (HashMap<String, Object>)encounter.postStepUpdate(input).toMap();
+                    if(encounter.playerUpdated)
+                    {
+                        userAccountRepository.save(encounter.playerAccount);
+                        encounter.playerUpdated = false;
+                    }
                 }
             }
         }

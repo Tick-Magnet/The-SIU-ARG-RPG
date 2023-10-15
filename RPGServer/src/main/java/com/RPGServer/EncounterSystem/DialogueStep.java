@@ -24,10 +24,11 @@ public class DialogueStep extends EncounterStep
 	//Update Entities in the encounter or grant rewards
 	public void endStep(int selectedChoice)
 	{
-		//Grant reward from the rewards array corrsponding to the selected dialogue option
+		//Grant reward from the rewards array corresponding to the selected dialogue option
 		if(rewards.get(selectedChoice) != null)
 		{
 			parentEncounter.encounterRewards.add(rewards.get(selectedChoice));
+
 		}
 	}
 	//Should select appropriate next step and return its initial StepUpdate. Also update the current step in the encounter object

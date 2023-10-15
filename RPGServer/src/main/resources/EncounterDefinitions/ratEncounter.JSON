@@ -15,12 +15,35 @@
 					"optionText": "other text",
 					"nextStepIndex": 1
 				}
-			] 
+			],
+			"rewards":
+			[
+				{
+					"optionIndex": 1,
+					"experienceReward": 100,
+					"goldReward": 10,
+					"itemRewards": []
+				}
+			]
 		},
 		{
 			"stepType": 1,
 			"enemyIndex": 0,
-			"nextStepIndex": -1
+			"nextStepIndex": -1,
+			"rewards":
+			[
+				{
+					"optionIndex": 0,
+					"experienceReward": 20,
+					"goldReward": 100,
+					"itemRewards":
+					[
+						{
+							"definitionPath": "/ItemDefinitions/WeaponDefinitions/the_brick.JSON"
+						}
+					]
+				}
+			]
 		}
 	],
 	"encounterEntities":
@@ -33,5 +56,5 @@
 			"intelligence": 1,
 			"imagePath": "rat.png"
 		}
-	] 
+	]
 }

@@ -1,6 +1,7 @@
 package com.RPGServer;
 
 import com.RPGServer.EncounterSystem.Encounter;
+import com.RPGServer.ItemSystem.ItemFactory;
 import org.apache.catalina.User;
 import org.springframework.shell.standard.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,5 +55,14 @@ public class ShellCommands
 	{
 		UserAccount user = userAccountRepository.findByUsername(username);
 		user.playerCharacter.resetHealth();
+	}
+
+	@ShellMethod(key = "giveItem")
+	public void giveItem(String username, String itemDefinition) throws IOException
+	{
+		ItemFactory itemFactory = new ItemFactory();
+		UserAccount user = userAccountRepository.findByUsername(username);
+		user.playerCharacter.addItem(itemFactory.getItem(itemDefinition));
+		userAccountRepository.save(user);
 	}
 }
