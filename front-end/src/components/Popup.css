@@ -16,7 +16,7 @@
     padding: 32px;
     width: 60vw;
     max-width: 640px;
-    background-image: url('/public/Paperback.jpg');
+    background-image: url('/public/Images/Paperback.jpg');
 }
 
 .popup-inner .close-btn {

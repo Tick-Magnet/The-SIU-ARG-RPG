@@ -8,13 +8,21 @@ main {
   min-height: 100vh;
 
   font-family: papyrus;
+}
 
-  background-image: url('/public/Stoneback.jpg');
+.Item {
+  background-image: url('/public/Images/Stoneback.jpg');
+  background-size: cover;
+}
+
+.Combat {
+  background-image: url('/public/Images/Towers1.png');
   background-size: cover;
 }
 
 .prompt {
   color: white;
+  font-size: 8vw;
   text-decoration: bold;
   text-shadow: 2px 2px black;
 }
@@ -25,6 +33,34 @@ body {
 
 img {
   width: 100%;
+}
+
+.Monster {
+  height: auto;
+  width: 90vw;
+  position: relative;
+  bottom: 5vh;
+}
+
+.ButtonContainer {
+  width: 90vw;
+  height: 50vw;
+  background-color: white;
+  border-color: black;
+  border-width: 5px;
+  border-style: solid;
+
+  position: relative;
+  bottom: 1vh;
+}
+
+.Button1, .Button2 {
+  float: left;
+  width: 100%;
+  height: 50%;
+  font-size: 10vw;
+  font-family: papyrus;
+  text-decoration: bold;
 }
 
 .chest {
@@ -52,6 +88,7 @@ label {
   position: absolute;
   top: 5vw;
   right: 5vw;
+  z-index: 1;
 }
 
 .compass {
@@ -61,6 +98,7 @@ label {
   position: absolute;
   top: 5vw;
   left: 5vw;
+  z-index: 1;
 }
 
 .link-button {
