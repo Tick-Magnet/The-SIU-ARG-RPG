@@ -35,8 +35,6 @@ export const Combat = (props) => {
         <div class="ButtonContainer">
           <button class="Button1">Attack</button>
           <button class="Button2">Flee</button>
-          <button class="Button3">Item</button>
-          <button class="Button4">Emote</button>
         </div>
       </main>
 
