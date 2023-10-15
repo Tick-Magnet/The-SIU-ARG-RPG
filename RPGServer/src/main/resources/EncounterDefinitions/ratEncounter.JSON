@@ -1,0 +1,37 @@
+{
+	"encounterName": "Rat Encounter",
+	"encounterSteps":
+	[
+		{
+			"stepType": 0,
+			"promptText": "A well-drawn cartoon style rat appears",
+			"dialogueOptions":
+			[
+				{
+					"optionText": "insert text here",
+					"nextStepIndex": 1
+				},
+				{
+					"optionText": "other text",
+					"nextStepIndex": 1
+				}
+			] 
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0,
+			"nextStepIndex": -1
+		}
+	],
+	"encounterEntities":
+	[
+		{
+			"name": "Rat",
+			"strength": 1,
+			"dexterity": 2,
+			"constitution": 5,
+			"intelligence": 1,
+			"imagePath": "rat.png"
+		}
+	] 
+}

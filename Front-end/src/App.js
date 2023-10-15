@@ -1,9 +1,14 @@
 import React, {useState} from 'react';
 import { Item } from './Item';
 import { Combat } from './Combat';
+import Popup from './components/Popup';
+import Cookies from 'universal-cookie';
+
+import RPGServerProxy from './RPGServerProxy';
 
 function App() {
   const [currentForm, setCurrentForm] = useState('Item');
+
 
   const toggleForm = (formName) => {
     setCurrentForm(formName);
@@ -14,6 +19,7 @@ function App() {
       {
         currentForm === "Item" ? <Item onFormSwitch={toggleForm}/> : <Combat  onFormSwitch={toggleForm}/>
       }
+
     </div>
   )
 
