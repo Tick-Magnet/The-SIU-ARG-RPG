@@ -2,9 +2,9 @@ package com.RPGServer;
 
 import java.math.BigInteger;
 
-public record SessionToken(byte[] token, String expirationDate) 
+public record SessionToken(String token, String expirationDate) 
 {
-	public byte[] getToken()
+	public String getToken()
 	{
 		return token;
 	}

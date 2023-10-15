@@ -1,3 +1,8 @@
+package com.RPGServer;
+
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public class CharacterType
 {
 	
@@ -9,7 +14,18 @@ public class CharacterType
 	public Stat attackStat;
 	public Stat weakStat;
 	public WeaponType weaponType;
-	
+	//Default constructor required by jakarta, ideally should not be used
+	public CharacterType()
+	{
+		//Set to defaults, jakarta does not allow null columns on embeddable objects apparently
+		strengthModifier = 0;
+		dexterityModifier = 0;
+		constitutionModifier = 0;
+		intelligenceModifier = 0;
+		attackStat = Stat.STRENGTH;
+		weakStat = Stat.INTELLIGENCE;
+		weaponType = WeaponType.AXE;
+	}
 	public CharacterType(CharacterClass characterClass, CharacterRace characterRace)
 	{
 		switch(characterClass)
@@ -90,6 +106,7 @@ public class CharacterType
 		SWORD,
 		AXE,
 		BOW,
-		WAND;
+		WAND,
+		SPECIAL
 	}
 }
