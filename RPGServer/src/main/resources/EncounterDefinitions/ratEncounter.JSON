@@ -5,6 +5,7 @@
 		{
 			"stepType": 0,
 			"promptText": "A well-drawn cartoon style rat appears",
+			"backgroundImagePath": "images/ratDialogue.png",
 			"dialogueOptions":
 			[
 				{
@@ -30,6 +31,7 @@
 			"stepType": 1,
 			"enemyIndex": 0,
 			"nextStepIndex": -1,
+			"backgroundImagePath": "images/ratCombat.png",
 			"rewards":
 			[
 				{

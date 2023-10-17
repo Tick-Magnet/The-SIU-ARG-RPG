@@ -113,6 +113,7 @@ public class Encounter
 				case 0:
 					encounterSteps[i] = new DialogueStep();
 					encounterSteps[i].parentEncounter = this;
+					encounterSteps[i].backgroundImagePath = tempNode.get("backgroundImagePath").asText();
 					//Add dialogue options
 					JsonNode optionArrayNode = tempNode.get("dialogueOptions");
 					for(int j = 0; j < optionArrayNode.size(); j++)
@@ -149,7 +150,7 @@ public class Encounter
 				case 1:
 					encounterSteps[i] = new CombatStep(tempNode.get("enemyIndex").asInt(), tempNode.get("nextStepIndex").asInt());
 					encounterSteps[i].parentEncounter = this;
-					
+					encounterSteps[i].backgroundImagePath = tempNode.get("backgroundImagePath").asText();
 					//Add reward
 					rewardArray = tempNode.get("rewards");
 					if(rewardArray != null)

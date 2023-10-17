@@ -55,6 +55,7 @@ public class DialogueStep extends EncounterStep
 		update.choices = getChoiceArray();
 		update.selectedChoice = -1;
 		update.stepType = 0;
+		update.backgroundImagePath = backgroundImagePath;
 		
 		return update;
 	}
@@ -72,7 +73,7 @@ public class DialogueStep extends EncounterStep
 	{
 		public String text;
 		public int nextStep;
-		
+
 		public DialogueOption(String text, int nextStep)
 		{
 			this.text = text;

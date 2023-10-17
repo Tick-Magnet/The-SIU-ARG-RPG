@@ -16,6 +16,7 @@ public class CombatStep extends EncounterStep
 	private int enemyIndex;
 	private int nextStepIndex;
 	private boolean stepWon;
+
 	
 	public CombatStep(int enemyIndex, int nextStepIndex)
 	{
@@ -43,6 +44,9 @@ public class CombatStep extends EncounterStep
 		StepUpdate output;
 		
 		CombatStepUpdate combatUpdate = new CombatStepUpdate();
+		combatUpdate.enemyName = enemy.name;
+		combatUpdate.enemyImagePath = enemy.imagePath;
+		combatUpdate.backgroundImagePath = backgroundImagePath;
 		combatUpdate.choices = new String[]{"attack", "leave"};
 		//Process step update
 		switch(update.selectedChoice)
@@ -104,6 +108,10 @@ public class CombatStep extends EncounterStep
 		output.enemyHealth = parentEncounter.entityArray[enemyIndex].health;
 		output.stepType = 1;
 		output.choices = new String[]{"attack", "leave"};
+		Encounter.EncounterEntity enemy = parentEncounter.entityArray[enemyIndex];
+		output.enemyName = enemy.name;
+		output.enemyImagePath = enemy.imagePath;
+		output.backgroundImagePath = backgroundImagePath;
 		return output;
 	}
 	
@@ -111,6 +119,9 @@ public class CombatStep extends EncounterStep
 	{
 		int playerHealth;
 		int enemyHealth;
+		String enemyName;
+		String enemyImagePath;
+		String backgroundImagePath;
 		@Override
 		public Map<String, Object> toMap()
 		{
@@ -118,7 +129,9 @@ public class CombatStep extends EncounterStep
 			//Add each relevant field to map
 			output.put("playerHealth", playerHealth);
 			output.put("enemyHealth", enemyHealth);
-			
+			output.put("enemyName", enemyName);
+			output.put("enemyImagePath", enemyImagePath);
+			output.put("backgroundImagePath", backgroundImagePath);
 			return output;
 		}
 	}
