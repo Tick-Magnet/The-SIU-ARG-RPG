@@ -19,6 +19,10 @@ public class Item
     public ItemGrade itemGrade;
     public int goldValue;
     public String imagePath;
+    public int attackModifier;
+    int armorBonus;
+    public int stackSize;
+    public int maxStackSize;
     public Item()
     {
 

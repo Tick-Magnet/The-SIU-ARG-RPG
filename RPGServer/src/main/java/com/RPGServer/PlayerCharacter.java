@@ -226,8 +226,6 @@ public class PlayerCharacter
 	public boolean addItem(Item newItem)
 	{
 		inventory.add(newItem);
-
-		System.out.println(inventory.get(0).name);
 		return true;
 	}
 
@@ -241,7 +239,7 @@ public class PlayerCharacter
 		}
 		return output;
 	}
-	
+	//Provides a list by string name of items
 	public ArrayList<String> getInventoryItems()
 	{
 		ArrayList<String> output = new ArrayList<String>();
@@ -258,54 +256,118 @@ public class PlayerCharacter
 	{
 		return inventory.get(index);
 	}
-	
+
+	//Attempts to equip item, can pass null as item to unequip a slot and return the current item to inventory
 	public boolean equipItem(int slot, Item item)
 	{
 		boolean output = false;
-		
-		switch(slot)
-		{
-			//helmet slot
-			case 1:
-				if(item.itemType == Item.ItemType.HELMET)
-				{
-					
-				}
-			break;
-			//Chest slot
-			case 2:
-				if(item.itemType == Item.ItemType.CHEST_ARMOR)
-				{
-					
-				}
-			break;
-			//Leg slot
-			case 3:
-				if(item.itemType == Item.ItemType.LEG_ARMOR)
-				{
-					
-				}
-			break;
-			//Foot slot
-			case 4:
-				if(item.itemType == Item.ItemType.BOOTS)
-				{
-					
-				}
-			break
-			//Weapon slot
-			case 5:
-				if(item.itemType == ItemType.WEAPON)
-				{
-					
-				}
-			break;
-			
-			default:
-			
-			break;
-		}
-		
+			switch (slot)
+			{
+				//helmet slot
+				case 1:
+					if (item != null && item.itemType == Item.ItemType.HELMET)
+					{
+						if (helmetSlot != null)
+						{
+							inventory.add(helmetSlot);
+						}
+						helmetSlot = item;
+						output = true;
+					}
+					else
+					{
+						if(helmetSlot != null)
+						{
+							inventory.add(helmetSlot);
+							output = true;
+						}
+					}
+					break;
+				//Chest slot
+				case 2:
+					if (item != null && item.itemType == Item.ItemType.CHEST_ARMOR)
+					{
+						if (chestSlot != null)
+						{
+							inventory.add(chestSlot);
+						}
+						chestSlot = item;
+						output = true;
+					}
+					else
+					{
+						if(chestSlot != null)
+						{
+							inventory.add(chestSlot);
+							output = true;
+						}
+					}
+					break;
+				//Leg slot
+				case 3:
+					if (item != null && item.itemType == Item.ItemType.LEG_ARMOR)
+					{
+						if (legSlot != null)
+						{
+							inventory.add(legSlot);
+						}
+						legSlot = item;
+						output = true;
+					}
+					else
+					{
+						if(legSlot != null)
+						{
+							inventory.add(legSlot);
+							output = true;
+						}
+					}
+					break;
+				//Foot slot
+				case 4:
+					if (item != null && item.itemType == Item.ItemType.BOOTS)
+					{
+						if (footSlot != null)
+						{
+							inventory.add(footSlot);
+						}
+						footSlot = item;
+						output = true;
+					}
+					else
+					{
+						if(footSlot != null)
+						{
+							inventory.add(footSlot);
+							output = true;
+						}
+					}
+					break;
+				//Weapon slot
+				case 5:
+					if (item != null && item.itemType == Item.ItemType.WEAPON)
+					{
+						if (weaponSlot != null)
+						{
+							inventory.add(weaponSlot);
+						}
+						weaponSlot = item;
+						output = true;
+					}
+					else
+					{
+						if(weaponSlot != null)
+						{
+							inventory.add(weaponSlot);
+							output = true;
+						}
+					}
+					break;
+
+				default:
+
+					break;
+			}
 		return output;
 	}
 	/*
