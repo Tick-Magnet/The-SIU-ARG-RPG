@@ -43,7 +43,11 @@ public class ShellCommands
 	public UUID createEncounter(String username, String encounterDefPath) throws IOException
 	{
 		UserAccount user  = userAccountRepository.findByUsername(username);
-		Encounter encounter = new Encounter(user, "/EncounterDefinitions/ratEncounter.JSON");
+		Encounter encounter = null;
+		if(encounterDefPath.equals("e"))
+			encounter = new Encounter(user, "/EncounterDefinitions/ratEncounter.JSON");
+		else
+			encounter = new Encounter(user, encounterDefPath);
 		RpgServerApplication.encounterMap.put(encounter.uuid, encounter);
 
 		return encounter.uuid;
