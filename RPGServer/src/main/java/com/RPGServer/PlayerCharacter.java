@@ -33,9 +33,20 @@ public class PlayerCharacter
 	private int dexterity;
 	private int constitution;
 	private int intelligence;
-	//private Item[][] inventory;
+	
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Item> inventory;
+	
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Item helmetSlot;
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Item chestSlot;
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Item legSlot;
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Item footSlot;
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Item weaponSlot;
 	
 	@Nullable
 	private int weaponModifier;
@@ -211,6 +222,7 @@ public class PlayerCharacter
 		
 		return health;
 	}
+	
 	public boolean addItem(Item newItem)
 	{
 		inventory.add(newItem);
@@ -218,58 +230,85 @@ public class PlayerCharacter
 		System.out.println(inventory.get(0).name);
 		return true;
 	}
-/*
-	public boolean addItem(Item newItem)
+
+	public Item removeItem(int index)
+	{
+		Item output = inventory.get(index);
+		if(output != null)
+		{
+			//Remove item from arraylist
+			inventory.remove(index);
+		}
+		return output;
+	}
+	
+	public ArrayList<String> getInventoryItems()
+	{
+		ArrayList<String> output = new ArrayList<String>();
+		
+		for(int i = 0; i < inventory.size(); i++)
+		{
+			output.add(inventory.get(i).name);
+		}
+		
+		return output;
+	}
+	
+	public Item getItem(int index)
+	{
+		return inventory.get(index);
+	}
+	
+	public boolean equipItem(int slot, Item item)
 	{
 		boolean output = false;
-		//if it is a resource item, attempt to stack it with others
-		if(newItem.itemType == Item.ItemType.RESOURCE)
+		
+		switch(slot)
 		{
-			ItemFactory.ResourceItem newResource = (ItemFactory.ResourceItem)newItem;
-			for(int i = 0; i < inventory.length; i++)
-			{
-				for(int j = 0; j < inventory[0].length; j++)
+			//helmet slot
+			case 1:
+				if(item.itemType == Item.ItemType.HELMET)
 				{
-					if(inventory[i][j].name.equals(newItem.name) && inventory[i][j].itemType == Item.ItemType.RESOURCE)
-					{
-						ItemFactory.ResourceItem oldResource = (ItemFactory.ResourceItem)inventory[i][j];
-						if(oldResource.stackSize + newResource.stackSize <= oldResource.maxStackSize)
-						{
-							//Add stack sizes
-							oldResource.stackSize += newResource.stackSize;
-							return true;
-						}
-					}
+					
 				}
-			}
-		}
-		//Attempt to find an empty slot
-		else
-		{
-			for(int i = 0; i < inventory.length; i++)
-			{
-				for(int j = 0; j < inventory.length; j++)
+			break;
+			//Chest slot
+			case 2:
+				if(item.itemType == Item.ItemType.CHEST_ARMOR)
 				{
-					if(inventory[i][j] == null)
-					{
-						inventory[i][j] = newItem;
-						return true;
-					}
+					
 				}
-			}
+			break;
+			//Leg slot
+			case 3:
+				if(item.itemType == Item.ItemType.LEG_ARMOR)
+				{
+					
+				}
+			break;
+			//Foot slot
+			case 4:
+				if(item.itemType == Item.ItemType.BOOTS)
+				{
+					
+				}
+			break
+			//Weapon slot
+			case 5:
+				if(item.itemType == ItemType.WEAPON)
+				{
+					
+				}
+			break;
+			
+			default:
+			
+			break;
 		}
+		
 		return output;
 	}
-	public Item removeItem(int row, int column)
-	{
-		Item output = null;
-		if(row >= 0 && row < inventory.length && column >= 0 && column < inventory[0].length)
-		{
-			output = inventory[row][column];
-			inventory[row][column] = null;
-		}
-		return output;
-	}
+	/*
 	public boolean swapItem(int item1Row, int item1Column, int item2Row, int item2Column)
 	{
 		boolean output = false;
