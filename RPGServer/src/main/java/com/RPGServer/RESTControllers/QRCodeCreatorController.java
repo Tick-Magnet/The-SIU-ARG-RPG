@@ -25,8 +25,10 @@ import java.awt.Graphics2D;
 @RestController
 public class QRCodeCreatorController
 {
-	private final static String TYPE_0_BASE_PATH = "/images/itemQRBase.png";
-	private final static String TYPE_1_BASE_PATH = "/images/encounterQRBase.png";
+	//private final static String TYPE_0_BASE_PATH = "/images/itemQRBase.png";
+	//private final static String TYPE_1_BASE_PATH = "/images/encounterQRBase.png";
+    private final static String TYPE_0_BASE_PATH = "/images/testBackground.png";
+    private final static String TYPE_1_BASE_PATH = "/images/testBackground.png";
     private final static String DECODE_URL = "http://localhost/redeemQR?uuid=";
     @Autowired
     private QRCodeRepository qrCodeRepository;
@@ -67,7 +69,7 @@ public class QRCodeCreatorController
 
                         //Create image
 
-                        output.put("image",generateQRImage(DECODE_URL, tempQR.uuid.toString()));
+                        output.put("image",generateQRImage(DECODE_URL, tempQR.uuid.toString(), 0));
                         break;
                         //Encounter Case
                     case 1:
@@ -78,7 +80,7 @@ public class QRCodeCreatorController
                         qrCodeRepository.save(tempQR);
 
                         //Create image
-                        output.put("image",generateQRImage(DECODE_URL, tempQR.uuid.toString()));
+                        output.put("image",generateQRImage(DECODE_URL, tempQR.uuid.toString(),1));
 
                         break;
                     default:
@@ -98,10 +100,11 @@ public class QRCodeCreatorController
         return output;
     }
 
-    private String generateQRImage(String url, String uuid) throws Exception
+    private String generateQRImage(String url, String uuid, int type) throws Exception
     {
+        int xOffset = 4;
+        int yOffset = 5;
         String output;
-		BufferedImage finalImage;
         BufferedImage qrImage;
         BufferedImage baseImage;
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
@@ -123,18 +126,19 @@ public class QRCodeCreatorController
         qrImage = MatrixToImageWriter.toBufferedImage(bitMatrix);
 		
 		//Combine QR code image with base image
-		Graphics2D graphicsContext = finalImage.createGraphics();
+		Graphics2D graphicsContext = baseImage.createGraphics();
 		//Draw base image to final image
 		
 		//Draw QR code image to final image
-		
+		graphicsContext.drawImage(qrImage, xOffset, yOffset, null);
         //Encode in base64
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        ImageIO.write(finalImage, "png", stream);
+        ImageIO.write(baseImage, "jpg", stream);
         byte[] imageBytes = stream.toByteArray();
 
         output = Base64.getEncoder().encodeToString(imageBytes);
 
+        graphicsContext.dispose();
         return output;
     }
 }
