@@ -19,10 +19,14 @@ import java.io.ByteArrayOutputStream;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
+import java.awt.Color;
+import java.awt.Graphics2D;
 
 @RestController
 public class QRCodeCreatorController
 {
+	private final static String TYPE_0_BASE_PATH = "/images/itemQRBase.png";
+	private final static String TYPE_1_BASE_PATH = "/images/encounterQRBase.png";
     private final static String DECODE_URL = "http://localhost/redeemQR?uuid=";
     @Autowired
     private QRCodeRepository qrCodeRepository;
@@ -97,16 +101,36 @@ public class QRCodeCreatorController
     private String generateQRImage(String url, String uuid) throws Exception
     {
         String output;
+		BufferedImage finalImage;
+        BufferedImage qrImage;
+        BufferedImage baseImage;
+        ClassLoader loader = Thread.currentThread().getContextClassLoader();
+        if(type == 0)
+        {
+			baseImage = ImageIO.read(loader.getResource(TYPE_0_BASE_PATH));
 
-        BufferedImage image;
+		}
+		else
+		{
+			baseImage = ImageIO.read(loader.getResource(TYPE_1_BASE_PATH));
+
+		}
+        
+        //Generate QR code image from UUID
         String fullText = url + uuid;
         QRCodeWriter writer = new QRCodeWriter();
         BitMatrix bitMatrix = writer.encode(fullText, BarcodeFormat.QR_CODE, 200, 200);
-        image = MatrixToImageWriter.toBufferedImage(bitMatrix);
-
+        qrImage = MatrixToImageWriter.toBufferedImage(bitMatrix);
+		
+		//Combine QR code image with base image
+		Graphics2D graphicsContext = finalImage.createGraphics();
+		//Draw base image to final image
+		
+		//Draw QR code image to final image
+		
         //Encode in base64
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        ImageIO.write(image, "png", stream);
+        ImageIO.write(finalImage, "png", stream);
         byte[] imageBytes = stream.toByteArray();
 
         output = Base64.getEncoder().encodeToString(imageBytes);
