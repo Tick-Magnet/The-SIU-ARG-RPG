@@ -27,8 +27,9 @@ public class QRCodeCreatorController
 {
 	//private final static String TYPE_0_BASE_PATH = "/images/itemQRBase.png";
 	//private final static String TYPE_1_BASE_PATH = "/images/encounterQRBase.png";
-    private final static String TYPE_0_BASE_PATH = "/images/testBackground.png";
-    private final static String TYPE_1_BASE_PATH = "/images/testBackground.png";
+    private final static String TYPE_0_BASE_PATH = "/images/treasureGreen.png";
+    private final static String TYPE_1_BASE_PATH = "/images/battleGreen.png";
+
     private final static String DECODE_URL = "http://localhost/redeemQR?uuid=";
     @Autowired
     private QRCodeRepository qrCodeRepository;
@@ -102,8 +103,7 @@ public class QRCodeCreatorController
 
     private String generateQRImage(String url, String uuid, int type) throws Exception
     {
-        int xOffset = 4;
-        int yOffset = 5;
+        int xOffset, yOffset;
         String output;
         BufferedImage qrImage;
         BufferedImage baseImage;
@@ -118,14 +118,16 @@ public class QRCodeCreatorController
 			baseImage = ImageIO.read(loader.getResource(TYPE_1_BASE_PATH));
 
 		}
-        
+        System.out.println(baseImage.getHeight());
         //Generate QR code image from UUID
         String fullText = url + uuid;
         QRCodeWriter writer = new QRCodeWriter();
-        BitMatrix bitMatrix = writer.encode(fullText, BarcodeFormat.QR_CODE, 200, 200);
+        BitMatrix bitMatrix = writer.encode(fullText, BarcodeFormat.QR_CODE, 300, 300);
         qrImage = MatrixToImageWriter.toBufferedImage(bitMatrix);
-		
-		//Combine QR code image with base image
+        xOffset = baseImage.getWidth() / 2 - qrImage.getWidth()/2;
+        yOffset = 375;
+
+                //Combine QR code image with base image
 		Graphics2D graphicsContext = baseImage.createGraphics();
 		//Draw base image to final image
 		
@@ -138,7 +140,7 @@ public class QRCodeCreatorController
 
         output = Base64.getEncoder().encodeToString(imageBytes);
 
-        graphicsContext.dispose();
+        //graphicsContext.dispose();
         return output;
     }
 }
