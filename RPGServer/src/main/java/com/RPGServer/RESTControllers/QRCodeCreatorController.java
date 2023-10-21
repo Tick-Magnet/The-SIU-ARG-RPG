@@ -25,10 +25,13 @@ import java.awt.Graphics2D;
 @RestController
 public class QRCodeCreatorController
 {
-	//private final static String TYPE_0_BASE_PATH = "/images/itemQRBase.png";
-	//private final static String TYPE_1_BASE_PATH = "/images/encounterQRBase.png";
-    private final static String TYPE_0_BASE_PATH = "/images/treasureGreen.png";
-    private final static String TYPE_1_BASE_PATH = "/images/battleGreen.png";
+    private final static String TYPE_0_BASE_PATH_GREEN = "/images/treasureGreen.png";
+    private final static String TYPE_0_BASE_PATH_YELLOW = "/images/treasureYellow.png";
+    private final static String TYPE_0_BASE_PATH_RED = "/images/treasureRed.png";
+    private final static String TYPE_1_BASE_PATH_GREEN = "/images/battleGreen.png";
+    private final static String TYPE_1_BASE_PATH_YELLOW = "/images/battleYellow.png";
+    private final static String TYPE_1_BASE_PATH_RED = "/images/battleRed.png";
+
 
     private final static String DECODE_URL = "http://localhost/redeemQR?uuid=";
     @Autowired
@@ -43,6 +46,7 @@ public class QRCodeCreatorController
         String username = (String)payload.get("username");
         String token = (String)payload.get("token");
         int type = (int)payload.get("type");
+        int colorType = (int)payload.get("colorType");
         //Verify user session token
         UserAccount user = userAccountRepository.findByUsername(username);
         if(user != null && user.isValidSessionToken(token))
@@ -70,7 +74,7 @@ public class QRCodeCreatorController
 
                         //Create image
 
-                        output.put("image",generateQRImage(DECODE_URL, tempQR.uuid.toString(), 0));
+                        output.put("image",generateQRImage(DECODE_URL, tempQR.uuid.toString(), 0, colorType));
                         break;
                         //Encounter Case
                     case 1:
@@ -81,7 +85,7 @@ public class QRCodeCreatorController
                         qrCodeRepository.save(tempQR);
 
                         //Create image
-                        output.put("image",generateQRImage(DECODE_URL, tempQR.uuid.toString(),1));
+                        output.put("image",generateQRImage(DECODE_URL, tempQR.uuid.toString(),1, colorType));
 
                         break;
                     default:
@@ -101,7 +105,7 @@ public class QRCodeCreatorController
         return output;
     }
 
-    private String generateQRImage(String url, String uuid, int type) throws Exception
+    private String generateQRImage(String url, String uuid, int type, int colorType) throws Exception
     {
         int xOffset, yOffset;
         String output;
@@ -110,13 +114,33 @@ public class QRCodeCreatorController
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
         if(type == 0)
         {
-			baseImage = ImageIO.read(loader.getResource(TYPE_0_BASE_PATH));
-
+            if(colorType == 0)
+            {
+                baseImage = ImageIO.read(loader.getResource(TYPE_0_BASE_PATH_GREEN));
+            }
+            else if(colorType == 1)
+            {
+                baseImage = ImageIO.read(loader.getResource(TYPE_0_BASE_PATH_YELLOW));
+            }
+            else
+            {
+                baseImage = ImageIO.read(loader.getResource(TYPE_0_BASE_PATH_RED));
+            }
 		}
 		else
 		{
-			baseImage = ImageIO.read(loader.getResource(TYPE_1_BASE_PATH));
-
+            if(colorType == 0)
+            {
+                baseImage = ImageIO.read(loader.getResource(TYPE_1_BASE_PATH_GREEN));
+            }
+            else if(colorType == 1)
+            {
+                baseImage = ImageIO.read(loader.getResource(TYPE_1_BASE_PATH_YELLOW));
+            }
+            else
+            {
+                baseImage = ImageIO.read(loader.getResource(TYPE_1_BASE_PATH_RED));
+            }
 		}
         System.out.println(baseImage.getHeight());
         //Generate QR code image from UUID
