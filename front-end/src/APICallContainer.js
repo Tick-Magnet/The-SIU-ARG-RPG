@@ -72,6 +72,168 @@ class APICallContainer
 			return response.data;
 		});
 	}
+	
+	createCharacter(inputUsername, inputToken, inputCharacterClass, inputCharacterRace)
+	{
+		//this.checkToken(inputUsername);
+		var url = "";
+		url = url.concat(apiURL, "/createCharacter");
+		axios.post(url,
+		{
+			username: inputUsername,
+			token: inputToken,
+			characterClass: inputCharacterClass,
+			characterRace: inputCharacterRace
+		})
+		.then(function (response)
+		{
+			console.log(response.data);
+			return response.data;
+		});
+	}
+
+	createCharacter(inputUsername, inputToken, inputCharacterClass, inputCharacterRace)
+    {
+    		//this.checkToken(inputUsername);
+    		var url = "";
+    		url = url.concat(apiURL, "/createCharacter");
+    		axios.post(url,
+    		{
+    			username: inputUsername,
+    			token: inputToken,
+    			characterClass: inputCharacterClass,
+    			characterRace: inputCharacterRace
+    		})
+    		.then(function (response)
+    		{
+    			console.log(response.data);
+    			return response.data;
+    		});
+    }
+    postEncounterUpdate(inputUsername, inputToken, inputSelectedChoice)
+        {
+        		//this.checkToken(inputUsername);
+        		var url = "";
+        		url = url.concat(apiURL, "/postEncounterUpdate");
+        		axios.post(url,
+        		{
+        			username: inputUsername,
+        			token: inputToken,
+        			selectedChoice: inputSelectedChoice
+        		})
+        		.then(function (response)
+        		{
+        			console.log(response.data);
+        			return response.data;
+        		});
+        }
+
+    redeemQR(inputUsername, inputToken, inputUUID)
+        {
+        		//this.checkToken(inputUsername);
+        		var url = "";
+        		url = url.concat(apiURL, "/redeemQR");
+        		axios.post(url,
+        		{
+        			username: inputUsername,
+        			token: inputToken,
+        			uuid: inputUUID
+        		})
+        		.then(function (response)
+        		{
+        			console.log(response.data);
+        			return response.data;
+        		});
+        }
+        createQRCode(inputUsername, inputToken, inputType, inputColorType, inputItemDefinitionPath, inputEncounterDefinitionPath)
+                {
+                		//this.checkToken(inputUsername);
+                		var url = "";
+                		url = url.concat(apiURL, "/createCharacter");
+                		axios.post(url,
+                		{
+                			username: inputUsername,
+                			token: inputToken,
+                			type: inputType,
+                			colorType: inputColorType,
+                			itemDefinitionPath: inputItemDefinitionPath,
+                			encounterDefinitionPath: inputEncounterDefinitionPath
+                		})
+                		.then(function (response)
+                		{
+                			console.log(response.data);
+                			return response.data;
+                		});
+                }
+
+    getInventory(inputUsername, inputToken)
+        {
+        		//this.checkToken(inputUsername);
+        		var url = "";
+        		url = url.concat(apiURL, "/getInventory");
+        		axios.post(url,
+        		{
+        			username: inputUsername,
+        			token: inputToken
+        		})
+        		.then(function (response)
+        		{
+        			console.log(response.data);
+        			return response.data;
+        		});
+        }
+    inspectItemSlot(inputUsername, inputToken, inputIndex)
+        {
+        		//this.checkToken(inputUsername);
+        		var url = "";
+        		url = url.concat(apiURL, "/getInventory");
+        		axios.post(url,
+        		{
+        			username: inputUsername,
+        			token: inputToken,
+        			index: inputIndex
+        		})
+        		.then(function (response)
+        		{
+        			console.log(response.data);
+        			return response.data;
+        		});
+        }
+ equipItem(inputUsername, inputToken, inputIndex, inputItemType)
+        {
+        		//this.checkToken(inputUsername);
+        		var url = "";
+        		url = url.concat(apiURL, "/getInventory");
+        		axios.post(url,
+        		{
+        			username: inputUsername,
+        			token: inputToken,
+        			index: inputIndex,
+        			itemType: inputItemType
+        		})
+        		.then(function (response)
+        		{
+        			console.log(response.data);
+        			return response.data;
+        		});
+        }
+  sellItem(inputUsername, inputToken, inputIndex)
+         {
+         		//this.checkToken(inputUsername);
+         		var url = "";
+         		url = url.concat(apiURL, "/getInventory");
+         		axios.post(url,
+         		{
+         			username: inputUsername,
+         			token: inputToken,
+         			index: inputIndex
+         		})
+         		.then(function (response)
+         		{
+         			console.log(response.data);
+         			return response.data;
+         		});
+         }
 }
 
 export default new APICallContainer();
