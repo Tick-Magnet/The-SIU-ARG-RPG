@@ -2,7 +2,9 @@ package com.RPGServer.EncounterSystem;
 import com.RPGServer.Dice;
 import com.RPGServer.ItemSystem.*;
 
+import com.RPGServer.RpgServerApplication;
 import com.RPGServer.UserAccount;
+import com.RPGServer.UserAccountRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.*;
 
@@ -11,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 
 import java.io.InputStreamReader;
@@ -22,8 +25,11 @@ import java.time.*;
 //Encounter system written in a way so that JSON files can be used to create new game content
 public class Encounter
 {
+	@Autowired
+	private UserAccountRepository userAccountRepository;
 	private static final int EXPIRATION_MINUTES = 3;
-	
+
+	public boolean playerUpdated;
 	public String encounterName;
 	
 	//Reference to the player who initiated the encounter
@@ -74,7 +80,7 @@ public class Encounter
 		//Set expiration date for 3 minutes later (allow time for client to send step update requests to get reward information)
 		expiration = LocalDateTime.now(ZoneId.of("UTC")).plusMinutes(EXPIRATION_MINUTES);
 	}
-	
+
 	//Construct encounter based on the JSON file passed
 	public Encounter(UserAccount user, String encounterDefinitionPath) throws IOException
 	{
@@ -83,7 +89,7 @@ public class Encounter
 		uuid = UUID.randomUUID();
 		encounterRewards = new ArrayList<Reward>();
 		ItemFactory itemFactory = new ItemFactory();
-
+		playerUpdated = false;
 		//ClassLoader loader = Thread.currentThread().getContextClassLoader();
 		//File jsonFile = new File(loader.getResource(encounterDefinitionPath).getPath());
 		InputStream inputStream = getClass().getResourceAsStream(encounterDefinitionPath);
@@ -107,6 +113,7 @@ public class Encounter
 				case 0:
 					encounterSteps[i] = new DialogueStep();
 					encounterSteps[i].parentEncounter = this;
+					encounterSteps[i].backgroundImagePath = tempNode.get("backgroundImagePath").asText();
 					//Add dialogue options
 					JsonNode optionArrayNode = tempNode.get("dialogueOptions");
 					for(int j = 0; j < optionArrayNode.size(); j++)
@@ -143,7 +150,7 @@ public class Encounter
 				case 1:
 					encounterSteps[i] = new CombatStep(tempNode.get("enemyIndex").asInt(), tempNode.get("nextStepIndex").asInt());
 					encounterSteps[i].parentEncounter = this;
-					
+					encounterSteps[i].backgroundImagePath = tempNode.get("backgroundImagePath").asText();
 					//Add reward
 					rewardArray = tempNode.get("rewards");
 					if(rewardArray != null)
@@ -157,7 +164,7 @@ public class Encounter
 						for (int k = 0; k < itemArray.size(); k++) {
 							//Add each item to array (items should be paths to JSON definitions)
 							//tempReward.itemRewards.add(new Item(itemArray.get("definitionPath").asText()));
-							tempReward.itemRewards.add(itemFactory.getItem(itemArray.get("definitionPath").asText()));
+							tempReward.itemRewards.add(itemFactory.getItem(itemArray.get(k).get("definitionPath").asText()));
 						}
 						encounterSteps[i].rewards.put(0, tempReward);
 					}
@@ -277,8 +284,13 @@ public class Encounter
 			player.playerCharacter.gold += goldReward;
 
 			//Add items to player inventory
-			
+			for(int i = 0; i < itemRewards.size(); i++)
+			{
+				player.playerCharacter.addItem(itemRewards.get(i));
+			}
 			//Update player in database
+				//Set playerUpdated flag
+				playerUpdated = true;
 		}
 	}
 }

@@ -2,9 +2,16 @@ package com.RPGServer.ItemSystem;
 
 
 import com.fasterxml.jackson.databind.JsonNode;
+import jakarta.persistence.*;
 
-public abstract class Item
+import java.io.Serializable;
+
+@Entity
+public class Item
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public int id;
     public String name;
     public ItemType itemType;
     public String itemDescription;
@@ -12,7 +19,14 @@ public abstract class Item
     public ItemGrade itemGrade;
     public int goldValue;
     public String imagePath;
+    public int attackModifier;
+    int armorBonus;
+    public int stackSize;
+    public int maxStackSize;
+    public Item()
+    {
 
+    }
     public Item(JsonNode jsonNode)
     {
         this.name = jsonNode.get("name").asText();

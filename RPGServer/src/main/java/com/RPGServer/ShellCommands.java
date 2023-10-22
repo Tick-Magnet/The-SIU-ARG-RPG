@@ -1,6 +1,7 @@
 package com.RPGServer;
 
 import com.RPGServer.EncounterSystem.Encounter;
+import com.RPGServer.ItemSystem.*;
 import org.apache.catalina.User;
 import org.springframework.shell.standard.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,11 @@ public class ShellCommands
 	public UUID createEncounter(String username, String encounterDefPath) throws IOException
 	{
 		UserAccount user  = userAccountRepository.findByUsername(username);
-		Encounter encounter = new Encounter(user, "/EncounterDefinitions/ratEncounter.JSON");
+		Encounter encounter = null;
+		if(encounterDefPath.equals("e"))
+			encounter = new Encounter(user, "/EncounterDefinitions/ratEncounter.JSON");
+		else
+			encounter = new Encounter(user, encounterDefPath);
 		RpgServerApplication.encounterMap.put(encounter.uuid, encounter);
 
 		return encounter.uuid;
@@ -54,5 +59,23 @@ public class ShellCommands
 	{
 		UserAccount user = userAccountRepository.findByUsername(username);
 		user.playerCharacter.resetHealth();
+	}
+
+	@ShellMethod(key = "giveItem")
+	public void giveItem(String username, String itemDefinition) throws IOException
+	{
+		ItemFactory itemFactory = new ItemFactory();
+		UserAccount user = userAccountRepository.findByUsername(username);
+		user.playerCharacter.addItem(itemFactory.getItem(itemDefinition));
+		userAccountRepository.save(user);
+	}
+	
+	@ShellMethod(key = "createTestAccount")
+	public void createTestAccount(String username)
+	{
+		UserAccount user = new UserAccount();
+		user.setUsername("spawnedUser");
+		
+		user.playerCharacter = new PlayerCharacter();
 	}
 }

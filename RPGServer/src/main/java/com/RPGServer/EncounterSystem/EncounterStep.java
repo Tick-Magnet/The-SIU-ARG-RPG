@@ -13,6 +13,7 @@ public abstract class EncounterStep
 	public HashMap<Integer, Encounter.Reward> rewards;
 	
 	public int stepType;
+	public String backgroundImagePath;
 	//Actions that should be completed upon completion of this step
 	public abstract void endStep(int selectedChoice);
 	//Merge StepUpdate from client to state of current step

@@ -19,7 +19,8 @@ public class RpgServerApplication {
 
 	@Autowired 
 	private JavaMailSender mailSender; 
-	
+	@Autowired
+	private static UserAccountRepository userAccountRepository;
 	@Autowired 
 	private QRCodeRepository qrCodeRepository;
 	
@@ -41,4 +42,5 @@ public class RpgServerApplication {
 			registry.addMapping("/**");
 		}
 	}
+
 }

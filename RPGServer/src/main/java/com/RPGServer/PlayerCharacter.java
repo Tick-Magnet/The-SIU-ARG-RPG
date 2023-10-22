@@ -12,6 +12,9 @@ import jakarta.validation.constraints.*;
 import jakarta.annotation.*;
 import org.apache.catalina.User;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Embeddable
 //@Entity
 public class PlayerCharacter
@@ -30,7 +33,20 @@ public class PlayerCharacter
 	private int dexterity;
 	private int constitution;
 	private int intelligence;
-	private Item[][] inventory;
+	
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Item> inventory;
+	
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Item helmetSlot;
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Item chestSlot;
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Item legSlot;
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Item footSlot;
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Item weaponSlot;
 	
 	@Nullable
 	private int weaponModifier;
@@ -54,7 +70,8 @@ public class PlayerCharacter
 		
 		setCharacterType(new CharacterType(CharacterType.CharacterClass.KNIGHT, CharacterType.CharacterRace.HUMAN));
 		statsRolled = false;
-		this.inventory = new Item[5][5];
+		//this.inventory = new Item[5][5];
+		inventory = new ArrayList<Item>();
 		creationComplete = false;
 	}
 	
@@ -106,10 +123,14 @@ public class PlayerCharacter
 		//Modify attack stat (+2 points)
 		//Modify weak stat (+1 point every other level up
 		//Modify other stats (+1 point)
-		strength += figureStatIncrease(CharacterType.Stat.STRENGTH);
-		dexterity += figureStatIncrease(CharacterType.Stat.DEXTERITY);
-		intelligence += figureStatIncrease(CharacterType.Stat.INTELLIGENCE);
-		constitution += figureStatIncrease(CharacterType.Stat.CONSTITUTION);
+		for(int i = 0; i < levelsGained; i++) {
+			strength += figureStatIncrease(CharacterType.Stat.STRENGTH);
+			dexterity += figureStatIncrease(CharacterType.Stat.DEXTERITY);
+			intelligence += figureStatIncrease(CharacterType.Stat.INTELLIGENCE);
+			constitution += figureStatIncrease(CharacterType.Stat.CONSTITUTION);
+			level++;
+			resetHealth();
+		}
 	}
 	//Function to return stat increases based on the character type enum values
 	private int figureStatIncrease(CharacterType.Stat currentStat)
@@ -142,6 +163,7 @@ public class PlayerCharacter
 		experience += xp;
 		if(experience >= Math.pow((level + 1), 2))
 		{
+			System.out.println(experience + " " + Math.pow((level + 1), 2));
 			output = true;
 			levelUp();
 		}
@@ -200,58 +222,155 @@ public class PlayerCharacter
 		
 		return health;
 	}
-
+	
 	public boolean addItem(Item newItem)
 	{
-		boolean output = false;
-		//if it is a resource item, attempt to stack it with others
-		if(newItem.itemType == Item.ItemType.RESOURCE)
+		inventory.add(newItem);
+		return true;
+	}
+
+	public Item removeItem(int index)
+	{
+		Item output = inventory.get(index);
+		if(output != null)
 		{
-			ItemFactory.ResourceItem newResource = (ItemFactory.ResourceItem)newItem;
-			for(int i = 0; i < inventory.length; i++)
+			//Remove item from arraylist
+			inventory.remove(index);
+		}
+		return output;
+	}
+	//Provides a list by string name of items
+	public ArrayList<String> getInventoryItems()
+	{
+		ArrayList<String> output = new ArrayList<String>();
+		
+		for(int i = 0; i < inventory.size(); i++)
+		{
+			output.add(inventory.get(i).name);
+		}
+		
+		return output;
+	}
+	
+	public Item getItem(int index)
+	{
+		return inventory.get(index);
+	}
+
+	//Attempts to equip item, can pass null as item to unequip a slot and return the current item to inventory
+	public boolean equipItem(int slot, Item item)
+	{
+		boolean output = false;
+			switch (slot)
 			{
-				for(int j = 0; j < inventory[0].length; j++)
-				{
-					if(inventory[i][j].name.equals(newItem.name) && inventory[i][j].itemType == Item.ItemType.RESOURCE)
+				//helmet slot
+				case 1:
+					if (item != null && item.itemType == Item.ItemType.HELMET)
 					{
-						ItemFactory.ResourceItem oldResource = (ItemFactory.ResourceItem)inventory[i][j];
-						if(oldResource.stackSize + newResource.stackSize <= oldResource.maxStackSize)
+						if (helmetSlot != null)
 						{
-							//Add stack sizes
-							oldResource.stackSize += newResource.stackSize;
-							return true;
+							inventory.add(helmetSlot);
+						}
+						helmetSlot = item;
+						output = true;
+					}
+					else
+					{
+						if(helmetSlot != null)
+						{
+							inventory.add(helmetSlot);
+							output = true;
 						}
 					}
-				}
-			}
-		}
-		//Attempt to find an empty slot
-		else
-		{
-			for(int i = 0; i < inventory.length; i++)
-			{
-				for(int j = 0; j < inventory.length; j++)
-				{
-					if(inventory[i][j] == null)
+					break;
+				//Chest slot
+				case 2:
+					if (item != null && item.itemType == Item.ItemType.CHEST_ARMOR)
 					{
-						inventory[i][j] = newItem;
-						return true;
+						if (chestSlot != null)
+						{
+							inventory.add(chestSlot);
+						}
+						chestSlot = item;
+						output = true;
 					}
-				}
+					else
+					{
+						if(chestSlot != null)
+						{
+							inventory.add(chestSlot);
+							output = true;
+						}
+					}
+					break;
+				//Leg slot
+				case 3:
+					if (item != null && item.itemType == Item.ItemType.LEG_ARMOR)
+					{
+						if (legSlot != null)
+						{
+							inventory.add(legSlot);
+						}
+						legSlot = item;
+						output = true;
+					}
+					else
+					{
+						if(legSlot != null)
+						{
+							inventory.add(legSlot);
+							output = true;
+						}
+					}
+					break;
+				//Foot slot
+				case 4:
+					if (item != null && item.itemType == Item.ItemType.BOOTS)
+					{
+						if (footSlot != null)
+						{
+							inventory.add(footSlot);
+						}
+						footSlot = item;
+						output = true;
+					}
+					else
+					{
+						if(footSlot != null)
+						{
+							inventory.add(footSlot);
+							output = true;
+						}
+					}
+					break;
+				//Weapon slot
+				case 5:
+					if (item != null && item.itemType == Item.ItemType.WEAPON)
+					{
+						if (weaponSlot != null)
+						{
+							inventory.add(weaponSlot);
+						}
+						weaponSlot = item;
+						output = true;
+					}
+					else
+					{
+						if(weaponSlot != null)
+						{
+							inventory.add(weaponSlot);
+							output = true;
+						}
+					}
+					break;
+
+				default:
+
+					break;
 			}
-		}
 		return output;
 	}
-	public Item removeItem(int row, int column)
-	{
-		Item output = null;
-		if(row >= 0 && row < inventory.length && column >= 0 && column < inventory[0].length)
-		{
-			output = inventory[row][column];
-			inventory[row][column] = null;
-		}
-		return output;
-	}
+	/*
 	public boolean swapItem(int item1Row, int item1Column, int item2Row, int item2Column)
 	{
 		boolean output = false;
@@ -339,7 +458,7 @@ public class PlayerCharacter
 		}
 		return output;
 	}
-
+*/
 
 	public int getHealth()
 	{

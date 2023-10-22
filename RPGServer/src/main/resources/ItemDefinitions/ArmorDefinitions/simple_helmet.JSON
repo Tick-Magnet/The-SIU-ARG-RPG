@@ -1,10 +1,10 @@
 {
-  "itemType": "WEAPON",
+  "itemType": "HELMET",
   "name": "Simple Helmet",
   "itemDescription": "A simple helmet made of wood",
   "itemGrade": "WOOD",
   "imagePath": "simpleHelmet.png",
   "goldValue": 1,
-
+  "canEquip": true,
   "armorBonus": 1
 }

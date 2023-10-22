@@ -37,14 +37,14 @@ public class RewardStep extends EncounterStep
     {
         int goldReward;
         int experienceReward;
-        ArrayList<String> itemRewardList;
+        ArrayList<String> itemList;
 
         public RewardUpdate(ArrayList<Encounter.Reward> rewardList)
         {
             this.stepType = 3;
-            int goldReward = 0;
-            int experienceReward = 0;
-            ArrayList<String> itemList = new ArrayList<String>();
+            goldReward = 0;
+            experienceReward = 0;
+            itemList = new ArrayList<String>();
             //Add each item from the rewards list
             for(int i = 0; i < rewardList.size(); i++)
             {
@@ -63,7 +63,7 @@ public class RewardStep extends EncounterStep
             Map<String, Object> output = super.toMap();
             output.put("goldReward", goldReward);
             output.put("experienceReward", experienceReward);
-            output.put("itemRewardList", itemRewardList);
+            output.put("itemList", itemList);
 
             return output;
         }

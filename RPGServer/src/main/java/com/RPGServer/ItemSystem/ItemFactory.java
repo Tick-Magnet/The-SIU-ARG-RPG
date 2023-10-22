@@ -3,11 +3,9 @@ package com.RPGServer.ItemSystem;
 import com.RPGServer.CharacterType;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.persistence.Embeddable;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 
 public class ItemFactory
 {
@@ -48,14 +46,14 @@ public class ItemFactory
         }
         return null;
     }
-
     public class Weapon extends Item
     {
         public CharacterType.WeaponType weaponType;
-        public int attackModifier;
         public Weapon(JsonNode jsonNode)
         {
             super(jsonNode);
+            this.maxStackSize = 1;
+            this.stackSize = 1;
             this.attackModifier = jsonNode.get("attackModifier").asInt();
             this.weaponType = CharacterType.WeaponType.valueOf(jsonNode.get("weaponType").asText());
             this.canEquip = true;
@@ -63,10 +61,12 @@ public class ItemFactory
     }
     public abstract class ArmorItem extends Item
     {
-        int armorBonus;
+
         public ArmorItem(JsonNode jsonNode)
         {
             super(jsonNode);
+            this.maxStackSize = 1;
+            this.stackSize = 1;
             this.canEquip = true;
             this.armorBonus = jsonNode.get("armorBonus").asInt();
         }
@@ -101,8 +101,6 @@ public class ItemFactory
     }
     public class ResourceItem extends Item
     {
-        public int stackSize;
-        public int maxStackSize;
         public ResourceItem(JsonNode jsonNode)
         {
             super(jsonNode);

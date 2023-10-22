@@ -5,6 +5,7 @@
 		{
 			"stepType": 0,
 			"promptText": "A well-drawn cartoon style rat appears",
+			"backgroundImagePath": "images/ratDialogue.png",
 			"dialogueOptions":
 			[
 				{
@@ -15,12 +16,36 @@
 					"optionText": "other text",
 					"nextStepIndex": 1
 				}
-			] 
+			],
+			"rewards":
+			[
+				{
+					"optionIndex": 1,
+					"experienceReward": 100,
+					"goldReward": 10,
+					"itemRewards": []
+				}
+			]
 		},
 		{
 			"stepType": 1,
 			"enemyIndex": 0,
-			"nextStepIndex": -1
+			"nextStepIndex": -1,
+			"backgroundImagePath": "images/ratCombat.png",
+			"rewards":
+			[
+				{
+					"optionIndex": 0,
+					"experienceReward": 20,
+					"goldReward": 100,
+					"itemRewards":
+					[
+						{
+							"definitionPath": "/ItemDefinitions/WeaponDefinitions/the_brick.JSON"
+						}
+					]
+				}
+			]
 		}
 	],
 	"encounterEntities":
@@ -33,5 +58,5 @@
 			"intelligence": 1,
 			"imagePath": "rat.png"
 		}
-	] 
+	]
 }
