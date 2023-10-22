@@ -1,4 +1,5 @@
 import Popup from './components/Popup';
+import APICallContainer from './APICallContainer';
 import {useState} from 'react';
 
 export const Combat = (props) => {
