@@ -1,9 +1,11 @@
 package com.RPGServer.RESTControllers;
 
 
+import com.RPGServer.Security.RateLimitService;
 import com.RPGServer.SessionToken;
 import com.RPGServer.UserAccount;
 import com.RPGServer.UserAccountRepository;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,10 +38,21 @@ public class LoginController
 	
 	@Autowired
 	private UserAccountRepository userAccountRepository;
+
+	@Autowired
+	private RateLimitService rateLimitService;
 	
 	@PostMapping("/login")
-	public SessionToken login(@RequestBody Map<String, Object> payload) throws NoSuchAlgorithmException
+	public SessionToken login(@RequestBody Map<String, Object> payload, HttpServletRequest request) throws NoSuchAlgorithmException
 	{
+		System.out.println(request.getRemoteAddr());
+
+		//Check if client is blocked from rate limit service
+		if(rateLimitService.filterIP(request.getRemoteAddr(), RateLimitService.CallType.LOGIN) == false)
+		{
+			System.out.println(request.getRemoteAddr());
+			return null;
+		}
 		String username = (String)payload.get("username");
 		String password = (String)payload.get("password");
 		
@@ -67,6 +80,12 @@ public class LoginController
 			tempAccount.setTokenExpiration(token.getExpirationDate());
 			userAccountRepository.save(tempAccount);
 		}
+		else if(tempAccount.getVerified())
+		{
+			//Update bad passwords for this client
+			rateLimitService.badLogin(request.getRemoteAddr());
+		}
+
 		//Return response
 		return token;
 	}

@@ -31,7 +31,7 @@ public class RpgServerApplication {
 	public static ConcurrentHashMap<UUID, Encounter> encounterMap = new ConcurrentHashMap<UUID, Encounter>();
 
 	//Hashmap for storing IP addresses for clients
-	public static ConcurrentHashMap<Integer, ClientIP> clientIPMap = new ConcurrentHashMap<Integer, ClientIP>();
+	public static ConcurrentHashMap<String, ClientIP> clientIPMap = new ConcurrentHashMap<String, ClientIP>();
 	public static void main(String[] args) {
 		SpringApplication.run(RpgServerApplication.class, args);
 	}

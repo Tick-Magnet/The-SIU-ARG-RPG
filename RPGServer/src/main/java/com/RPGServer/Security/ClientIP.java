@@ -5,6 +5,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.time.Instant;
+
 @Entity
 public class ClientIP
 {
@@ -14,7 +16,9 @@ public class ClientIP
 
     public ClientIP()
     {
-
+        failedLogins = 0;
+        APICalls = 0;
+        lastSeen = Instant.now();
     }
 
     public String IP;
@@ -22,5 +26,7 @@ public class ClientIP
     public int failedLogins;
 
     public int APICalls;
+
+    public Instant lastSeen;
 
 }
