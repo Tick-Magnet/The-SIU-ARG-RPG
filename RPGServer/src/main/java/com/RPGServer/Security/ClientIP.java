@@ -21,4 +21,6 @@ public class ClientIP
 
     public int failedLogins;
 
+    public int APICalls;
+
 }
