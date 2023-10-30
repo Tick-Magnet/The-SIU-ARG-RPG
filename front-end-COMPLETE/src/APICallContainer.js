@@ -8,7 +8,8 @@ const cookies = new Cookies();
 
 class APICallContainer
 {
-	
+	currentUsername = "test"
+	currentToken = "mSTyZ9WUg0DCUmihdBhwkAeOukSej8_fH7SbPbxBrWU="
 	checkToken(inputUsername)
 	{
 		var url ="";
@@ -17,6 +18,7 @@ class APICallContainer
 		{
 			username: inputUsername,
 			token: cookies.get('sessionToken')
+
 		})
 		.then(function (response)
 		{
@@ -110,16 +112,17 @@ class APICallContainer
     			return response.data;
     		});
     }
-    postEncounterUpdate(inputUsername, inputToken, inputSelectedChoice)
+   async postEncounterUpdate(inputSelectedChoice, inputEncounterID)
         {
         		//this.checkToken(inputUsername);
         		var url = "";
         		url = url.concat(apiURL, "/postEncounterUpdate");
         		axios.post(url,
         		{
-        			username: inputUsername,
-        			token: inputToken,
-        			selectedChoice: inputSelectedChoice
+        			username: this.currentUsername,
+        			token: this.currentToken,
+        			selectedChoice: inputSelectedChoice,
+        			encounterID: inputEncounterID
         		})
         		.then(function (response)
         		{

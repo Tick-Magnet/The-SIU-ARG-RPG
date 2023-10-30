@@ -10,6 +10,19 @@ export const Combat = (props) => {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
 
+  const [imagePath, setImagePath] = useState("");
+  const [health, setHealth] = useState("");
+  const [enemyName, setEnemyName] = useState("");
+  const [enemyHealth, setEnemyHealth] = useState();
+  const [playerHealth, setPlayerHealth] = useState();
+
+  const[promptText, setPromptText] = useState("");
+  const[stepType, setStepType] = useState(100);
+  const[dialogueOptions, setDialogueOptions] = useState([]);
+  const[backgroundImage, setBackgroundImage] = useState();
+
+  const[encounterID, setEncounterID] = useState("1f243eda-4120-4fe1-a28d-951c8bbbbc77");
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(name);
@@ -26,17 +39,101 @@ export const Combat = (props) => {
     setLoginPopup(true);
     setRegisterPopup(false);
   }
+  function postUpdate(selectedChoice)
+  {
+    var callOutput = APICallContainer.postEncounterUpdate(selectedChoice, encounterID);
 
+    if(callOutput.stepType == 0)
+    {
+        setStepType(0);
+        setPromptText(callOutput.promptText);
+        setDialogueOptions(callOutput.choices);
+        setBackgroundImage(callOutput.backgroundImagePath);
+    }
+    else if(callOutput.stepType == 1)
+    {
+        setStepType(1);
+        setBackgroundImage(callOutput.backgroundImagePath);
+        setEnemyName(callOutput.enemyName);
+        setImagePath(callOutput.enemyImagePath);
+        setEnemyHealth(callOutput.enemyHealth);
+        setPlayerHealth(callOutput.playerHealth);
+    }
+  }
+  function EnemyDisplay()
+  {
+
+
+    return(
+        <div>
+            <div>
+                <img src={imagePath}></img>
+            </div>
+            <div>
+                <p>Name: {enemyName}</p>
+                <p>Enemy Health: {enemyHealth} </p>
+                <p>Player Health: {playerHealth} </p>
+            </div>
+        </div>
+    );
+  }
+
+  function DialogueDisplay()
+  {
+
+
+    return(
+        <div>
+            <p>{promptText} </p>
+        </div>
+    );
+  }
+  function DialogueOption(props)
+  {
+
+      return (
+      <div>
+        <button onClick={() => postUpdate(props.index)}> </button>
+      </div>
+      );
+  }
+  function PlayerInput()
+  {
+    return(
+        <div>
+            <ul>
+                {dialogueOptions.map((option, index) => <DialogueOption optionText={option.text} optionIndex={index}/>)}
+            </ul>
+        </div>
+    )
+  }
+  function EncounterWrapper()
+  {
+
+    if(stepType == 0)
+    {
+        return (
+        <div style={{backgroundColor: "red"}}>
+            <EnemyDisplay />
+            <PlayerInput />
+        </div>
+        );
+    }
+    else if (stepType == 1)
+    {
+
+    }
+    else if (stepType == 100)
+    {
+        postUpdate(-1);
+    }
+  }
   return (
     <div className="Combat">
         <input type='image' src='./Images/compass.png' alt='Map' className='compass' onClick={() => setMapPopup(true)}/>
         <input type='image' src='./Images/profile.jfif' alt='Login' className='loginbutt' onClick={() => setLoginPopup(true)}/>
       <main>
-        <img class='Monster' src='./Images/Dragon.png' alt='Red Dragon'/>
-        <div class="ButtonContainer">
-          <button class="Button1">Attack</button>
-          <button class="Button2">Flee</button>
-        </div>
+        <EncounterWrapper />
       </main>
 
       <Popup trigger={mapPopup} setTrigger={setMapPopup}>
