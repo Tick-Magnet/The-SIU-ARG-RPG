@@ -113,7 +113,22 @@ public class Encounter
 				case 0:
 					encounterSteps[i] = new DialogueStep();
 					encounterSteps[i].parentEncounter = this;
-					encounterSteps[i].backgroundImagePath = tempNode.get("backgroundImagePath").asText();
+					try
+					{
+						encounterSteps[i].backgroundImagePath = tempNode.get("backgroundImagePath").asText();
+					}
+					catch(NullPointerException e)
+					{
+						encounterSteps[i].backgroundImagePath = "";
+					}
+					try
+					{
+						encounterSteps[i].promptText = tempNode.get("promptText").asText();
+					}
+					catch (NullPointerException e)
+					{
+						encounterSteps[i].promptText = tempNode.get("promptText").asText();
+					}
 					//Add dialogue options
 					JsonNode optionArrayNode = tempNode.get("dialogueOptions");
 					for(int j = 0; j < optionArrayNode.size(); j++)
@@ -150,7 +165,13 @@ public class Encounter
 				case 1:
 					encounterSteps[i] = new CombatStep(tempNode.get("enemyIndex").asInt(), tempNode.get("nextStepIndex").asInt());
 					encounterSteps[i].parentEncounter = this;
-					encounterSteps[i].backgroundImagePath = tempNode.get("backgroundImagePath").asText();
+					try {
+						encounterSteps[i].backgroundImagePath = tempNode.get("backgroundImagePath").asText();
+					}
+					catch(NullPointerException e)
+					{
+						encounterSteps[i].backgroundImagePath = "";
+					}
 					//Add reward
 					rewardArray = tempNode.get("rewards");
 					if(rewardArray != null)
@@ -184,7 +205,7 @@ public class Encounter
 			//Fill EncounterEntity object fields from JSON file
 			entityArray[i] = new EncounterEntity();
 			entityArray[i].name = tempNode.get("name").asText();
-			entityArray[i].imagePath = tempNode.get("imagePath").asText();
+			entityArray[i].imagePath = tempNode.get("imageForeground").asText();
 			entityArray[i].strength = tempNode.get("strength").asInt();
 			entityArray[i].dexterity = tempNode.get("dexterity").asInt();
 			entityArray[i].constitution = tempNode.get("constitution").asInt();

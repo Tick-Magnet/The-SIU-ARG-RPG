@@ -10,6 +10,7 @@ public class StepUpdate
 	public int stepType;
 	public int selectedChoice;
 	public String backgroundImagePath;
+	public String promptText;
 
 	public StepUpdate(Map<String, Object> payload)
 	{
@@ -26,6 +27,7 @@ public class StepUpdate
 		output.put("stepType", stepType);
 		output.put("selectedChoice", selectedChoice);
 		output.put("backgroundImagePath", backgroundImagePath);
+		output.put("promptText", promptText);
 		return output;
 	}
 	
