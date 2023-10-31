@@ -1,0 +1,39 @@
+.rpgNavbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: grey;
+}
+
+.rpgNavbar .navItem {
+    float: left;
+}
+.loginButton
+{
+    float: right;
+}
+
+.rpgNavbar a {
+    display: block;
+    padding: 14px 16px;
+    text-align: center;
+    color: white;
+    background-color: red;
+    text-decoration: none;
+}
+
+.rpgNavbar a:hover {
+    background-color: blue;
+}
+
+.rpgBackgroundDiv {
+    background-image: url('/public/Images/Stoneback.jpg');
+    background-size: cover;
+}
+
+.rpgTextSection{
+    background-color: grey;
+    width: 100vw;
+    color: black;
+}
