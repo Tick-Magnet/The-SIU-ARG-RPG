@@ -10,7 +10,6 @@
     "react": "^18.2.0",
     "react-cookies": "^0.1.1",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.16.0",
     "react-scripts": "5.0.1",
     "universal-cookie": "^6.1.1",
     "web-vitals": "^2.1.4"
@@ -38,5 +37,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react-router-dom": "^6.17.0"
   }
 }

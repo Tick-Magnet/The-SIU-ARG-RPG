@@ -4,23 +4,17 @@ import { Combat } from './Combat';
 import Popup from './components/Popup';
 import Cookies from 'universal-cookie';
 
-function App() {
-  const [currentForm, setCurrentForm] = useState('Item');
+function App()
+{
+    return(
+        <BrowserRouter>
+            <Routes>
+                <Route exact path="/" element={<HomePage/>}></Route>
+                <Route exact path="/redeemQR" element{<RedeemQRPage/>}></Route>
+            </Routes>
+        </BrowserRouter>
 
-
-  const toggleForm = (formName) => {
-    setCurrentForm(formName);
-  }
-
-  return (
-    <div className='App'>
-      {
-        currentForm === "Item" ? <Item onFormSwitch={toggleForm}/> : <Combat  onFormSwitch={toggleForm}/>
-      }
-
-    </div>
-  )
-
+    )
 }
 
 export default App;
