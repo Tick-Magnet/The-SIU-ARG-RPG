@@ -8,21 +8,21 @@ const cookies = new Cookies();
 
 class APICallContainer
 {
-	currentUsername = "test"
-	currentToken = "mSTyZ9WUg0DCUmihdBhwkAeOukSej8_fH7SbPbxBrWU="
-	checkToken(inputUsername)
+
+	async checkToken(inputUsername, inputToken)
 	{
 		var url ="";
 		url = url.concat(apiURL, "/checktoken");
 		axios.post(url,
 		{
 			username: inputUsername,
-			token: cookies.get('sessionToken')
+			token: inputToken
 
 		})
 		.then(function (response)
 		{
-			console.log(response.data);
+			//console.log(response.data);
+			return response.data;
 		});
 	}
 	
@@ -70,11 +70,33 @@ class APICallContainer
 		{
 			//Store session token as a cookie
 			cookies.set('sessionToken', response.data.token, {path:'/', maxAge:82800});
+			cookies.set('username', inputUsername, {path:'/', maxAge:82800});
+
 			console.log(response.data);
 			return response.data;
 		});
 	}
-	
+
+	getLoginInfo()
+	{
+	    var output = null;
+	    var currentToken = cookies.get("sessionToken");
+	    var currentUsername = cookies.get("username");
+        console.log("testing token");
+        try{
+	    if(this.checkToken(currentUsername, currentToken) == true)
+	    {
+	        output.username = currentUsername;
+	        output.token = currentToken;
+	    }
+        }
+        catch(e)
+        {
+            output.failed = true;
+        }
+	    return output;
+	}
+
 	createCharacter(inputUsername, inputToken, inputCharacterClass, inputCharacterRace)
 	{
 		//this.checkToken(inputUsername);
@@ -112,15 +134,15 @@ class APICallContainer
     			return response.data;
     		});
     }
-   async postEncounterUpdate(inputSelectedChoice, inputEncounterID)
+   async postEncounterUpdate(inputUsername, inputToken, inputSelectedChoice, inputEncounterID)
         {
         		//this.checkToken(inputUsername);
         		var url = "";
         		url = url.concat(apiURL, "/postEncounterUpdate");
         		axios.post(url,
         		{
-        			username: this.currentUsername,
-        			token: this.currentToken,
+        			username: inputUsername,
+        			token: inputToken,
         			selectedChoice: inputSelectedChoice,
         			encounterID: inputEncounterID
         		})

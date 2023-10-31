@@ -7,7 +7,6 @@ function HomePage ()
     return(
     <div className="rpgBackgroundDiv">
         <h1>SIU ARG RPG Project</h1>
-        <Navbar />
         <main>
             <div className="rpgTextSection">
                 <h2>Game Description</h2>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Item } from './Item';
 import { Combat } from './Combat';
 import Popup from './components/Popup';
@@ -9,17 +9,36 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
 import RedeemQRPage from "./pages/RedeemQRPage";
+import Layout from "./pages/Layout.js";
+import APICallContainer from "./APICallContainer.js"
 
+import {createContext, useContext} from 'react';
 function App()
 {
+    const [username, setUsername] = useState(null);
+    const [sessionToken, setSessionToken] = useState(null);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    const LoginInfoContext = createContext(null);
+
+    useEffect(() => {
+       setUsername("testing");
+       console.log({username})
+       var loginInfo = APICallContainer.getLoginInfo();
+    });
+
     return(
+    <LoginInfoContext.Provider value={{username: username, sessionToken: sessionToken}}>
         <BrowserRouter>
             <Routes>
-                <Route exact path="/" element={<HomePage/>}></Route>
-                <Route exact path="/redeemQR" element={<RedeemQRPage/>}></Route>
+                <Route path="/" element={<Layout />}>
+                    <Route index element={<HomePage />} />
+                    <Route path="redeemQR" element={<RedeemQRPage />} />
+
+                </Route>
             </Routes>
         </BrowserRouter>
-
+    </LoginInfoContext.Provider>
     )
 }
 
