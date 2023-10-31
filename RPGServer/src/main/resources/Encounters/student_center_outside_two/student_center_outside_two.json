@@ -1,0 +1,37 @@
+{
+	"encounterName": "Rest",
+	"encounterSteps":
+	[
+		{
+			"stepType": 0,
+			"promptText": "By simply looking upon the rod of healing, you feel your pain wither away as it fills you with determination.",
+			"dialogueOptions":
+			[
+				{
+					"optionText": "Attack",
+					"nextStepIndex": 1
+				},
+				{
+					"optionText": "Run",
+					"nextStepIndex": 1
+				}
+			] 
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0
+		}
+	],
+	"encounterEntities":
+	[
+		{
+			"name": "Rest",
+			"strength": 0,
+			"dexterity": 0,
+			"constitution": 0, 
+			"intelligence": 0,
+			"imageForeground": "RodOfHealing.png",
+			"imageBackground": "bench_one.png"
+		}
+	] 
+}

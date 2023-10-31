@@ -1,0 +1,37 @@
+{
+	"encounterName": "Vampire Encounter",
+	"encounterSteps":
+	[
+		{
+			"stepType": 0,
+			"promptText": "In the tranquil blue of the evening, a regal vampire stands before her ominous manor, her presence exuding an air of timeless elegance.",
+			"dialogueOptions":
+			[
+				{
+					"optionText": "Attack",
+					"nextStepIndex": 1
+				},
+				{
+					"optionText": "Run",
+					"nextStepIndex": 1
+				}
+			] 
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0
+		}
+	],
+	"encounterEntities":
+	[
+		{
+			"name": "Vampire",
+			"strength": 16,
+			"dexterity": 18,
+			"constitution": 20,
+			"intelligence": 15,
+			"imageForeground": "vampire.png",
+			"imageBackground": "manor_two.png"
+		}
+	] 
+}

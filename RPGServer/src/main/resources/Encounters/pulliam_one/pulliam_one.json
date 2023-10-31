@@ -1,0 +1,37 @@
+{
+	"encounterName": "Abomination Encounter",
+	"encounterSteps":
+	[
+		{
+			"stepType": 0,
+			"promptText": "Emerging from the submerged castle's depths, a trident-wielding monster surfaces, its scaly form menacing and poised for aquatic vengeance.",
+			"dialogueOptions":
+			[
+				{
+					"optionText": "Attack",
+					"nextStepIndex": 1
+				},
+				{
+					"optionText": "Run",
+					"nextStepIndex": 1
+				}
+			] 
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0
+		}
+	],
+	"encounterEntities":
+	[
+		{
+			"name": "Abomination",
+			"strength": 11,
+			"dexterity": 16,
+			"constitution": 11,
+			"intelligence": 3,
+			"imageForeground": "abomination.png",
+			"imageBackground": "pulliam_one.png"
+		}
+	] 
+}
