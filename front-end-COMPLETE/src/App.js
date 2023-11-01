@@ -13,18 +13,19 @@ import Layout from "./pages/Layout.js";
 import APICallContainer from "./APICallContainer.js"
 
 import {createContext, useContext} from 'react';
+export const LoginInfoContext = createContext({username: null, sessionToken: null});
 function App()
 {
     const [username, setUsername] = useState(null);
     const [sessionToken, setSessionToken] = useState(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    const LoginInfoContext = createContext(null);
+
 
     useEffect(() => {
-       setUsername("testing");
-       console.log({username})
-       var loginInfo = APICallContainer.getLoginInfo();
+        
+
+
     });
 
     return(

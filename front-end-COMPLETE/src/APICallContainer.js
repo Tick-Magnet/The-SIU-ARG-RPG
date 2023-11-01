@@ -21,8 +21,12 @@ class APICallContainer
 		})
 		.then(function (response)
 		{
-			//console.log(response.data);
+			console.log(response.data);
 			return response.data;
+		}).catch(function (error)
+		{
+		    console.log("Backend network error");
+		    console.log(error.toJSON());
 		});
 	}
 	
@@ -38,7 +42,7 @@ class APICallContainer
 		return "test"
 	}
 	
-	register(inputUsername, inputEmail, inputPassword)
+	async register(inputUsername, inputEmail, inputPassword)
 	{
 		var url = "";
 		url = url.concat(apiURL, "/register");
@@ -56,7 +60,7 @@ class APICallContainer
 		});
 	}
 	
-	login(inputUsername, inputPassword)
+	async login(inputUsername, inputPassword)
 	{
 		//this.checkToken(inputUsername);
 		var url = "";
@@ -77,27 +81,9 @@ class APICallContainer
 		});
 	}
 
-	getLoginInfo()
-	{
-	    var output = null;
-	    var currentToken = cookies.get("sessionToken");
-	    var currentUsername = cookies.get("username");
-        console.log("testing token");
-        try{
-	    if(this.checkToken(currentUsername, currentToken) == true)
-	    {
-	        output.username = currentUsername;
-	        output.token = currentToken;
-	    }
-        }
-        catch(e)
-        {
-            output.failed = true;
-        }
-	    return output;
-	}
 
-	createCharacter(inputUsername, inputToken, inputCharacterClass, inputCharacterRace)
+
+	async createCharacter(inputUsername, inputToken, inputCharacterClass, inputCharacterRace)
 	{
 		//this.checkToken(inputUsername);
 		var url = "";
@@ -116,7 +102,7 @@ class APICallContainer
 		});
 	}
 
-	createCharacter(inputUsername, inputToken, inputCharacterClass, inputCharacterRace)
+	async createCharacter(inputUsername, inputToken, inputCharacterClass, inputCharacterRace)
     {
     		//this.checkToken(inputUsername);
     		var url = "";
@@ -153,7 +139,7 @@ class APICallContainer
         		});
         }
 
-    redeemQR(inputUsername, inputToken, inputUUID)
+    async redeemQR(inputUsername, inputToken, inputUUID)
         {
         		//this.checkToken(inputUsername);
         		var url = "";
@@ -170,7 +156,7 @@ class APICallContainer
         			return response.data;
         		});
         }
-        createQRCode(inputUsername, inputToken, inputType, inputColorType, inputItemDefinitionPath, inputEncounterDefinitionPath)
+       async createQRCode(inputUsername, inputToken, inputType, inputColorType, inputItemDefinitionPath, inputEncounterDefinitionPath)
                 {
                 		//this.checkToken(inputUsername);
                 		var url = "";
@@ -191,7 +177,7 @@ class APICallContainer
                 		});
                 }
 
-    getInventory(inputUsername, inputToken)
+    async getInventory(inputUsername, inputToken)
         {
         		//this.checkToken(inputUsername);
         		var url = "";
@@ -207,7 +193,7 @@ class APICallContainer
         			return response.data;
         		});
         }
-    inspectItemSlot(inputUsername, inputToken, inputIndex)
+    async inspectItemSlot(inputUsername, inputToken, inputIndex)
         {
         		//this.checkToken(inputUsername);
         		var url = "";
@@ -224,7 +210,7 @@ class APICallContainer
         			return response.data;
         		});
         }
- equipItem(inputUsername, inputToken, inputIndex, inputItemType)
+ async equipItem(inputUsername, inputToken, inputIndex, inputItemType)
         {
         		//this.checkToken(inputUsername);
         		var url = "";
@@ -242,7 +228,7 @@ class APICallContainer
         			return response.data;
         		});
         }
-  sellItem(inputUsername, inputToken, inputIndex)
+  async sellItem(inputUsername, inputToken, inputIndex)
          {
          		//this.checkToken(inputUsername);
          		var url = "";
