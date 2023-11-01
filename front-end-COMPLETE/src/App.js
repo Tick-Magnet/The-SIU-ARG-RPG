@@ -13,7 +13,7 @@ import Layout from "./pages/Layout.js";
 import APICallContainer from "./APICallContainer.js"
 
 import {createContext, useContext} from 'react';
-export const LoginInfoContext = createContext({username: null, sessionToken: null});
+export const LoginInfoContext = createContext({username: null, sessionToken: null, loggedIn: false, setUsername: () => {}, setSessionToken: () => {}, setLoggedIn: () => {}});
 function App()
 {
     const [username, setUsername] = useState(null);
@@ -23,13 +23,21 @@ function App()
 
 
     useEffect(() => {
-        
-
+        var loginInfo = APICallContainer.getLoginInfo();
+        loginInfo.then(
+           function(value)
+           {
+           // console.log(value);
+                setUsername(value.username);
+                setSessionToken(value.sessionToken);
+                setIsLoggedIn(value.loggedIn);
+           }
+        );
 
     });
 
     return(
-    <LoginInfoContext.Provider value={{username: username, sessionToken: sessionToken}}>
+    <LoginInfoContext.Provider value={{username: username, sessionToken: sessionToken, loggedIn: isLoggedIn, setUsername: setUsername, setSessionToken: setSessionToken, setLoggedIn: setIsLoggedIn}}>
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Layout />}>

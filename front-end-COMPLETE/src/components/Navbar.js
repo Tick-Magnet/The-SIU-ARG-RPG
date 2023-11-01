@@ -6,6 +6,8 @@ import Popup from './Popup.js'
 import APICallContainer from "../APICallContainer.js"
 import {useContext} from 'react';
 import {LoginInfoContext} from "../App.js";
+
+
 function test()
 {
     console.log("test");
@@ -20,7 +22,9 @@ function Navbar() {
   const [pass, setPass] = useState('');
 
   const loginInfo = useContext(LoginInfoContext);
-
+  const [username, setUsername] = useState(null);
+  const [sessionToken, setSessionToken] = useState(null);
+  const [loggedIn, setLoggedIn] = useState(false);
 
    const handleLoginSubmit = (e) => {
       e.preventDefault();
@@ -29,10 +33,20 @@ function Navbar() {
       console.log(pass);
 
       var response = APICallContainer.login(email, pass);
-      if(response.token != null)
-      {
-        console.log("logged in");
-      }
+      response.then(
+        function(value)
+        {
+            console.log(value.username + "VALUE");
+            if(value.loggedIn == true)
+            {
+
+                loginInfo.setUsername(value.username);
+                loginInfo.setSessionToken(value.sessionToken);
+                loginInfo.setLoggedIn(true);
+                console.log(loginInfo);
+            }
+        }
+      );
     }
 
     const handleRegisterSubmit = (e) => {
@@ -50,10 +64,18 @@ function Navbar() {
       setRegisterPopup(false);
     }
 
+    function logout()
+    {
+        console.log("logging out");
+    }
+
     function LoginButton(){
-        if(loginInfo.sessionToken != null)
+
+        if(loginInfo.loggedIn == true)
         {
-            return null;
+            return (
+            <li className="loginButton" onClick = {() => logout()}><a>Hello {loginInfo.username} Click here to logout</a></li>
+            );
         }
         else
         {
@@ -65,6 +87,7 @@ function Navbar() {
     }
 
     return(
+
     <>
         <ul className="rpgNavbar">
             <li className="navItem"><Link to="/"> Home </Link> </li>

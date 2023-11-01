@@ -13,6 +13,7 @@ class APICallContainer
 	{
 		var url ="";
 		url = url.concat(apiURL, "/checktoken");
+
 		axios.post(url,
 		{
 			username: inputUsername,
@@ -29,18 +30,43 @@ class APICallContainer
 		    console.log(error.toJSON());
 		});
 	}
-	
-	testAPI()
-	{
-		var url = "";
-		//url.concat(apiURL, "/test");
-		axios.get(apiURL).then(function (response)
+
+    async getLoginInfo()
+    {
+        var output = {loggedIn: false};
+        var currentToken = cookies.get("sessionToken");
+        var currentUsername = cookies.get("username");
+        var url ="";
+		url = url.concat(apiURL, "/checktoken");
+		//console.log(currentUsername+ currentToken);
+		if(currentToken != null && currentToken != "undefined" && currentUsername != null)
 		{
-			console.log(response.data);
-			console.log(response.status);	
+        var postResult = await axios.post(url,
+		{
+			username: currentUsername,
+			token: currentToken
+
+		})
+		.then(function (response)
+		{
+			//console.log(response.data);
+
+			return response.data;
+		}).catch(function (error)
+		{
+		    console.log("Backend network error");
+		    console.log(error.toJSON());
 		});
-		return "test"
-	}
+        if(postResult.valid == true)
+        {
+            output.loggedIn = true;
+            output.username = currentUsername;
+            output.sessionToken = currentToken;
+        }
+        }
+
+		return output;
+    }
 	
 	async register(inputUsername, inputEmail, inputPassword)
 	{
@@ -59,29 +85,57 @@ class APICallContainer
 			return response.data;
 		});
 	}
-	
+	/*
 	async login(inputUsername, inputPassword)
 	{
 		//this.checkToken(inputUsername);
 		var url = "";
 		url = url.concat(apiURL, "/login");
-		axios.post(url,
+		var result = await axios.post(url,
 		{
 			username: inputUsername,
 			password: inputPassword
 		})
 		.then(function (response)
 		{
+		    if(response.data.valid == true){
 			//Store session token as a cookie
+			console.log(response.data.token);
 			cookies.set('sessionToken', response.data.token, {path:'/', maxAge:82800});
 			cookies.set('username', inputUsername, {path:'/', maxAge:82800});
-
+            }
 			console.log(response.data);
 			return response.data;
 		});
+        console.log(result.username +"RESULT");
+		return result;
 	}
+    */
+async login(inputUsername, inputPassword)
+	{
+		//this.checkToken(inputUsername);
+		var output = {loggedIn: false};
+		var url = "";
+		url = url.concat(apiURL, "/login");
+		var result = await axios.post(url,
+		{
+			username: inputUsername,
+			password: inputPassword
+		});
+		if(result.data.valid == true){
+        	//Store session token as a cookie
+            console.log(result.data.token);
+            cookies.set('sessionToken', result.data.token, {path:'/', maxAge:82800});
+            cookies.set('username', inputUsername, {path:'/', maxAge:82800});
+            output.username = inputUsername;
+            output.sessionToken = result.data.token;
+            output.loggedIn = true;
+        }
+        console.log(output);
 
 
+        return output;
+	}
 
 	async createCharacter(inputUsername, inputToken, inputCharacterClass, inputCharacterRace)
 	{
