@@ -27,14 +27,14 @@ function App()
         loginInfo.then(
            function(value)
            {
-           // console.log(value);
+           //console.log(value);
                 setUsername(value.username);
                 setSessionToken(value.sessionToken);
                 setIsLoggedIn(value.loggedIn);
            }
         );
 
-    });
+    }, []);
 
     return(
     <LoginInfoContext.Provider value={{username: username, sessionToken: sessionToken, loggedIn: isLoggedIn, setUsername: setUsername, setSessionToken: setSessionToken, setLoggedIn: setIsLoggedIn}}>

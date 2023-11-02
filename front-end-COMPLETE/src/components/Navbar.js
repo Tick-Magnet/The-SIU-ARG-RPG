@@ -43,7 +43,7 @@ function Navbar() {
                 loginInfo.setUsername(value.username);
                 loginInfo.setSessionToken(value.sessionToken);
                 loginInfo.setLoggedIn(true);
-                console.log(loginInfo);
+                setLoginPopup(false);
             }
         }
       );
@@ -67,6 +67,10 @@ function Navbar() {
     function logout()
     {
         console.log("logging out");
+        loginInfo.setUsername(null);
+        loginInfo.setSessionToken(null);
+        loginInfo.setLoggedIn(false);
+        APICallContainer.logout();
     }
 
     function LoginButton(){
@@ -86,12 +90,30 @@ function Navbar() {
 
     }
 
+    function InventoryButton()
+    {
+
+     if(loginInfo.loggedIn == true)
+            {
+                return (
+                <li className="navItem"><Link to="/Inventory"> Inventory </Link> </li>
+                );
+            }
+            else
+            {
+                return (
+                    null
+                );
+            }
+
+    }
+
     return(
 
     <>
         <ul className="rpgNavbar">
             <li className="navItem"><Link to="/"> Home </Link> </li>
-            <li className="navItem"><Link to="/Inventory"> Inventory </Link> </li>
+            <InventoryButton />
             <li className="navItem" onClick = {() => setMapPopup(true)}><a> Map </a> </li>
             <li className="navItem"><Link to="/Contact"> Contact Information </Link> </li>
 

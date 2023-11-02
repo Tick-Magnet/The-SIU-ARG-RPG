@@ -85,32 +85,7 @@ class APICallContainer
 			return response.data;
 		});
 	}
-	/*
-	async login(inputUsername, inputPassword)
-	{
-		//this.checkToken(inputUsername);
-		var url = "";
-		url = url.concat(apiURL, "/login");
-		var result = await axios.post(url,
-		{
-			username: inputUsername,
-			password: inputPassword
-		})
-		.then(function (response)
-		{
-		    if(response.data.valid == true){
-			//Store session token as a cookie
-			console.log(response.data.token);
-			cookies.set('sessionToken', response.data.token, {path:'/', maxAge:82800});
-			cookies.set('username', inputUsername, {path:'/', maxAge:82800});
-            }
-			console.log(response.data);
-			return response.data;
-		});
-        console.log(result.username +"RESULT");
-		return result;
-	}
-    */
+
 async login(inputUsername, inputPassword)
 	{
 		//this.checkToken(inputUsername);
@@ -136,6 +111,12 @@ async login(inputUsername, inputPassword)
 
         return output;
 	}
+
+    logout()
+    {
+        cookies.remove("sessionToken");
+        cookies.remove("username");
+    }
 
 	async createCharacter(inputUsername, inputToken, inputCharacterClass, inputCharacterRace)
 	{
@@ -179,36 +160,30 @@ async login(inputUsername, inputPassword)
         		//this.checkToken(inputUsername);
         		var url = "";
         		url = url.concat(apiURL, "/postEncounterUpdate");
-        		axios.post(url,
+        		var result = await axios.post(url,
         		{
         			username: inputUsername,
         			token: inputToken,
         			selectedChoice: inputSelectedChoice,
         			encounterID: inputEncounterID
         		})
-        		.then(function (response)
-        		{
-        			console.log(response.data);
-        			return response.data;
-        		});
+
+        		return result.data;
         }
 
     async redeemQR(inputUsername, inputToken, inputUUID)
         {
-        		//this.checkToken(inputUsername);
+        		var output;
         		var url = "";
         		url = url.concat(apiURL, "/redeemQR");
-        		axios.post(url,
+        		var result = await axios.post(url,
         		{
         			username: inputUsername,
-        			token: inputToken,
+        			sessionToken: inputToken,
         			uuid: inputUUID
-        		})
-        		.then(function (response)
-        		{
-        			console.log(response.data);
-        			return response.data;
         		});
+
+        		return result.data;
         }
        async createQRCode(inputUsername, inputToken, inputType, inputColorType, inputItemDefinitionPath, inputEncounterDefinitionPath)
                 {

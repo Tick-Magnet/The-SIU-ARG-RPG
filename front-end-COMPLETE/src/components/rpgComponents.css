@@ -6,6 +6,11 @@
     background-color: grey;
 }
 
+.enemyImage{
+    width: 25vw;
+    height: auto;
+}
+
 .rpgNavbar .navItem {
     float: left;
 }
