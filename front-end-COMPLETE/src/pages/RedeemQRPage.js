@@ -35,14 +35,26 @@ function RedeemQRPage ()
         const [currentStep, setCurrentStep] = useState(null);
         const [postStepComplete, setPostStepComplete] = useState(false);
         const [initialStepReceived, setInitialStepReceived] = useState(false);
+        const [waitingResponse, setWaitingResponse] = useState(false)
+
         function InputSelector(props)
         {
             function inputSelectorClick(index)
             {
                 console.log(index);
                 //Send request with choice
-
-
+                if(waitingResponse == false)
+                {
+                    //set a flag to prevent use double clicking a selection
+                    setWaitingResponse(true);
+                    var update = APICallContainer.postEncounterUpdate(loginInfo.username, loginInfo.sessionToken, index, redeemResult.encounterID).then(
+                        function(value)
+                        {
+                            setCurrentStep(value);
+                            setWaitingResponse(false);
+                        }
+                    );
+                }
             }
             return(
                 <>
@@ -80,6 +92,13 @@ function RedeemQRPage ()
                 return(
                     <>
                         <p>combat</p>
+                        <img className="enemyImage" src={currentStep.enemyImagePath} />
+                        <p>Enemy Name: {currentStep.enemyName} </p>
+                        <p>Enemy Health: {currentStep.enemyHealth} </p>
+                        <p>Player Health: {currentStep.playerHealth} </p>
+                        <ul>
+                        {currentStep.choices.map((option, index) => <InputSelector optionText={option} optionIndex={index}/>)}
+                        </ul>
                     </>
                 );
             }
