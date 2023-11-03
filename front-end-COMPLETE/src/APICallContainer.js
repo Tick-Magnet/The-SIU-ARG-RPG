@@ -211,16 +211,13 @@ async login(inputUsername, inputPassword)
         		//this.checkToken(inputUsername);
         		var url = "";
         		url = url.concat(apiURL, "/getInventory");
-        		axios.post(url,
+        		var result = await axios.post(url,
         		{
         			username: inputUsername,
         			token: inputToken
         		})
-        		.then(function (response)
-        		{
-        			console.log(response.data);
-        			return response.data;
-        		});
+
+        		return result.data
         }
     async inspectItemSlot(inputUsername, inputToken, inputIndex)
         {

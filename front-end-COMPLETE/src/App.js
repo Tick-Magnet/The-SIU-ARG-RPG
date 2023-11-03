@@ -11,6 +11,7 @@ import HomePage from "./pages/HomePage";
 import RedeemQRPage from "./pages/RedeemQRPage";
 import Layout from "./pages/Layout.js";
 import APICallContainer from "./APICallContainer.js"
+import Inventory from "./pages/Inventory.js";
 
 import {createContext, useContext} from 'react';
 export const LoginInfoContext = createContext({username: null, sessionToken: null, loggedIn: false, setUsername: () => {}, setSessionToken: () => {}, setLoggedIn: () => {}});
@@ -43,7 +44,7 @@ function App()
                 <Route path="/" element={<Layout />}>
                     <Route index element={<HomePage />} />
                     <Route path="redeemQR" element={<RedeemQRPage />} />
-
+                    <Route path="Inventory" element={<Inventory />} />
                 </Route>
             </Routes>
         </BrowserRouter>
