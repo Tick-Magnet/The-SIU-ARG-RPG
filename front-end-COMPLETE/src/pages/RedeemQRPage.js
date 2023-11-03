@@ -4,6 +4,8 @@ import {LoginInfoContext} from "../App.js";
 import {useState} from "react";
 import APICallContainer from "../APICallContainer.js";
 import "../components/rpgComponents.css";
+import Popup from "../components/Popup";
+
 function RedeemQRPage ()
 {
     const params = new URLSearchParams(window.location.search);
@@ -102,11 +104,27 @@ function RedeemQRPage ()
                     </>
                 );
             }
+            else if(currentStep.stepType == 3)
+            {
+                return(
+                <>
+                    <p>End of encounter Rewards</p>
+                    <p>Gold Reward: {currentStep.goldReward} </p>
+                    <p>Experience Gained: {currentStep.experienceReward} </p>
+                    <p> Items Rewarded: </p>
+                    <ul>
+                        {currentStep.itemList.map((option, index) => <li> {option} </li>)}
+                    </ul>
+                </>
+                );
+            }
         }
     }
 
     function RedeemResult()
     {
+        const [itemPopup, setItemPopup] = useState(false);
+
         //Make API call
         if(redeemComplete == false)
         {
@@ -131,7 +149,13 @@ function RedeemQRPage ()
         {
             return(
             <div>
-                <p>item</p>
+                <input type='image' src='./Images/chest.png' alt='Open Chest' className='chest' onClick={() => setItemPopup(true)}/>
+                <Popup trigger={itemPopup} setTrigger={setItemPopup}>
+                <p>Gold Received: {redeemResult.gold}</p>
+                <p>Experience Received: {redeemResult.experience}</p>
+                <p>Item Received: {redeemResult.item.name}</p>
+                <img className="enemyImage" src={redeemResult.imagePath} />
+                </Popup>
             </div>
             );
         }
