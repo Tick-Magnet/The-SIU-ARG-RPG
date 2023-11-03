@@ -223,18 +223,15 @@ async login(inputUsername, inputPassword)
         {
         		//this.checkToken(inputUsername);
         		var url = "";
-        		url = url.concat(apiURL, "/getInventory");
-        		axios.post(url,
+        		url = url.concat(apiURL, "/inspectItemSlot");
+        		var result = await axios.post(url,
         		{
         			username: inputUsername,
         			token: inputToken,
         			index: inputIndex
         		})
-        		.then(function (response)
-        		{
-        			console.log(response.data);
-        			return response.data;
-        		});
+
+        		return result.data;
         }
  async equipItem(inputUsername, inputToken, inputIndex, inputItemType)
         {

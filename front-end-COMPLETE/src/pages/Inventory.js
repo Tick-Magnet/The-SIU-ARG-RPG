@@ -16,19 +16,36 @@ const loginInfo = useContext(LoginInfoContext);
     function InventoryItem(props)
     {
         const[waitingItem, setWaitingItem] = useState(true);
-        const [currentItem, setCurrentItem] = useState(false);
+        const [currentItem, setCurrentItem] = useState(null);
         const [displayCurrentItem, setDisplayCurrentItem] = useState(false);
+
 
         function ItemDetails()
         {
 
             if(displayCurrentItem == true)
             {
-                return(
-                    <>
-                        <p>displaying</p>
-                    </>
-                );
+                if(currentItem != null)
+                {
+                    return(
+                        <>
+                            <p>Description: {currentItem.item.itemDescription} </p>
+                            <p>Item Type: {currentItem.item.itemType}</p>
+                            <p>Item Grade: {currentItem.item.itemGrade}</p>
+                            <p>Gold Value: {currentItem.item.goldValue}</p>
+
+                        </>
+                    );
+                }
+                else
+                {
+                    var itemResult = APICallContainer.inspectItemSlot(loginInfo.username, loginInfo.sessionToken, props.index).then(
+                        function(value)
+                        {
+                            setCurrentItem(value);
+                        }
+                    );
+                }
             }
             else
             {
@@ -70,7 +87,7 @@ const loginInfo = useContext(LoginInfoContext);
             return(
                 <>
                      <ul>
-                     {currentInventory.inventory.map((option, index) => <InventoryItem item={option} />)}
+                     {currentInventory.inventory.map((option, index) => <InventoryItem item={option} index={index} />)}
                      </ul>
                 </>
             );
