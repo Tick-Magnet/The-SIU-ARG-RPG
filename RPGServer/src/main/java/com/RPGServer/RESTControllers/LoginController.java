@@ -69,7 +69,7 @@ public class LoginController
 		//Retrieve users password hash from database and compare
 		UserAccount tempAccount = userAccountRepository.findByUsername(username);
 		//If valid, generate session token------------------
-		if(tempAccount.getVerified() && Arrays.equals(passwordHash, tempAccount.getPasswordHash()))
+		if(tempAccount != null && tempAccount.getVerified() && Arrays.equals(passwordHash, tempAccount.getPasswordHash()))
 		{
 			System.out.println("Old token: " + tempAccount.getSessionToken());
 			System.out.println("Sucessful login for" + username);
@@ -88,11 +88,20 @@ public class LoginController
 			tempAccount.setTokenExpiration(token.getExpirationDate());
 			userAccountRepository.save(tempAccount);
 		}
-		else if(tempAccount.getVerified())
+		else if(tempAccount != null && tempAccount.getVerified())
 		{
 			//Update bad passwords for this client
 			rateLimitService.badLogin(request.getRemoteAddr());
 			output.put("valid", false);
+			output.put("message", "Bad password");
+		}
+		else if(tempAccount != null && tempAccount.getVerified() == false)
+		{
+			output.put("message", "Please verify your account first, check your email");
+		}
+		else
+		{
+			output.put("message", "Account does not exist");
 		}
 
 		//Return response

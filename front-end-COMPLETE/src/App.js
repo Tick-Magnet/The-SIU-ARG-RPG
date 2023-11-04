@@ -15,7 +15,8 @@ import Inventory from "./pages/Inventory.js";
 import CreateCharacter from "./pages/CharacterCreation.js"
 
 import {createContext, useContext} from 'react';
-export const LoginInfoContext = createContext({username: null, sessionToken: null, loggedIn: false, setUsername: () => {}, setSessionToken: () => {}, setLoggedIn: () => {}});
+export const LoginInfoContext = createContext({username: null, sessionToken: null, loggedIn: false, userRole: null, characterCreated: false,
+setUserRole: () => {}, setCharacterCreated: () => {}, setUsername: () => {}, setSessionToken: () => {}, setLoggedIn: () => {}});
 function App()
 {
     const [username, setUsername] = useState(null);

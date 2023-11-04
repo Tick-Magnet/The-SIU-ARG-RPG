@@ -73,19 +73,26 @@ class APICallContainer
 		var url = "";
 		url = url.concat(apiURL, "/register");
 		console.log(url);
-		axios.post(url,
+		var result = await axios.post(url,
 		{
 			username: inputUsername,
 			email: inputEmail,
 			password: inputPassword
 		})
-		.then(function (response)
-		{
-			console.log(response.data);
-			return response.data;
-		});
+		return result.data;
 	}
+    async getCharacter(inputUsername, sessionToken)
+    {
+        var url = "";
+        url = url.concat(apiURL, "/getCharacter");
+        var result = await axios.post(url,
+        {
+            username: inputUsername,
+            token: sessionToken
+        })
 
+        return result.data.character;
+    }
 async login(inputUsername, inputPassword)
 	{
 		//this.checkToken(inputUsername);
@@ -105,6 +112,11 @@ async login(inputUsername, inputPassword)
             output.username = inputUsername;
             output.sessionToken = result.data.token;
             output.loggedIn = true;
+            output.message = result.data.message;
+        }
+        else
+        {
+            output.message = result.data.message;
         }
         console.log(output);
 

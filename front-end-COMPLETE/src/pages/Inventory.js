@@ -11,8 +11,29 @@ function Inventory ()
 {
 const [waitingInventory, setWaitingInventory] = useState(true);
 const [currentInventory, setCurrentInventory] = useState(null);
+const [character, setCharacter] = useState(null);
+const [characterRequested, setCharacterRequested] = useState(false);
 const loginInfo = useContext(LoginInfoContext);
 
+    function CharacterInfo()
+    {
+        if(character != null)
+        {
+            return(
+                <>
+                    <p>Level: {character.level}</p>
+                    <p>Gold: {character.gold}</p>
+                    <p>Health: {character.health}</p>
+                    <p>Experience: {character.experience} </p>
+                    <p>Strength: {character.strength} </p>
+                    <p>Dexterity: {character.dexterity} </p>
+                    <p>Constitution: {character.constitution}</p>
+                    <p>Intelligence: {character.intelligence}</p>
+
+                </>
+            );
+        }
+    }
     function InventoryItem(props)
     {
         const[waitingItem, setWaitingItem] = useState(true);
@@ -74,6 +95,17 @@ const loginInfo = useContext(LoginInfoContext);
             }
             );
         }
+        if(characterRequested == false)
+        {
+            var result = APICallContainer.getCharacter(loginInfo.username, loginInfo.sessionToken).then(
+                function(value)
+                {
+                    console.log(value);
+                    setCharacterRequested(true);
+                    setCharacter(value);
+                }
+            );
+        }
         if(waitingInventory == true)
         {
             return(
@@ -86,6 +118,9 @@ const loginInfo = useContext(LoginInfoContext);
         {
             return(
                 <>
+                    <h2>Character</h2>
+                        <CharacterInfo />
+                    <h2>Items</h2>
                      <ul>
                      {currentInventory.inventory.map((option, index) => <InventoryItem item={option} index={index} />)}
                      </ul>

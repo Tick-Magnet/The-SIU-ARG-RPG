@@ -21,6 +21,7 @@ function CreateCharacter() {
     function handleSubmit(e)
     {
         e.preventDefault();
+        setRequestSent(true);
         var result = APICallContainer.createCharacter(loginInfo.username, loginInfo.sessionToken).then(
             function(value)
             {
@@ -28,13 +29,16 @@ function CreateCharacter() {
                     function(value)
                     {
                         setCharacter(value);
-
+                        if(value.creationComplete == true)
+                        {
+                            loginInfo.setCharacterCreated(true);
+                        }
                     }
                 );
             }
         );
     }
-    if(loginInfo.loggedIn == true && requestSent == false){
+    if(loginInfo.loggedIn == true && requestSent == false && loginInfo.characterCreated == false){
     return (
         <div className="Character">
             <main>
@@ -128,7 +132,11 @@ function CreateCharacter() {
           {
                 return(
                 <>
-                    <p>Character Created </p>
+                    <h1>Character Created! You are ready to play!</h1>
+                    <h2>What next?</h2>
+                    <p>QR codes can be found around campus to unlock items or start combat encounters. Scan them with your
+                    devices camera app and follow the link provided. Locations of QR codes can be displayed by clicking on the
+                    Map button on the navigation bar above</p>
                 </>
                 );
           }
@@ -138,6 +146,18 @@ function CreateCharacter() {
         return(
             <p>Please login before creating your character</p>
         );
+      }
+      else if(loginInfo.characterCreated == true)
+      {
+            return(
+                <>
+                    <h1>Character Created! You are ready to play!</h1>
+                    <h2>What next?</h2>
+                    <p>QR codes can be found around campus to unlock items or start combat encounters. Scan them with your
+                    devices camera app and follow the link provided. Locations of QR codes can be displayed by clicking on the
+                    Map button on the navigation bar above</p>
+                </>
+                );
       }
 }
 

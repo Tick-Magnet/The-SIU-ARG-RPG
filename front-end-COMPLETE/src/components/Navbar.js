@@ -26,6 +26,9 @@ function Navbar() {
   const [sessionToken, setSessionToken] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
 
+  const [loginError, setLoginError] = useState(null);
+  const [registerError, setRegisterError] = useState(null);
+
    const handleLoginSubmit = (e) => {
       e.preventDefault();
       console.log(name);
@@ -45,13 +48,30 @@ function Navbar() {
                 loginInfo.setLoggedIn(true);
                 setLoginPopup(false);
             }
+            else
+            {
+                setLoginError(value.message);
+                console.log(value.message);
+            }
         }
       );
     }
 
     const handleRegisterSubmit = (e) => {
         e.preventDefault();
-
+        var response = APICallContainer.register(name, email, pass).then(
+            function(value)
+            {
+                if(value.registered == true)
+                {
+                    setRegisterPopup(false);
+                }
+                else
+                {
+                    setRegisterError(value.status);
+                }
+            }
+        );
     }
 
     function toRegister() {
@@ -128,6 +148,7 @@ function Navbar() {
           <Popup trigger={loginPopup} setTrigger={setLoginPopup}>
             <div className='auth-form-container'>
               <h1>Log In</h1>
+              <p>{loginError}</p>
               <form className="login-form" onSubmit={handleLoginSubmit}>
                 <label htmlFor="email">Email: </label>
                 <input value={email} onChange={(e) => setEmail(e.target.value)} type="text" placeholder="username" id="email" name="email" />
@@ -142,6 +163,7 @@ function Navbar() {
           <Popup trigger={registerPopup} setTrigger={setRegisterPopup}>
             <h1>Register</h1>
             <div className='auth-form-container'>
+                <p>{registerError}</p>
               <form className="register-form" onSubmit={handleRegisterSubmit}>
                 <label htmlFor="name">Username: </label>
                 <input onChange={(e) => setName(e.target.value)} placeholder="John Doe" id="name" name="name" />
