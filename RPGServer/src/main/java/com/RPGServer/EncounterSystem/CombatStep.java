@@ -48,6 +48,7 @@ public class CombatStep extends EncounterStep
 		combatUpdate.enemyImagePath = enemy.imagePath;
 		combatUpdate.backgroundImagePath = backgroundImagePath;
 		combatUpdate.choices = new String[]{"attack", "leave"};
+		combatUpdate.stepType = 1;
 		//Process step update
 		switch(update.selectedChoice)
 		{

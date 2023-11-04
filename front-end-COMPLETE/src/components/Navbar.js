@@ -122,7 +122,7 @@ function Navbar() {
 
         </ul>
     <Popup trigger={mapPopup} setTrigger={setMapPopup}>
-            <img src='./Images/Map.png' alt='Map of QR codes' />
+            <img src='./Images/ARGMap.png' alt='Map of QR codes' />
           </Popup>
 
           <Popup trigger={loginPopup} setTrigger={setLoginPopup}>

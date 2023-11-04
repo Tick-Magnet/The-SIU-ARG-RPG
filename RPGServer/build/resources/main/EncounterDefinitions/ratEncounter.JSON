@@ -54,7 +54,7 @@
 			"name": "Rat",
 			"strength": 1,
 			"dexterity": 2,
-			"constitution": 5,
+			"constitution": 444,
 			"intelligence": 1,
 			"imageForeground": "rat.png"
 		}

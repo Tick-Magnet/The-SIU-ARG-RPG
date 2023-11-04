@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -21,10 +22,10 @@ public class CharacterCreationController
     private UserAccountRepository userAccountRepository;
 
     @PostMapping("/createCharacter")
-    public PlayerCharacter createCharacter(@RequestBody Map<String, Object> payload)
+    public Map<String,Object> createCharacter(@RequestBody Map<String, Object> payload)
     {
         PlayerCharacter outputCharacter = null;
-
+        HashMap<String,Object> output = new HashMap<String, Object>();
         String username = (String)payload.get("username");
         String sessionToken = (String)payload.get("token");
         //Retrieve user account
@@ -43,6 +44,7 @@ public class CharacterCreationController
                 player.playerCharacter.characterType = new CharacterType();
                 userAccountRepository.save(player);
                 outputCharacter = player.playerCharacter;
+                output.put("character", outputCharacter);
             }
             //Case where stats have been rolled, client should be passing desired class and race fields
             else if (player.playerCharacter.statsRolled && player.playerCharacter.creationComplete != true)
@@ -66,15 +68,11 @@ public class CharacterCreationController
                     userAccountRepository.save(player);
 
                     outputCharacter = player.playerCharacter;
+                    output.put("character", outputCharacter);
                 }
 
             }
         }
-        return outputCharacter;
-    }
-
-    private class CreationOutput
-    {
-
+        return output;
     }
 }
