@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { Item } from './Item';
 import { Combat } from './Combat';
-import Popup from './components/Popup';
+import {Character } from './Character';
 import Cookies from 'universal-cookie';
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
   return (
     <div className='App'>
       {
-        currentForm === "Item" ? <Item onFormSwitch={toggleForm}/> : <Combat  onFormSwitch={toggleForm}/>
+        currentForm === "Item" ? <Character onFormSwitch={toggleForm}/> : <Combat  onFormSwitch={toggleForm}/>
       }
 
     </div>

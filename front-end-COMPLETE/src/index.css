@@ -10,13 +10,13 @@ main {
   font-family: papyrus;
 }
 
-.Item {
-  background-image: url('/public/Images/Stoneback.jpg');
+.Character {
+  background-image: url('/public/Images/Paperback.jpg');
   background-size: cover;
 }
 
-.Combat {
-  background-image: url('/public/Images/Towers1.png');
+.Item {
+  background-image: url('/public/Images/Stoneback.jpg');
   background-size: cover;
 }
 
@@ -68,7 +68,16 @@ img {
   height: auto;
 }
 
-.auth-form-container, .login-form, .register-form {
+.details {
+  text-align: left;
+  font-size: 3vw;
+}
+
+h3 {
+  text-decoration: underline;
+}
+
+.auth-form-container, .login-form, .register-form, .characterForm {
   display: flex;
   flex-direction: column;
 }
@@ -76,6 +85,24 @@ img {
 label {
   text-align: left;
   padding: 0.25rem 0;
+}
+
+.musicButt {
+  height: auto;
+  width: 12vw;
+
+  position: absolute;
+  bottom: 5vw;
+  left: 5vw;
+}
+
+.helpButt {
+  height:auto;
+  width: 12vw;
+
+  position: absolute;
+  bottom: 5vw;
+  right: 5vw;
 }
 
 .loginbutt {

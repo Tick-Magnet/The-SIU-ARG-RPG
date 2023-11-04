@@ -27,12 +27,15 @@ export const Combat = (props) => {
     setRegisterPopup(false);
   }
 
+  var imgUrl = "./Images/Towers1.png";
+  var monsterUrl = "./Images/Dragon.png";
+
   return (
-    <div className="Combat">
+    <div style={{backgroundImage: "url(" + imgUrl + ")", backgroundSize: "cover"}}>
         <input type='image' src='./Images/compass.png' alt='Map' className='compass' onClick={() => setMapPopup(true)}/>
         <input type='image' src='./Images/profile.jfif' alt='Login' className='loginbutt' onClick={() => setLoginPopup(true)}/>
       <main>
-        <img class='Monster' src='./Images/Dragon.png' alt='Red Dragon'/>
+        <img class='Monster' src={monsterUrl} alt='Red Dragon'/>
         <div class="ButtonContainer">
           <button class="Button1">Attack</button>
           <button class="Button2">Flee</button>

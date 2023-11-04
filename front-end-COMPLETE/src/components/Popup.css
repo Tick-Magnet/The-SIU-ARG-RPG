@@ -17,6 +17,8 @@
     width: 60vw;
     max-width: 640px;
     background-image: url('/public/Images/Paperback.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .popup-inner .close-btn {
