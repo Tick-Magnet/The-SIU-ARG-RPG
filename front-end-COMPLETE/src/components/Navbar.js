@@ -46,6 +46,9 @@ function Navbar() {
                 loginInfo.setUsername(value.username);
                 loginInfo.setSessionToken(value.sessionToken);
                 loginInfo.setLoggedIn(true);
+                loginInfo.setUserRole(value.userRole);
+                loginInfo.setCharacterCreated(value.characterCreated);
+
                 setLoginPopup(false);
             }
             else
@@ -127,6 +130,16 @@ function Navbar() {
             }
 
     }
+    function AdminDashboard()
+    {
+        if(loginInfo.userRole == "ADMIN");
+        {
+            return(
+                <li className="navItem"><Link to="/Admin"> Admin Dashboard </Link> </li>
+            );
+        }
+        
+    }
 
     return(
 
@@ -134,6 +147,7 @@ function Navbar() {
         <ul className="rpgNavbar">
             <li className="navItem"><Link to="/"> Home </Link> </li>
             <InventoryButton />
+            <AdminDashboard />
             <li className="navItem" onClick = {() => setMapPopup(true)}><a> Map </a> </li>
             <li className="navItem"><Link to="/Contact"> Contact Information </Link> </li>
 

@@ -123,6 +123,8 @@ public class LoginController
 			if(tempAccount.isValidSessionToken(token) == true)
 			{
 				output.put("valid", true);
+				output.put("userRole", tempAccount.userRole.toString());
+				output.put("characterCreated", tempAccount.playerCharacter.creationComplete);
 			}
             else
             {

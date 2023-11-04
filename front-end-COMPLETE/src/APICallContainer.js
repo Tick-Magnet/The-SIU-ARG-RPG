@@ -62,6 +62,8 @@ class APICallContainer
             output.loggedIn = true;
             output.username = currentUsername;
             output.sessionToken = currentToken;
+            output.userRole = postResult.userRole;
+            output.characterCreated = postResult.characterCreated;
         }
         }
 
@@ -111,6 +113,8 @@ async login(inputUsername, inputPassword)
             cookies.set('username', inputUsername, {path:'/', maxAge:82800});
             output.username = inputUsername;
             output.sessionToken = result.data.token;
+            output.userRole = result.data.userRole;
+            output.characterCreated = result.data.characterCreated;
             output.loggedIn = true;
             output.message = result.data.message;
         }
