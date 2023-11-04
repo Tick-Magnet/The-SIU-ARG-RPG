@@ -63,6 +63,7 @@ public class RegisterController
 			tempUser.setPassword(password);
 			//Set user email
 			tempUser.setEmail(email);
+			tempUser.userRole = UserAccount.UserRole.USER;
 			//Generate verification token
 			UUID token = UUID.randomUUID();
 			tempUser.setVerifyToken(token);

@@ -81,6 +81,8 @@ public class LoginController
 			output.put("expirationDate", token.expirationDate());
 			output.put("username", username);
 			output.put("valid", true);
+			output.put("userRole", tempAccount.userRole.toString());
+			output.put("characterCreated", tempAccount.playerCharacter.creationComplete);
 			//Store token to user account and update in database
 			tempAccount.setSessionToken(tokenArray);
 			tempAccount.setTokenExpiration(token.getExpirationDate());
