@@ -142,18 +142,14 @@ async login(inputUsername, inputPassword)
     		//this.checkToken(inputUsername);
     		var url = "";
     		url = url.concat(apiURL, "/createCharacter");
-    		axios.post(url,
+    		var result = await axios.post(url,
     		{
     			username: inputUsername,
     			token: inputToken,
     			characterClass: inputCharacterClass,
     			characterRace: inputCharacterRace
     		})
-    		.then(function (response)
-    		{
-    			console.log(response.data);
-    			return response.data;
-    		});
+    		return result;
     }
    async postEncounterUpdate(inputUsername, inputToken, inputSelectedChoice, inputEncounterID)
         {
