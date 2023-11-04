@@ -7,6 +7,7 @@ import org.springframework.shell.standard.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.UUID;
 
 @ShellComponent
@@ -21,7 +22,20 @@ public class ShellCommands
 	{
 		return input;
 	}
-	
+	@ShellMethod(key = "showCommands")
+	public String showCommands()
+	{
+		String output = "";
+		Method[] methods = this.getClass().getMethods();
+		System.out.println(methods.length);
+		for(int i = 0; i < methods.length; i++)
+		{
+
+			output = output.concat(methods[i].getName() + "\n");
+		}
+
+		return output;
+	}
 	@ShellMethod(key = "setUserRole")
 	public String setUserRole(String username, String userRole)
 	{
