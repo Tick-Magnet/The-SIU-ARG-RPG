@@ -8,35 +8,67 @@ const cookies = new Cookies();
 
 class APICallContainer
 {
-	
-	checkToken(inputUsername)
+
+	async checkToken(inputUsername, inputToken)
 	{
 		var url ="";
 		url = url.concat(apiURL, "/checktoken");
+
 		axios.post(url,
 		{
 			username: inputUsername,
-			token: cookies.get('sessionToken')
+			token: inputToken
+
 		})
 		.then(function (response)
 		{
 			console.log(response.data);
-		});
-	}
-	
-	testAPI()
-	{
-		var url = "";
-		//url.concat(apiURL, "/test");
-		axios.get(apiURL).then(function (response)
+			return response.data;
+		}).catch(function (error)
 		{
-			console.log(response.data);
-			console.log(response.status);	
+		    console.log("Backend network error");
+		    console.log(error.toJSON());
 		});
-		return "test"
 	}
+
+    async getLoginInfo()
+    {
+        var output = {loggedIn: false};
+        var currentToken = cookies.get("sessionToken");
+        var currentUsername = cookies.get("username");
+        var url ="";
+		url = url.concat(apiURL, "/checktoken");
+		//console.log(currentUsername+ currentToken);
+		if(currentToken != null && currentToken != "undefined" && currentUsername != null)
+		{
+        var postResult = await axios.post(url,
+		{
+			username: currentUsername,
+			token: currentToken
+
+		})
+		.then(function (response)
+		{
+			//console.log(response.data);
+
+			return response.data;
+		}).catch(function (error)
+		{
+		    console.log("Backend network error");
+		    console.log(error.toJSON());
+		});
+        if(postResult.valid == true)
+        {
+            output.loggedIn = true;
+            output.username = currentUsername;
+            output.sessionToken = currentToken;
+        }
+        }
+
+		return output;
+    }
 	
-	register(inputUsername, inputEmail, inputPassword)
+	async register(inputUsername, inputEmail, inputPassword)
 	{
 		var url = "";
 		url = url.concat(apiURL, "/register");
@@ -53,27 +85,40 @@ class APICallContainer
 			return response.data;
 		});
 	}
-	
-	login(inputUsername, inputPassword)
+
+async login(inputUsername, inputPassword)
 	{
 		//this.checkToken(inputUsername);
+		var output = {loggedIn: false};
 		var url = "";
 		url = url.concat(apiURL, "/login");
-		axios.post(url,
+		var result = await axios.post(url,
 		{
 			username: inputUsername,
 			password: inputPassword
-		})
-		.then(function (response)
-		{
-			//Store session token as a cookie
-			cookies.set('sessionToken', response.data.token, {path:'/', maxAge:82800});
-			console.log(response.data);
-			return response.data;
 		});
+		if(result.data.valid == true){
+        	//Store session token as a cookie
+            console.log(result.data.token);
+            cookies.set('sessionToken', result.data.token, {path:'/', maxAge:82800});
+            cookies.set('username', inputUsername, {path:'/', maxAge:82800});
+            output.username = inputUsername;
+            output.sessionToken = result.data.token;
+            output.loggedIn = true;
+        }
+        console.log(output);
+
+
+        return output;
 	}
-	
-	createCharacter(inputUsername, inputToken, inputCharacterClass, inputCharacterRace)
+
+    logout()
+    {
+        cookies.remove("sessionToken");
+        cookies.remove("username");
+    }
+
+	async createCharacter(inputUsername, inputToken, inputCharacterClass, inputCharacterRace)
 	{
 		//this.checkToken(inputUsername);
 		var url = "";
@@ -92,7 +137,7 @@ class APICallContainer
 		});
 	}
 
-	createCharacter(inputUsername, inputToken, inputCharacterClass, inputCharacterRace)
+	async createCharacter(inputUsername, inputToken, inputCharacterClass, inputCharacterRace)
     {
     		//this.checkToken(inputUsername);
     		var url = "";
@@ -110,42 +155,37 @@ class APICallContainer
     			return response.data;
     		});
     }
-    postEncounterUpdate(inputUsername, inputToken, inputSelectedChoice)
+   async postEncounterUpdate(inputUsername, inputToken, inputSelectedChoice, inputEncounterID)
         {
         		//this.checkToken(inputUsername);
         		var url = "";
         		url = url.concat(apiURL, "/postEncounterUpdate");
-        		axios.post(url,
+        		var result = await axios.post(url,
         		{
         			username: inputUsername,
         			token: inputToken,
-        			selectedChoice: inputSelectedChoice
+        			selectedChoice: inputSelectedChoice,
+        			encounterID: inputEncounterID
         		})
-        		.then(function (response)
-        		{
-        			console.log(response.data);
-        			return response.data;
-        		});
+
+        		return result.data;
         }
 
-    redeemQR(inputUsername, inputToken, inputUUID)
+    async redeemQR(inputUsername, inputToken, inputUUID)
         {
-        		//this.checkToken(inputUsername);
+        		var output;
         		var url = "";
         		url = url.concat(apiURL, "/redeemQR");
-        		axios.post(url,
+        		var result = await axios.post(url,
         		{
         			username: inputUsername,
-        			token: inputToken,
+        			sessionToken: inputToken,
         			uuid: inputUUID
-        		})
-        		.then(function (response)
-        		{
-        			console.log(response.data);
-        			return response.data;
         		});
+
+        		return result.data;
         }
-        createQRCode(inputUsername, inputToken, inputType, inputColorType, inputItemDefinitionPath, inputEncounterDefinitionPath)
+       async createQRCode(inputUsername, inputToken, inputType, inputColorType, inputItemDefinitionPath, inputEncounterDefinitionPath)
                 {
                 		//this.checkToken(inputUsername);
                 		var url = "";
@@ -166,40 +206,34 @@ class APICallContainer
                 		});
                 }
 
-    getInventory(inputUsername, inputToken)
+    async getInventory(inputUsername, inputToken)
         {
         		//this.checkToken(inputUsername);
         		var url = "";
         		url = url.concat(apiURL, "/getInventory");
-        		axios.post(url,
+        		var result = await axios.post(url,
         		{
         			username: inputUsername,
         			token: inputToken
         		})
-        		.then(function (response)
-        		{
-        			console.log(response.data);
-        			return response.data;
-        		});
+
+        		return result.data
         }
-    inspectItemSlot(inputUsername, inputToken, inputIndex)
+    async inspectItemSlot(inputUsername, inputToken, inputIndex)
         {
         		//this.checkToken(inputUsername);
         		var url = "";
-        		url = url.concat(apiURL, "/getInventory");
-        		axios.post(url,
+        		url = url.concat(apiURL, "/inspectItemSlot");
+        		var result = await axios.post(url,
         		{
         			username: inputUsername,
         			token: inputToken,
         			index: inputIndex
         		})
-        		.then(function (response)
-        		{
-        			console.log(response.data);
-        			return response.data;
-        		});
+
+        		return result.data;
         }
- equipItem(inputUsername, inputToken, inputIndex, inputItemType)
+ async equipItem(inputUsername, inputToken, inputIndex, inputItemType)
         {
         		//this.checkToken(inputUsername);
         		var url = "";
@@ -217,7 +251,7 @@ class APICallContainer
         			return response.data;
         		});
         }
-  sellItem(inputUsername, inputToken, inputIndex)
+  async sellItem(inputUsername, inputToken, inputIndex)
          {
          		//this.checkToken(inputUsername);
          		var url = "";
