@@ -1,0 +1,37 @@
+{
+	"encounterName": "Gladiator Encounter",
+	"encounterSteps":
+	[
+		{
+			"stepType": 0,
+			"promptText": "A battle-hardened gladiator steps into the arena, the roar of the crowd fueling their determination for victory or an honorable death.",
+			"dialogueOptions":
+			[
+				{
+					"optionText": "Attack",
+					"nextStepIndex": 1
+				},
+				{
+					"optionText": "Run",
+					"nextStepIndex": 1
+				}
+			] 
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0
+		}
+	],
+	"encounterEntities":
+	[
+		{
+			"name": "Gladiator",
+			"strength": 17,
+			"dexterity": 16,
+			"constitution": 17,
+			"intelligence": 11,
+			"imageForeground": "gladiator.png",
+			"imageBackground": "arena_seven.png"
+		}
+	] 
+}

@@ -19,8 +19,7 @@
 		},
 		{
 			"stepType": 1,
-			"enemyIndex": 0,
-			"nextStepIndex": -1
+			"enemyIndex": 0
 		}
 	],
 	"encounterEntities":

@@ -1,0 +1,37 @@
+{
+	"encounterName": "Chest",
+	"encounterSteps":
+	[
+		{
+			"stepType": 0,
+			"promptText": "As you scan the area, you discover an ornate chest, its polished surface hinting at the secrets it may hold.",
+			"dialogueOptions":
+			[
+				{
+					"optionText": "Attack",
+					"nextStepIndex": 1
+				},
+				{
+					"optionText": "Run",
+					"nextStepIndex": 1
+				}
+			] 
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0
+		}
+	],
+	"encounterEntities":
+	[
+		{
+			"name": "Chest",
+			"strength": 0,
+			"dexterity": 0,
+			"constitution": 0, 
+			"intelligence": 0,
+			"imageForeground": "chest_one.png",
+			"imageBackground": "campus_lake_seven.png"
+		}
+	] 
+}
