@@ -26,6 +26,8 @@ import java.time.*;
 
 import java.util.Arrays;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -43,10 +45,10 @@ public class LoginController
 	private RateLimitService rateLimitService;
 	
 	@PostMapping("/login")
-	public SessionToken login(@RequestBody Map<String, Object> payload, HttpServletRequest request) throws NoSuchAlgorithmException
+	public Map<String,Object> login(@RequestBody Map<String, Object> payload, HttpServletRequest request) throws NoSuchAlgorithmException
 	{
 		System.out.println(request.getRemoteAddr());
-
+		HashMap<String, Object> output = new HashMap<String, Object>();
 		//Check if client is blocked from rate limit service
 		if(rateLimitService.filterIP(request.getRemoteAddr(), RateLimitService.CallType.LOGIN) == false)
 		{
@@ -75,6 +77,10 @@ public class LoginController
 			byte[] tokenArray = new byte[32];
 			tokenGen.nextBytes(tokenArray);
 			token = new SessionToken(encoder.encodeToString(tokenArray), LocalDateTime.now(ZoneId.of("UTC")).plusHours(HOURS_TOKEN_VALID).toString());
+			output.put("token", encoder.encodeToString(tokenArray));
+			output.put("expirationDate", token.expirationDate());
+			output.put("username", username);
+			output.put("valid", true);
 			//Store token to user account and update in database
 			tempAccount.setSessionToken(tokenArray);
 			tempAccount.setTokenExpiration(token.getExpirationDate());
@@ -84,28 +90,33 @@ public class LoginController
 		{
 			//Update bad passwords for this client
 			rateLimitService.badLogin(request.getRemoteAddr());
+			output.put("valid", false);
 		}
 
 		//Return response
-		return token;
+		return output;
 	}
 	
 	//Simple request to verify session token is still valid
 	@PostMapping("/checktoken")
-	public boolean checkToken(@RequestBody Map<String, Object> payload)
+	public Map<String,Object> checkToken(@RequestBody Map<String, Object> payload)
 	{
 		String username = (String)payload.get("username");
 		String token = (String)payload.get("token");
 		System.out.println("checking token: " + token);
-		boolean output = false;
+		HashMap<String, Object> output = new HashMap<String,Object>();
 		System.out.println(token);
 		UserAccount tempAccount = userAccountRepository.findByUsername(username);
 		if(tempAccount != null)
 		{
 			if(tempAccount.isValidSessionToken(token) == true)
 			{
-				output = true;
+				output.put("valid", true);
 			}
+            else
+            {
+                output.put("valid", false);
+            }
 		}
 		
 		return output;

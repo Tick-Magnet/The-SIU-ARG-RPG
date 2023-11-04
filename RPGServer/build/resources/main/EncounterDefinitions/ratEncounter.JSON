@@ -56,7 +56,7 @@
 			"dexterity": 2,
 			"constitution": 5,
 			"intelligence": 1,
-			"imagePath": "rat.png"
+			"imageForeground": "rat.png"
 		}
 	]
 }
