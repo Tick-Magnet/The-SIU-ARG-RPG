@@ -40,7 +40,19 @@ public class ShellCommands
 		}
 		return output;
 	}
-
+	@ShellMethod(key = "unBan")
+	public String unBan(String username)
+	{
+		String output = "User " + username + " does not exist";
+		UserAccount targetUser = userAccountRepository.findByUsername(username);
+		if(targetUser != null)
+		{
+			targetUser.unBanTime = null;
+			targetUser.banReason = null;
+			output = username + " unbanned";
+		}
+		return output;
+	}
 	@ShellMethod(key = "showCommands")
 	public String showCommands()
 	{

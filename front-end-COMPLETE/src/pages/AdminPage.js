@@ -115,11 +115,13 @@ function AdminPage()
     if(loginInfo.userRole == "ADMIN")
     {
         return(
-            <>
+            <div className="adminContainer">
+            <main>
             <h2>Admin Dashboard</h2>
             <QRCreator />
             <CommandConsole />
-            </>
+            </main>
+            </div>
         );
     }
     else
