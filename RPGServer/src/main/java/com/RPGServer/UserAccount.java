@@ -58,7 +58,10 @@ public class UserAccount
 	public UserRole userRole;
 	
 	public PlayerCharacter playerCharacter;
-	
+
+	public Instant unBanTime;
+	public String banReason;
+
 	public UserAccount()
 	{
 		this.username = null;
@@ -70,9 +73,18 @@ public class UserAccount
 		tokenGen.nextBytes(salt);
 		Base64.Encoder encoder = Base64.getUrlEncoder();
 		this.passwordSalt = encoder.encodeToString(salt);
+		this.unBanTime = null;
+		this.banReason = null;
 	}
 
-
+	public boolean isBanned()
+	{
+		boolean output = false;
+		if(unBanTime != null && unBanTime.isAfter(Instant.now()))
+			output = true;
+		System.out.println("BANNED" + output);
+		return output;
+	}
 
 
 	public void setPassword(String newPassword) throws NoSuchAlgorithmException

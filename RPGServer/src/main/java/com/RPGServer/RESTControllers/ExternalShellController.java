@@ -40,7 +40,12 @@ public class ExternalShellController
                 {
                     //Check that command is valid
                     Method[] methods = shellCommands.getClass().getMethods();
-                    Object[] tokens = command.split(" ");
+                    String[] tokenStrings = command.split(" ");
+                    Object[] tokens = new Object[tokenStrings.length];
+                    for(int i = 0; i < tokens.length; i++)
+                    {
+                        tokens[i] = tokenStrings[i];
+                    }
                     boolean valid = false;
                     Method method = null;
                     for(int i = 0; i < methods.length; i++)

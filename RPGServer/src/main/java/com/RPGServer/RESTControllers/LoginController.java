@@ -59,7 +59,7 @@ public class LoginController
 		String password = (String)payload.get("password");
 		UserAccount tempAccount = userAccountRepository.findByUsername(username);
 		password = password + tempAccount.getPasswordSalt();
-		
+
 		SessionToken token = null;
 		SecureRandom tokenGen = new SecureRandom();
 		Base64.Encoder encoder = Base64.getUrlEncoder();
@@ -71,7 +71,7 @@ public class LoginController
 		//Retrieve users password hash from database and compare
 
 		//If valid, generate session token------------------
-		if(tempAccount != null && tempAccount.getVerified() && Arrays.equals(passwordHash, tempAccount.getPasswordHash()))
+		if(tempAccount != null && !tempAccount.isBanned() && tempAccount.getVerified() && Arrays.equals(passwordHash, tempAccount.getPasswordHash()))
 		{
 			System.out.println("Old token: " + tempAccount.getSessionToken());
 			System.out.println("Sucessful login for" + username);
@@ -89,6 +89,14 @@ public class LoginController
 			tempAccount.setSessionToken(tokenArray);
 			tempAccount.setTokenExpiration(token.getExpirationDate());
 			userAccountRepository.save(tempAccount);
+		}
+		else if(tempAccount.isBanned())
+		{
+			output.put("valid", false);
+			String message = "Your account has been suspended for the following reason:\n" + tempAccount.banReason +
+					"\nYou will be unbanned on: " + tempAccount.unBanTime.toString();
+			output.put("message", message);
+
 		}
 		else if(tempAccount != null && tempAccount.getVerified())
 		{
