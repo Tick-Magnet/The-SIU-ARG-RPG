@@ -62,7 +62,12 @@ public class QRCodeRedeemController
 							result.put("type", 0);
 							result.put("item", tempItem);
 							result.put("message", "Item redeemed");
+							result.put("goldReward", qrCode.goldReward);
+							result.put("experienceReward", qrCode.experienceReward);
+							account.playerCharacter.applyExperience(qrCode.experienceReward);
+							account.playerCharacter.gold += qrCode.goldReward;
 							account.playerCharacter.addItem(tempItem);
+							userAccountRepository.save(account);
 						}
 						catch (IOException e)
 						{

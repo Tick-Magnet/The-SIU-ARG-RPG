@@ -151,8 +151,8 @@ function RedeemQRPage ()
             <div>
                 <input type='image' src='./Images/chest.png' alt='Open Chest' className='chest' onClick={() => setItemPopup(true)}/>
                 <Popup trigger={itemPopup} setTrigger={setItemPopup}>
-                <p>Gold Received: {redeemResult.gold}</p>
-                <p>Experience Received: {redeemResult.experience}</p>
+                <p>Gold Received: {redeemResult.goldReward}</p>
+                <p>Experience Received: {redeemResult.experienceReward}</p>
                 <p>Item Received: {redeemResult.item.name}</p>
                 <img className="enemyImage" src={redeemResult.imagePath} />
                 </Popup>
