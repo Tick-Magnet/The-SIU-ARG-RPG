@@ -223,8 +223,9 @@ async login(inputUsername, inputPassword)
                 			token: inputToken,
                 			type: inputType,
                 			colorType: inputColorType,
-                			itemDefinitionPath: inputItemDefinitionPath,
-                			encounterDefinitionPath: inputEncounterDefinitionPath
+                			encounterDefinitionPath: inputEncounterDefinitionPath,
+                			itemDefinitionPath: inputItemDefinitionPath
+
                 		})
                 	return result.data;
                 }

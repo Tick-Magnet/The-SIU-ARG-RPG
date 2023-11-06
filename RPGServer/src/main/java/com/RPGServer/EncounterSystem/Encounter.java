@@ -127,7 +127,7 @@ public class Encounter
 					}
 					catch (NullPointerException e)
 					{
-						encounterSteps[i].promptText = tempNode.get("promptText").asText();
+						encounterSteps[i].promptText = "";
 					}
 					//Add dialogue options
 					JsonNode optionArrayNode = tempNode.get("dialogueOptions");
@@ -146,9 +146,22 @@ public class Encounter
 						JsonNode reward = rewardArray.get(j);
 						Encounter.Reward tempReward = new Encounter.Reward();
 						int optionIndex = reward.get("optionIndex").asInt();
-
-						tempReward.experienceReward = reward.get("experienceReward").asInt();
-						tempReward.goldReward = reward.get("goldReward").asInt();
+						try
+						{
+							tempReward.experienceReward = reward.get("experienceReward").asInt();
+						}
+						catch(Exception e)
+						{
+							tempReward.experienceReward = 0;
+						}
+						try
+						{
+							tempReward.goldReward = reward.get("goldReward").asInt();
+						}
+						catch(Exception e)
+						{
+							tempReward.goldReward = 0;
+						}
 
 						JsonNode itemArray = reward.get("itemRewards");
 						for(int k = 0; k < itemArray.size(); k++)
@@ -178,14 +191,28 @@ public class Encounter
 					{
 						JsonNode reward = rewardArray.get(0);
 						Encounter.Reward tempReward = new Encounter.Reward();
-
-						tempReward.experienceReward = reward.get("experienceReward").asInt();
-						tempReward.goldReward = reward.get("goldReward").asInt();
+						try {
+							tempReward.experienceReward = reward.get("experienceReward").asInt();
+						}
+						catch(Exception e)
+						{
+							tempReward.experienceReward = 0;
+						}
+						try {
+							tempReward.goldReward = reward.get("goldReward").asInt();
+						}
+						catch(Exception e)
+						{
+							tempReward.goldReward = 0;
+						}
 						JsonNode itemArray = reward.get("itemRewards");
-						for (int k = 0; k < itemArray.size(); k++) {
-							//Add each item to array (items should be paths to JSON definitions)
-							//tempReward.itemRewards.add(new Item(itemArray.get("definitionPath").asText()));
-							tempReward.itemRewards.add(itemFactory.getItem(itemArray.get(k).get("definitionPath").asText()));
+						if(itemArray != null)
+						{
+							for (int k = 0; k < itemArray.size(); k++) {
+								//Add each item to array (items should be paths to JSON definitions)
+								//tempReward.itemRewards.add(new Item(itemArray.get("definitionPath").asText()));
+								tempReward.itemRewards.add(itemFactory.getItem(itemArray.get(k).get("definitionPath").asText()));
+							}
 						}
 						encounterSteps[i].rewards.put(0, tempReward);
 					}

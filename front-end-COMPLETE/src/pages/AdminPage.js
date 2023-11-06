@@ -22,7 +22,7 @@ function AdminPage()
         var data = new FormData(e.target);
         var entries = Object.fromEntries(data.entries());
         console.log(entries);
-        var result = APICallContainer.createQRCode(loginInfo.username, loginInfo.sessionToken, parseInt(entries.type), parseInt(entries.colorType), entries.itemDefinitionPath, entries.EncounterDefinitionPath).then(
+        var result = APICallContainer.createQRCode(loginInfo.username, loginInfo.sessionToken, parseInt(entries.type), parseInt(entries.colorType), entries.itemDefinitionPath, entries.encounterDefinitionPath).then(
             function(value)
             {
                 console.log(value);
