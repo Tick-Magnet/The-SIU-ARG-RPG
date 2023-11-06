@@ -46,6 +46,8 @@ public class UserAccount
 	
 	@Column(columnDefinition="BLOB(32)")
 	private byte passwordHash[];
+
+	private String passwordSalt;
 	
 	private byte[] sessionToken;
 	
@@ -63,7 +65,11 @@ public class UserAccount
 		this.passwordHash = null;
 		this.email = null;
 		this.verified = false;
-
+		SecureRandom tokenGen = new SecureRandom();
+		byte[] salt = new byte[32];
+		tokenGen.nextBytes(salt);
+		Base64.Encoder encoder = Base64.getUrlEncoder();
+		this.passwordSalt = encoder.encodeToString(salt);
 	}
 
 
@@ -71,8 +77,9 @@ public class UserAccount
 
 	public void setPassword(String newPassword) throws NoSuchAlgorithmException
 	{
+		String saltedPassword = newPassword + this.passwordSalt;
 		MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-		messageDigest.update(newPassword.getBytes(StandardCharsets.UTF_8));
+		messageDigest.update(saltedPassword.getBytes(StandardCharsets.UTF_8));
 		byte newPasswordHash[] = messageDigest.digest();
 		
 		passwordHash = newPasswordHash;
@@ -155,5 +162,10 @@ public class UserAccount
 	public String getTokenExpiration()
 	{
 		return tokenExpiration;
+	}
+
+	public String getPasswordSalt()
+	{
+		return passwordSalt;
 	}
 }

@@ -57,6 +57,8 @@ public class LoginController
 		}
 		String username = (String)payload.get("username");
 		String password = (String)payload.get("password");
+		UserAccount tempAccount = userAccountRepository.findByUsername(username);
+		password = password + tempAccount.getPasswordSalt();
 		
 		SessionToken token = null;
 		SecureRandom tokenGen = new SecureRandom();
@@ -67,7 +69,7 @@ public class LoginController
 		messageDigest.update(password.getBytes(StandardCharsets.UTF_8));
 		byte passwordHash[] = messageDigest.digest();
 		//Retrieve users password hash from database and compare
-		UserAccount tempAccount = userAccountRepository.findByUsername(username);
+
 		//If valid, generate session token------------------
 		if(tempAccount != null && tempAccount.getVerified() && Arrays.equals(passwordHash, tempAccount.getPasswordHash()))
 		{
