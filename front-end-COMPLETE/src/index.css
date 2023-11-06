@@ -1,17 +1,14 @@
 main {
   display: flex;
   flex-direction: column;
-  padding: 32px;
   text-align: center;
   align-items: center;
-  justify-content: center;
   min-height: 100vh;
-
   font-family: papyrus;
 }
 
 .Item {
-  background-image: url('/public/Images/Stoneback.jpg');
+  background-image: url('/public/Images/stoneButton.png');
   background-size: cover;
 }
 
@@ -28,7 +25,8 @@ main {
 }
 
 body {
-  margin: 0;
+  margin: -30px;
+  background-image: url('/public/Images/stoneWall.png');
 }
 
 img {
@@ -45,7 +43,7 @@ img {
 .ButtonContainer {
   width: 90vw;
   height: 50vw;
-  background-color: white;
+  background-color: black;
   border-color: black;
   border-width: 5px;
   border-style: solid;
@@ -109,5 +107,5 @@ label {
 }
 
 .link-button:hover {
-  color: blue;
+  color: gold;
 }
