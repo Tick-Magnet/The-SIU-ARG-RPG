@@ -132,13 +132,14 @@ function Navbar() {
     }
     function AdminDashboard()
     {
-        if(loginInfo.userRole == "ADMIN");
+        if(loginInfo.userRole != null && loginInfo.userRole == "ADMIN")
         {
+            console.log(loginInfo.userRole);
             return(
                 <li className="navItem"><Link to="/Admin"> Admin Dashboard </Link> </li>
             );
         }
-        
+
     }
 
     return(

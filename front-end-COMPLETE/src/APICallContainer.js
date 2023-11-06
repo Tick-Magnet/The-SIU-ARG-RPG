@@ -197,6 +197,20 @@ async login(inputUsername, inputPassword)
 
         		return result.data;
         }
+    async shellCommand(inputUsername, inputToken, inputCommand)
+    {
+        var url = "";
+        url = url.concat(apiURL, "/shellCommand");
+        var result = await axios.post(url,
+        {
+           username: inputUsername,
+           token: inputToken,
+           command: inputCommand
+
+        });
+        console.log(result);
+        return result.data;
+    }
        async createQRCode(inputUsername, inputToken, inputType, inputColorType, inputItemDefinitionPath, inputEncounterDefinitionPath)
                 {
                 		//this.checkToken(inputUsername);

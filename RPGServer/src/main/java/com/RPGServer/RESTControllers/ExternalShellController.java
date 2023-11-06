@@ -55,8 +55,15 @@ public class ExternalShellController
                     //Run command and return result
                     if(valid == true)
                     {
-                       String returnMessage =(String) method.invoke(shellCommands, Arrays.copyOfRange(tokens,1,tokens.length));
-                       output.put("result", returnMessage);
+                        try
+                        {
+                            String returnMessage = (String) method.invoke(shellCommands, Arrays.copyOfRange(tokens, 1, tokens.length));
+                            output.put("result", returnMessage);
+                        }
+                        catch(Exception e)
+                        {
+                            output.put("result", e.getMessage());
+                        }
                     }
                 }
             }
