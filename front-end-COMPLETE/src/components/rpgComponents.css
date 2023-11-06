@@ -77,3 +77,10 @@
     background-repeat: no-repeat;
 }
 
+
+.qrImage{
+    width: 638px !important;
+    height: 825px !important;
+    display: block;
+}
+

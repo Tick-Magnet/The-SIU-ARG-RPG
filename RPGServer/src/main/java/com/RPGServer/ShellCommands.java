@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.time.Instant;
 import java.util.UUID;
 
 @ShellComponent
@@ -23,11 +24,23 @@ public class ShellCommands
 		return input;
 	}
 
-	public String numberTest(int one, int two)
+	@ShellMethod(key = "ban")
+	public String ban(String username, String banReason, int minutes)
 	{
-		int result = one + two;
-		return (Integer.toString(result));
+		String output = "User " + username + " does not exist";
+		UserAccount targetUser = userAccountRepository.findByUsername(username);
+		if(targetUser != null)
+		{
+			targetUser.unBanTime = Instant.now().plusSeconds(minutes*60);
+			targetUser.banReason = banReason;
+			//Save user to repository
+			userAccountRepository.save(targetUser);
+			System.out.println(Instant.now().toString());
+			output = username + " banned for " + banReason +" until " + targetUser.unBanTime.toString();
+		}
+		return output;
 	}
+
 	@ShellMethod(key = "showCommands")
 	public String showCommands()
 	{

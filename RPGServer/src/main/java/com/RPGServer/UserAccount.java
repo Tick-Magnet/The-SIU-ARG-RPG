@@ -46,6 +46,8 @@ public class UserAccount
 	
 	@Column(columnDefinition="BLOB(32)")
 	private byte passwordHash[];
+
+	private String passwordSalt;
 	
 	private byte[] sessionToken;
 	
@@ -56,23 +58,40 @@ public class UserAccount
 	public UserRole userRole;
 	
 	public PlayerCharacter playerCharacter;
-	
+
+	public Instant unBanTime;
+	public String banReason;
+
 	public UserAccount()
 	{
 		this.username = null;
 		this.passwordHash = null;
 		this.email = null;
 		this.verified = false;
-
+		SecureRandom tokenGen = new SecureRandom();
+		byte[] salt = new byte[32];
+		tokenGen.nextBytes(salt);
+		Base64.Encoder encoder = Base64.getUrlEncoder();
+		this.passwordSalt = encoder.encodeToString(salt);
+		this.unBanTime = null;
+		this.banReason = null;
 	}
 
-
+	public boolean isBanned()
+	{
+		boolean output = false;
+		if(unBanTime != null && unBanTime.isAfter(Instant.now()))
+			output = true;
+		System.out.println("BANNED" + output);
+		return output;
+	}
 
 
 	public void setPassword(String newPassword) throws NoSuchAlgorithmException
 	{
+		String saltedPassword = newPassword + this.passwordSalt;
 		MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-		messageDigest.update(newPassword.getBytes(StandardCharsets.UTF_8));
+		messageDigest.update(saltedPassword.getBytes(StandardCharsets.UTF_8));
 		byte newPasswordHash[] = messageDigest.digest();
 		
 		passwordHash = newPasswordHash;
@@ -155,5 +174,10 @@ public class UserAccount
 	public String getTokenExpiration()
 	{
 		return tokenExpiration;
+	}
+
+	public String getPasswordSalt()
+	{
+		return passwordSalt;
 	}
 }

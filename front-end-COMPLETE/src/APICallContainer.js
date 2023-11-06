@@ -115,6 +115,7 @@ async login(inputUsername, inputPassword)
             output.sessionToken = result.data.token;
             output.userRole = result.data.userRole;
             output.characterCreated = result.data.characterCreated;
+            console.log(output.characterCreated);
             output.loggedIn = true;
             output.message = result.data.message;
         }
@@ -215,21 +216,18 @@ async login(inputUsername, inputPassword)
                 {
                 		//this.checkToken(inputUsername);
                 		var url = "";
-                		url = url.concat(apiURL, "/createCharacter");
-                		axios.post(url,
+                		url = url.concat(apiURL, "/createQRCode");
+                		var result = await axios.post(url,
                 		{
                 			username: inputUsername,
                 			token: inputToken,
                 			type: inputType,
                 			colorType: inputColorType,
-                			itemDefinitionPath: inputItemDefinitionPath,
-                			encounterDefinitionPath: inputEncounterDefinitionPath
+                			encounterDefinitionPath: inputEncounterDefinitionPath,
+                			itemDefinitionPath: inputItemDefinitionPath
+
                 		})
-                		.then(function (response)
-                		{
-                			console.log(response.data);
-                			return response.data;
-                		});
+                	return result.data;
                 }
 
     async getInventory(inputUsername, inputToken)
