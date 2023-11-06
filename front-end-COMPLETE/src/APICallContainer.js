@@ -62,6 +62,8 @@ class APICallContainer
             output.loggedIn = true;
             output.username = currentUsername;
             output.sessionToken = currentToken;
+            output.userRole = postResult.userRole;
+            output.characterCreated = postResult.characterCreated;
         }
         }
 
@@ -73,19 +75,26 @@ class APICallContainer
 		var url = "";
 		url = url.concat(apiURL, "/register");
 		console.log(url);
-		axios.post(url,
+		var result = await axios.post(url,
 		{
 			username: inputUsername,
 			email: inputEmail,
 			password: inputPassword
 		})
-		.then(function (response)
-		{
-			console.log(response.data);
-			return response.data;
-		});
+		return result.data;
 	}
+    async getCharacter(inputUsername, sessionToken)
+    {
+        var url = "";
+        url = url.concat(apiURL, "/getCharacter");
+        var result = await axios.post(url,
+        {
+            username: inputUsername,
+            token: sessionToken
+        })
 
+        return result.data.character;
+    }
 async login(inputUsername, inputPassword)
 	{
 		//this.checkToken(inputUsername);
@@ -104,7 +113,14 @@ async login(inputUsername, inputPassword)
             cookies.set('username', inputUsername, {path:'/', maxAge:82800});
             output.username = inputUsername;
             output.sessionToken = result.data.token;
+            output.userRole = result.data.userRole;
+            output.characterCreated = result.data.characterCreated;
             output.loggedIn = true;
+            output.message = result.data.message;
+        }
+        else
+        {
+            output.message = result.data.message;
         }
         console.log(output);
 
@@ -181,6 +197,20 @@ async login(inputUsername, inputPassword)
 
         		return result.data;
         }
+    async shellCommand(inputUsername, inputToken, inputCommand)
+    {
+        var url = "";
+        url = url.concat(apiURL, "/shellCommand");
+        var result = await axios.post(url,
+        {
+           username: inputUsername,
+           token: inputToken,
+           command: inputCommand
+
+        });
+        console.log(result);
+        return result.data;
+    }
        async createQRCode(inputUsername, inputToken, inputType, inputColorType, inputItemDefinitionPath, inputEncounterDefinitionPath)
                 {
                 		//this.checkToken(inputUsername);

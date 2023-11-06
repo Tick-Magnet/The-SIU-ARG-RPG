@@ -165,6 +165,37 @@ public class InventoryController
         return output;
     }
 
+    @PostMapping("/getCharacter")
+    public Map<String, Object> getCharacter(@RequestBody Map<String, Object> payload)
+    {
+        HashMap<String, Object> output = new HashMap<String, Object>();
+        String username;
+        String sessionToken;
+
+        username = (String) payload.get("username");
+        sessionToken = (String) payload.get("token");
+
+
+        if(username == null || sessionToken == null)
+        {
+            output.put("message", "Bad arguments");
+        }
+        else
+        {
+            UserAccount user = userAccountRepository.findByUsername(username);
+            if(user != null)
+            {
+                output.put("character", user.playerCharacter);
+            }
+            else
+            {
+                output.put("message", "User not found");
+            }
+        }
+
+        return output;
+    }
+
     private boolean authenticate(UserAccount user, String token)
     {
         return user.isValidSessionToken(token);

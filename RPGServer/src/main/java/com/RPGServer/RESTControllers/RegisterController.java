@@ -63,22 +63,30 @@ public class RegisterController
 			tempUser.setPassword(password);
 			//Set user email
 			tempUser.setEmail(email);
+			tempUser.userRole = UserAccount.UserRole.USER;
 			//Generate verification token
 			UUID token = UUID.randomUUID();
 			tempUser.setVerifyToken(token);
 			tempUser.playerCharacter = new PlayerCharacter();
-			//Send verification email 
-			SimpleMailMessage verifyMessage = new SimpleMailMessage();
-			verifyMessage.setFrom(MAIL_USER_NAME);
-			verifyMessage.setTo(email);
-			verifyMessage.setText("Click on the link to activate your account\n" + "http://localhost:8080/verify/" + username + "/" + token.toString());
-			verifyMessage.setSubject("CS435 RPG Email Verification");
-			mailSender.send(verifyMessage);
-			//Write new user account to database
-			//NEED TO DO THIS BEFORE SENDING EMAIL. EMAIL BEING SENT EVEN ON JAKARATA EXCEPTIONS
-			userAccountRepository.save(tempUser);
-			//update result
-			result = new RegistrationResult(true, "Account created with username: " + username);
+			//Send verification email
+			try {
+				SimpleMailMessage verifyMessage = new SimpleMailMessage();
+				verifyMessage.setFrom(MAIL_USER_NAME);
+				verifyMessage.setTo(email);
+				verifyMessage.setText("Click on the link to activate your account\n" + "http://localhost:8080/verify/" + username + "/" + token.toString());
+				verifyMessage.setSubject("CS435 RPG Email Verification");
+				mailSender.send(verifyMessage);
+
+				//Write new user account to database
+				//NEED TO DO THIS BEFORE SENDING EMAIL. EMAIL BEING SENT EVEN ON JAKARATA EXCEPTIONS
+				userAccountRepository.save(tempUser);
+				//update result
+				result = new RegistrationResult(true, "Account created with username: " + username);
+			}
+			catch(Exception e)
+			{
+				result = new RegistrationResult(false, "Unable to create account, verify your email or try again later");
+			}
 		}
 		else
 		{

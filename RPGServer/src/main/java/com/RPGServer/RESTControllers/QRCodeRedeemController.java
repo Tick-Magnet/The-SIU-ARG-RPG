@@ -40,7 +40,7 @@ public class QRCodeRedeemController
 		//Retrieve user account by username
 		UserAccount account = userAccountRepository.findByUsername(username);
 		//Verify account session token
-		if(account.isValidSessionToken(sessionToken))
+		if(account.isValidSessionToken(sessionToken) && account.playerCharacter.creationComplete == true)
 		{
 			
 			//Look up QR code by UUID in database
