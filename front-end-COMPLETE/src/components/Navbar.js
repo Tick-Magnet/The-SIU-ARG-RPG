@@ -157,19 +157,25 @@ function Navbar() {
 
         </ul>
     <Popup trigger={mapPopup} setTrigger={setMapPopup}>
-            <img src='./Images/ARGMap.png' alt='Map of QR codes' />
+            <br></br><br></br>
+            <div className='map'>
+                <img src='./Images/ARGMap.png' alt='Map of QR codes' />
+            </div>
+            
           </Popup>
 
           <Popup trigger={loginPopup} setTrigger={setLoginPopup}>
             <div className='auth-form-container'>
-              <h1>Log In</h1>
-              <p>{loginError}</p>
+              <h1><center>Log In</center></h1>
               <form className="login-form" onSubmit={handleLoginSubmit}>
                 <label htmlFor="email">Email: </label>
                 <input value={email} onChange={(e) => setEmail(e.target.value)} type="text" placeholder="username" id="email" name="email" />
                 <label htmlFor="password">Password: </label>
                 <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="********" id="password" name="password" />
-                <button type="submit">Log In</button>
+                <div className='logIn-btn'>
+                    <button type="submit">Log In</button>
+                </div>
+                <p>{loginError}</p>
                 <button onClick={() => toRegister()} className='link-button'>Don't have an account? Register here.</button>
               </form>
             </div>

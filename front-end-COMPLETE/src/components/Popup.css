@@ -2,8 +2,8 @@
     position: fixed;
     top:0;
     left:0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 110%;
     background-color: rgba(0,0,0, 0.4);
     
     display: flex;
@@ -14,13 +14,28 @@
 .popup-inner {
     position: relative;
     padding: 32px;
-    width: 60vw;
-    max-width: 640px;
+    width: 80%;
     background-image: url('/public/Images/Paperback.jpg');
+    background-size: cover;     
+    border-radius: 15px; 
 }
 
 .popup-inner .close-btn {
+    background-image: url('/public/Images/stoneButton.png');;
+    background-size: cover; 
     position: absolute;
-    top: 16px;
-    right: 16px;
+    top: 6px;
+    right: 18px;
+    width: 14%;
+    height: 10%;
+    border-radius: 5px; 
+    color: whitesmoke; 
+    border-width:0; 
+    border-color: black;
+}
+
+.map {
+    margin: -7.5%;
+    height: 115%;
+    width: 115%;
 }

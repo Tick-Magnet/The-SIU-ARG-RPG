@@ -1,19 +1,21 @@
-.rpgNavbar {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: grey;
+.rpgTitle{
+    color: white; /* Set the background color to black */
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Papyrus', sans-serif; 
+}
+
+.footerImage{
+    background-image: url('/public/Images/stoneWall.png');
+    background-size: cover; 
+    margin: -40px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 .enemyImage{
     width: 25vw;
     height: auto;
-}
-
-.commandConsole{
-
-
 }
 
 .rpgNavbar .navItem {
@@ -24,32 +26,61 @@
     float: right;
 }
 
-.rpgNavbar a {
+.rpgNavbar {
+    display: flex;
+    background-color: black; /* Set the background color to black */
+    padding: 10px; /* Add padding to space the items */
+    list-style-type: none;
+    margin: 0;
+    padding-left: 6%;
+    padding-top: 6%;
+    background-image: url('/public/Images/stoneWall.png');
+    background-size: cover; 
+  }
+  
+  .rpgNavbar a {
     display: block;
     padding: 14px 16px;
     text-align: center;
-    color: white;
-    background-color: red;
+    color: whitesmoke;
     text-decoration: none;
-}
+    font-weight: bold;
+    font-family: 'Papyrus', sans-serif; 
+    margin: 10px; 
+    border-radius: 15px; 
+    background-image: url('/public/Images/stoneButton.png'); 
+    background-size: cover; 
+    
+  }
+  
 
-.rpgNavbar a:hover {
-    background-color: blue;
-}
+  .rpgNavbar a:hover {
+    transform: scale(1.20); 
+    transition: background-color 0.3s, transform 0.3s; 
+    color: gold;
+  }
 
-.rpgBackgroundDiv {
-    background-image: url('/public/Images/Stoneback.jpg');
-    background-size: cover;
+
+
+.rpgBackgroundDiv { /* Delete Later */
+
 }
 
 .rpgTextSection{
-    background-color: grey;
-    width: 100vw;
-    color: black;
+
+    width: calc(100vw - 50px); 
+    color: whitesmoke;
+    padding: 25px; 
+
+    background-image: url('/public/Images/stoneTablet.png'); 
+    background-size: cover; 
+    background-repeat: no-repeat;
 }
+
 
 .qrImage{
     width: 638px !important;
     height: 825px !important;
     display: block;
 }
+

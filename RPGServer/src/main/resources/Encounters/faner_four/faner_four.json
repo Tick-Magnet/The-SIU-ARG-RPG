@@ -1,0 +1,37 @@
+{
+	"encounterName": "Ghoul Encounter",
+	"encounterSteps":
+	[
+		{
+			"stepType": 0,
+			"promptText": "Amidst the desolation of the abandoned castle, a ghoul's malevolent hunger awakens, its wretched presence lurking in the darkest corners.",
+			"dialogueOptions":
+			[
+				{
+					"optionText": "Attack",
+					"nextStepIndex": 1
+				},
+				{
+					"optionText": "Run",
+					"nextStepIndex": 1
+				}
+			] 
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0
+		}
+	],
+	"encounterEntities":
+	[
+		{
+			"name": "Ghoul",
+			"strength": 13,
+			"dexterity": 15,
+			"constitution": 10,
+			"intelligence": 7,
+			"imageForeground": "ghoul.png",
+			"imageBackground": "faner_four.png"
+		}
+	] 
+}

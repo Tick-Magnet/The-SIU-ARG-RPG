@@ -1,0 +1,37 @@
+{
+	"encounterName": "Sea Serpent Encounter",
+	"encounterSteps":
+	[
+		{
+			"stepType": 0,
+			"promptText": "Rising from the depths, a colossal sea serpent emerges with scales glistening like emerald, ready to engulf ships and sailors in its watery embrace.",
+			"dialogueOptions":
+			[
+				{
+					"optionText": "Attack",
+					"nextStepIndex": 1
+				},
+				{
+					"optionText": "Run",
+					"nextStepIndex": 1
+				}
+			] 
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0
+		}
+	],
+	"encounterEntities":
+	[
+		{
+			"name": "Sea Serpent",
+			"strength": 24,
+			"dexterity": 15,
+			"constitution": 20,
+			"intelligence": 10,
+			"imageForeground": "sea_serpent.png",
+			"imageBackground": "campus_lake_eight.png"
+		}
+	] 
+}
