@@ -62,7 +62,8 @@ public class CombatStep extends EncounterStep
 				//End step, signal end encounter
 				endStep(0);
 				parentEncounter.nextEncounterStep(-1);
-			break;
+				return parentEncounter.currentStep.getInitialStepUpdate();
+			//break;
 			
 			default:
 			break;
@@ -81,6 +82,7 @@ public class CombatStep extends EncounterStep
 		if(player.getHealth() <= 0)
 		{
 			parentEncounter.endEncounter();
+			parentEncounter.nextEncounterStep(-1);
 		}
 		//If enemy health is zero, end step
 		//Return next initial step
