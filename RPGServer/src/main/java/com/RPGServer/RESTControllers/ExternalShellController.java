@@ -40,7 +40,7 @@ public class ExternalShellController
                 {
                     //Check that command is valid
                     Method[] methods = shellCommands.getClass().getMethods();
-                    String[] tokens = command.split(" ");
+                    Object[] tokens = command.split(" ");
                     boolean valid = false;
                     Method method = null;
                     for(int i = 0; i < methods.length; i++)
@@ -57,11 +57,31 @@ public class ExternalShellController
                     {
                         try
                         {
+                            Class<?>[] types = method.getParameterTypes();
+                            for(int i = 1; i < tokens.length; i++)
+                            {
+                                System.out.println(types[i-1]);
+                                System.out.println(Integer.TYPE);
+                                if(types[i-1] == Integer.TYPE)
+                                {
+                                    tokens[i] = Integer.parseInt((String)tokens[i]);
+
+                                }
+                                else if(types[i-1] == Float.TYPE)
+                                {
+                                    tokens[i] = Float.parseFloat((String)tokens[i]);
+                                }
+                                else if (types[i - 1] == Double.TYPE)
+                                {
+                                    tokens[i] = Double.parseDouble((String)tokens[i]);
+                                }
+                            }
                             String returnMessage = (String) method.invoke(shellCommands, Arrays.copyOfRange(tokens, 1, tokens.length));
                             output.put("result", returnMessage);
                         }
                         catch(Exception e)
                         {
+                            e.printStackTrace();
                             output.put("result", e.getMessage());
                         }
                     }

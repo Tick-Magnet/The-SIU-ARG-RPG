@@ -22,6 +22,12 @@ public class ShellCommands
 	{
 		return input;
 	}
+
+	public String numberTest(int one, int two)
+	{
+		int result = one + two;
+		return (Integer.toString(result));
+	}
 	@ShellMethod(key = "showCommands")
 	public String showCommands()
 	{
