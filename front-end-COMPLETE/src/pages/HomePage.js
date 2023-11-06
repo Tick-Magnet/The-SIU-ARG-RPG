@@ -6,8 +6,11 @@ function HomePage ()
 {
     return(
     <div className="rpgBackgroundDiv">
-        <h1>SIU ARG RPG Project</h1>
         <main>
+            <div className="rpgTitle">
+                <h1>THE SIU ARG RPG</h1>
+            </div>
+        
             <div className="rpgTextSection">
                 <h2>Game Description</h2>
                 <p>
