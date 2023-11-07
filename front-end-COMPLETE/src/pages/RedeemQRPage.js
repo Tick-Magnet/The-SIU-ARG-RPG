@@ -81,11 +81,13 @@ function RedeemQRPage ()
             {
                 return(
                     <>
+                    <div className="main">
                         <p>dialogue</p>
                         <img className="enemyImage" src={currentStep.backgroundImagePath} />
-                        <ul>
+                        <ul className="optionsList">
                         {currentStep.choices.map((option, index) => <InputSelector optionText={option} optionIndex={index}/>)}
                         </ul>
+                    </div>
                     </>
                 );
             }
@@ -93,14 +95,18 @@ function RedeemQRPage ()
             {
                 return(
                     <>
+                    <div className="main">
                         <p>combat</p>
+                        <p id="enemyStats">
+                            <span>Enemy: {currentStep.enemyName} </span>
+                            <span>Enemy Health: {currentStep.enemyHealth}</span>
+                        </p>
                         <img className="enemyImage" src={currentStep.enemyImagePath} />
-                        <p>Enemy Name: {currentStep.enemyName} </p>
-                        <p>Enemy Health: {currentStep.enemyHealth} </p>
                         <p>Player Health: {currentStep.playerHealth} </p>
                         <ul>
                         {currentStep.choices.map((option, index) => <InputSelector optionText={option} optionIndex={index}/>)}
                         </ul>
+                    </div>
                     </>
                 );
             }
@@ -108,13 +114,16 @@ function RedeemQRPage ()
             {
                 return(
                 <>
-                    <p>End of encounter Rewards</p>
-                    <p>Gold Reward: {currentStep.goldReward} </p>
-                    <p>Experience Gained: {currentStep.experienceReward} </p>
-                    <p> Items Rewarded: </p>
+                <div className="main" id="rewards">
+                    <h3 id="title">End of encounter Rewards</h3>
+                    <p>Gold: {currentStep.goldReward} </p>
+                    <p>Experience: {currentStep.experienceReward} </p>
+                    <br></br>
+                    <p style={{textDecoration:"underline"}}> Items: </p>
                     <ul>
                         {currentStep.itemList.map((option, index) => <li> {option} </li>)}
                     </ul>
+                </div>
                 </>
                 );
             }
@@ -163,7 +172,6 @@ function RedeemQRPage ()
         {
             return(
             <div>
-                <p>encounter</p>
                 <EncounterHandler />
             </div>
             );

@@ -80,7 +80,7 @@ public class QRCodeCreatorController
                     case 1:
                         String encounterDefinitionPath = (String) payload.get("encounterDefinitionPath");
                         tempQR = new QRCodeEntity();
-
+                        tempQR.type=1;
                         tempQR.encounterDefinitionPath = encounterDefinitionPath;
                         qrCodeRepository.save(tempQR);
 

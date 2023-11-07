@@ -91,16 +91,6 @@ label {
   z-index: 1;
 }
 
-.compass {
-  height: auto;
-  width: 20vw;
-
-  position: absolute;
-  top: 5vw;
-  left: 5vw;
-  z-index: 1;
-}
-
 .link-button {
   background: none;
   border: none;

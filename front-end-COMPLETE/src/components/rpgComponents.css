@@ -6,14 +6,59 @@
     background-color: grey;
 }
 
+.main {
+  padding: 32px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  font-family: papyrus;
+}
+
+#title {
+    text-decoration: bold;
+    text-decoration: underline;
+}
+
+#rewards {
+    margin: 32px;
+    height: fit-content;
+    border: black solid 5px;
+    background-color: lightgrey;
+}
+
+#rewards ul li {
+    text-indent: -50px;
+}
+
+#enemyStats {
+    display: flex;
+    justify-content: space-between;
+}
+
 .enemyImage{
-    width: 25vw;
+    width: 70vw;
     height: auto;
+}
+
+.optionsList {
+    width: 70vw;
+    height: 20vh;   
+    list-style-type: upper-roman;
+    border: 2px solid;
+    background-color: lightgray;
+}
+
+.optionsList li{
+    width: 100%;
+    height: 50%;
+    font-size: 5vw;
+    text-decoration: bold;
 }
 
 .rpgNavbar .navItem {
     float: left;
 }
+
 .loginButton
 {
     float: right;
