@@ -92,9 +92,14 @@ public class QRCodeRedeemController
 							e.printStackTrace();
 						}
 						break;
-
+					case 2:
+						account.playerCharacter.resetHealth();
+						userAccountRepository.save(account);
+						result.put("type", 2);
+						result.put("message", "Player healed to full health");
+						break;
 					default:
-					
+
 					break;
 				}
 			}

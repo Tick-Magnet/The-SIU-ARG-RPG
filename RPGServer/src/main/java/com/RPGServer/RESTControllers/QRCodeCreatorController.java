@@ -14,13 +14,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
-import java.awt.Color;
-import java.awt.Graphics2D;
 
 @RestController
 public class QRCodeCreatorController
@@ -75,7 +74,7 @@ public class QRCodeCreatorController
 
                         //Create image
 
-                        output.put("image",generateQRImage(DECODE_URL, tempQR.uuid.toString(), 0, colorType));
+                        output.put("image",generateQRImage(DECODE_URL, tempQR.uuid.toString(), 0, colorType, itemDefinitionPath));
                         break;
                         //Encounter Case
                     case 1:
@@ -86,13 +85,13 @@ public class QRCodeCreatorController
                         qrCodeRepository.save(tempQR);
 
                         //Create image
-                        output.put("image",generateQRImage(DECODE_URL, tempQR.uuid.toString(),1, colorType));
+                        output.put("image",generateQRImage(DECODE_URL, tempQR.uuid.toString(),1, colorType, encounterDefinitionPath));
                         break;
                     case 2:
                         tempQR = new QRCodeEntity();
                         tempQR.type = 2;
                         qrCodeRepository.save(tempQR);
-                        output.put("image",generateQRImage(DECODE_URL, tempQR.uuid.toString(),2, colorType));
+                        output.put("image",generateQRImage(DECODE_URL, tempQR.uuid.toString(),2, colorType, ""));
 
                         break;
                     default:
@@ -112,7 +111,7 @@ public class QRCodeCreatorController
         return output;
     }
 
-    private String generateQRImage(String url, String uuid, int type, int colorType) throws Exception
+    private String generateQRImage(String url, String uuid, int type, int colorType, String filePath) throws Exception
     {
         int xOffset, yOffset;
         String output;
@@ -168,6 +167,9 @@ public class QRCodeCreatorController
 		
 		//Draw QR code image to final image
 		graphicsContext.drawImage(qrImage, xOffset, yOffset, null);
+        graphicsContext.setFont(new Font("Monospaced", Font.BOLD, 20));
+        graphicsContext.setPaint(Color.BLACK);
+        graphicsContext.drawString(filePath,22 ,baseImage.getHeight() - 11 );
         //Encode in base64
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         ImageIO.write(baseImage, "jpg", stream);
