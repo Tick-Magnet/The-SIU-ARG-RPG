@@ -31,6 +31,7 @@ public class QRCodeCreatorController
     private final static String TYPE_1_BASE_PATH_GREEN = "/images/battleGreen.png";
     private final static String TYPE_1_BASE_PATH_YELLOW = "/images/battleYellow.png";
     private final static String TYPE_1_BASE_PATH_RED = "/images/battleRed.png";
+    private final static String TYPE_2_BASE_HEAL = "/images/healPoster.png";
 
 
     private final static String DECODE_URL = "http://localhost/redeemQR?uuid=";
@@ -86,6 +87,12 @@ public class QRCodeCreatorController
 
                         //Create image
                         output.put("image",generateQRImage(DECODE_URL, tempQR.uuid.toString(),1, colorType));
+                        break;
+                    case 2:
+                        tempQR = new QRCodeEntity();
+                        tempQR.type = 2;
+                        qrCodeRepository.save(tempQR);
+                        output.put("image",generateQRImage(DECODE_URL, tempQR.uuid.toString(),2, colorType));
 
                         break;
                     default:
@@ -110,7 +117,7 @@ public class QRCodeCreatorController
         int xOffset, yOffset;
         String output;
         BufferedImage qrImage;
-        BufferedImage baseImage;
+        BufferedImage baseImage = null;
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
         if(type == 0)
         {
@@ -127,7 +134,7 @@ public class QRCodeCreatorController
                 baseImage = ImageIO.read(loader.getResource(TYPE_0_BASE_PATH_RED));
             }
 		}
-		else
+		else if(type == 1)
 		{
             if(colorType == 0)
             {
@@ -142,6 +149,10 @@ public class QRCodeCreatorController
                 baseImage = ImageIO.read(loader.getResource(TYPE_1_BASE_PATH_RED));
             }
 		}
+        else if(type == 2)
+        {
+            baseImage = ImageIO.read(loader.getResource(TYPE_2_BASE_HEAL));
+        }
         System.out.println(baseImage.getHeight());
         //Generate QR code image from UUID
         String fullText = url + uuid;

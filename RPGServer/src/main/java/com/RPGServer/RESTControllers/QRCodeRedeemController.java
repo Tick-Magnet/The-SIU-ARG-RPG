@@ -91,6 +91,8 @@ public class QRCodeRedeemController
 						{
 							e.printStackTrace();
 						}
+						break;
+
 					default:
 					
 					break;
