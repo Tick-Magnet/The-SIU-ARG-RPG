@@ -2,6 +2,7 @@ package com.RPGServer.RESTControllers;
 
 
 import com.RPGServer.Security.RateLimitService;
+import com.RPGServer.Services.DiscordWebhookService;
 import com.RPGServer.SessionToken;
 import com.RPGServer.UserAccount;
 import com.RPGServer.UserAccountRepository;
@@ -43,6 +44,8 @@ public class LoginController
 
 	@Autowired
 	private RateLimitService rateLimitService;
+	@Autowired
+	private DiscordWebhookService discordWebhookService;
 	
 	@PostMapping("/login")
 	public Map<String,Object> login(@RequestBody Map<String, Object> payload, HttpServletRequest request) throws NoSuchAlgorithmException
@@ -75,6 +78,7 @@ public class LoginController
 		{
 			System.out.println("Old token: " + tempAccount.getSessionToken());
 			System.out.println("Sucessful login for" + username);
+			//discordWebhookService.outputDiscord(username + " has logged in");
 			//Generate a 32 byte token for future API access for user
 			byte[] tokenArray = new byte[32];
 			tokenGen.nextBytes(tokenArray);

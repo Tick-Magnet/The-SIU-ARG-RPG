@@ -2,6 +2,7 @@ package com.RPGServer;
 
 import com.RPGServer.EncounterSystem.Encounter;
 import com.RPGServer.Security.ClientIP;
+import com.RPGServer.Services.DiscordWebhookService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -26,14 +27,18 @@ public class RpgServerApplication {
 	private static UserAccountRepository userAccountRepository;
 	@Autowired 
 	private QRCodeRepository qrCodeRepository;
+	@Autowired
+	private DiscordWebhookService discordWebhookService;
 	
 	//Hashmap for storing encounters 
 	public static ConcurrentHashMap<UUID, Encounter> encounterMap = new ConcurrentHashMap<UUID, Encounter>();
 
 	//Hashmap for storing IP addresses for clients
 	public static ConcurrentHashMap<String, ClientIP> clientIPMap = new ConcurrentHashMap<String, ClientIP>();
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		SpringApplication.run(RpgServerApplication.class, args);
+
 	}
 	
 	@Configuration
