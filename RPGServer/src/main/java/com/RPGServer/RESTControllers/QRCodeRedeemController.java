@@ -64,6 +64,7 @@ public class QRCodeRedeemController
 							result.put("message", "Item redeemed");
 							result.put("goldReward", qrCode.goldReward);
 							result.put("experienceReward", qrCode.experienceReward);
+							result.put("backgroundImagePath", qrCode.backgroundImagePath);
 							account.playerCharacter.applyExperience(qrCode.experienceReward);
 							account.playerCharacter.gold += qrCode.goldReward;
 							account.playerCharacter.addItem(tempItem);
@@ -97,6 +98,8 @@ public class QRCodeRedeemController
 						userAccountRepository.save(account);
 						result.put("type", 2);
 						result.put("message", "Player healed to full health");
+						result.put("backgroundImagePath", qrCode.backgroundImagePath);
+
 						break;
 					default:
 

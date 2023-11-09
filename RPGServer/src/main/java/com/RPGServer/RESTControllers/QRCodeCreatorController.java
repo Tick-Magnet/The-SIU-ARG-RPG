@@ -47,6 +47,13 @@ public class QRCodeCreatorController
         String token = (String)payload.get("token");
         int type = (int)payload.get("type");
         int colorType = (int)payload.get("colorType");
+        String backgroundImagePath = null;
+        try {
+            backgroundImagePath = (String) payload.get("backgroundImagePath");
+        }
+        catch(Exception e)
+        {
+        }
         //Verify user session token
         UserAccount user = userAccountRepository.findByUsername(username);
         if(user != null && user.isValidSessionToken(token))
@@ -68,7 +75,7 @@ public class QRCodeCreatorController
                         tempQR.itemDefinitionPath = itemDefinitionPath;
                         tempQR.type = 0;
                         tempQR.goldReward = goldReward;
-
+                        tempQR.backgroundImagePath = backgroundImagePath;
                         tempQR.experienceReward = experienceReward;
                         qrCodeRepository.save(tempQR);
 
@@ -90,6 +97,7 @@ public class QRCodeCreatorController
                     case 2:
                         tempQR = new QRCodeEntity();
                         tempQR.type = 2;
+                        tempQR.backgroundImagePath = backgroundImagePath;
                         qrCodeRepository.save(tempQR);
                         output.put("image",generateQRImage(DECODE_URL, tempQR.uuid.toString(),2, colorType, ""));
 
