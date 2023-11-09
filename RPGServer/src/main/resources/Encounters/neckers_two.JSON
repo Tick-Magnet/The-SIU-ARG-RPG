@@ -5,7 +5,7 @@
 		{
 			"stepType": 0,
 			"promptText": "Atop the crumbling castle wall, a menacing wyvern perches, its wings outstretched, and a predatory glint in its reptilian eyes.",
-			"backgroundImagePath": "images/ImageEncounters/wyvern.png",
+			"backgroundImagePath": "Images/ImageEncounters/wyvern.png",
 			"dialogueOptions":
 			[
 				{
@@ -21,8 +21,8 @@
 			[
 				{
 					"optionIndex": 1,
-					"experienceReward": 100,
-					"goldReward": 10,
+					"experienceReward": 40,
+					"goldReward": 800,
 					"itemRewards": []
 				}
 			]
@@ -31,13 +31,13 @@
 			"stepType": 1,
 			"enemyIndex": 0,
 			"nextStepIndex": -1,
-			"backgroundImagePath":"images/ImageEncounters/wyvern.png",
+			"backgroundImagePath":"Images/ImageEncounters/wyvern.png",
 			"rewards":
 			[
 				{
 					"optionIndex": 0,
-					"experienceReward": 20,
-					"goldReward": 100
+					"experienceReward": 40,
+					"goldReward": 800
 				}
 			]
 		}
@@ -48,9 +48,9 @@
 			"name": "Wyvern",
 			"strength": 19,
 			"dexterity": 12,
-			"constitution": 18,
+			"constitution": 600,
 			"intelligence": 7,
-			"imageForeground": "images/ImageEncounters/wyvern.png"
+			"imageForeground": "Images/ImageEncounters/wyvern.png"
 		}
 	]
 }

@@ -5,7 +5,7 @@
 		{
 			"stepType": 0,
 			"promptText": "Amidst the rustling leaves and echoing bird calls, a druid's wrath is unleashed, as the very forces of nature rise to defend their guardian.",
-			"backgroundImagePath": "images/ImageEncounters/druid.png",
+			"backgroundImagePath": "Images/ImageEncounters/druid.png",
 			"dialogueOptions":
 			[
 				{
@@ -21,8 +21,8 @@
 			[
 				{
 					"optionIndex": 1,
-					"experienceReward": 100,
-					"goldReward": 10,
+					"experienceReward": 30,
+					"goldReward": 250,
 					"itemRewards": []
 				}
 			]
@@ -31,13 +31,13 @@
 			"stepType": 1,
 			"enemyIndex": 0,
 			"nextStepIndex": -1,
-			"backgroundImagePath":"images/ImageEncounters/druid.png",
+			"backgroundImagePath":"Images/ImageEncounters/druid.png",
 			"rewards":
 			[
 				{
 					"optionIndex": 0,
-					"experienceReward": 20,
-					"goldReward": 100
+					"experienceReward": 30,
+					"goldReward": 250
 				}
 			]
 		}
@@ -48,9 +48,9 @@
 			"name": "Druid",
 			"strength": 1,
 			"dexterity": 2,
-			"constitution": 10,
+			"constitution": 125,
 			"intelligence": 1,
-			"imageForeground": "images/ImageEncounters/druid.png"
+			"imageForeground": "Images/ImageEncounters/druid.png"
 		}
 	]
 }

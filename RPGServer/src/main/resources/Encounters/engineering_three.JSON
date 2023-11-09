@@ -5,7 +5,7 @@
 		{
 			"stepType": 0,
 			"promptText": "A diminutive gnome warrior strides forth, their spirit as fierce as their weapon, proving that bravery comes in all sizes.",
-			"backgroundImagePath": "images/ImageEncounters/gnome.png",
+			"backgroundImagePath": "Images/ImageEncounters/gnome.png",
 			"dialogueOptions":
 			[
 				{
@@ -21,8 +21,8 @@
 			[
 				{
 					"optionIndex": 1,
-					"experienceReward": 100,
-					"goldReward": 10,
+					"experienceReward": 10,
+					"goldReward": 420,
 					"itemRewards": []
 				}
 			]
@@ -31,13 +31,13 @@
 			"stepType": 1,
 			"enemyIndex": 0,
 			"nextStepIndex": -1,
-			"backgroundImagePath":"images/ImageEncounters/gnome.png",
+			"backgroundImagePath":"Images/ImageEncounters/gnome.png",
 			"rewards":
 			[
 				{
 					"optionIndex": 0,
-					"experienceReward": 20,
-					"goldReward": 100
+					"experienceReward": 10,
+					"goldReward": 420
 				}
 			]
 		}
@@ -48,9 +48,9 @@
 			"name": "Gnome",
 			"strength": 5,
 			"dexterity": 6,
-			"constitution": 7,
+			"constitution": 15,
 			"intelligence": 16,
-			"imageForeground": "images/ImageEncounters/gnome.png"
+			"imageForeground": "Images/ImageEncounters/gnome.png"
 		}
 	]
 }

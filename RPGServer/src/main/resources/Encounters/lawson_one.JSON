@@ -5,7 +5,7 @@
 		{
 			"stepType": 0,
 			"promptText": "Within the grand dungeon hall, a beholder hovers ominously, its many eyes fixated on intruders with a kaleidoscope of deadly intent.",
-			"backgroundImagePath": "images/ImageEncounters/beholder.png",
+			"backgroundImagePath": "Images/ImageEncounters/beholder.png",
 			"dialogueOptions":
 			[
 				{
@@ -21,8 +21,8 @@
 			[
 				{
 					"optionIndex": 1,
-					"experienceReward": 100,
-					"goldReward": 10,
+					"experienceReward": 40,
+					"goldReward": 500,
 					"itemRewards": []
 				}
 			]
@@ -31,13 +31,13 @@
 			"stepType": 1,
 			"enemyIndex": 0,
 			"nextStepIndex": -1,
-			"backgroundImagePath":"images/ImageEncounters/beholder.png",
+			"backgroundImagePath":"Images/ImageEncounters/beholder.png",
 			"rewards":
 			[
 				{
 					"optionIndex": 0,
-					"experienceReward": 20,
-					"goldReward": 100
+					"experienceReward": 40,
+					"goldReward": 500
 				}
 			]
 		}
@@ -48,9 +48,9 @@
 			"name": "Beholder",
 			"strength": 10,
 			"dexterity": 14,
-			"constitution": 18,
+			"constitution": 300,
 			"intelligence": 17,
-			"imageForeground": "images/ImageEncounters/beholder.png"
+			"imageForeground": "Images/ImageEncounters/beholder.png"
 		}
 	]
 }

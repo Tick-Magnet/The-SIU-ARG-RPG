@@ -5,7 +5,7 @@
 		{
 			"stepType": 0,
 			"promptText": "Perched in the castle catacombs, a stoic stone gargoyle stands guard, its unyielding presence a testament to ancient, silent vigilance.",
-			"backgroundImagePath": "images/ImageEncounters/gargoyle.png",
+			"backgroundImagePath": "Images/ImageEncounters/gargoyle.png",
 			"dialogueOptions":
 			[
 				{
@@ -21,8 +21,8 @@
 			[
 				{
 					"optionIndex": 1,
-					"experienceReward": 100,
-					"goldReward": 10,
+					"experienceReward": 20,
+					"goldReward": 150,
 					"itemRewards": []
 				}
 			]
@@ -31,13 +31,13 @@
 			"stepType": 1,
 			"enemyIndex": 0,
 			"nextStepIndex": -1,
-			"backgroundImagePath":"images/ImageEncounters/gargoyle.png",
+			"backgroundImagePath":"Images/ImageEncounters/gargoyle.png",
 			"rewards":
 			[
 				{
 					"optionIndex": 0,
 					"experienceReward": 20,
-					"goldReward": 100
+					"goldReward": 150
 				}
 			]
 		}
@@ -48,9 +48,9 @@
 			"name": "Gargoyle",
 			"strength": 15,
 			"dexterity": 14,
-			"constitution": 16,
+			"constitution": 40,
 			"intelligence": 7,
-			"imageForeground": "images/ImageEncounters/gargoyle.png"
+			"imageForeground": "Images/ImageEncounters/gargoyle.png"
 		}
 	]
 }

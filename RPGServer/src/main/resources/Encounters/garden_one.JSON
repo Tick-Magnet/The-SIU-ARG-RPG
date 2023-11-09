@@ -5,7 +5,7 @@
 		{
 			"stepType": 0,
 			"promptText": "Guarding the entrance to the botanical garden, a shambling mound of plant matter rumbles with the essence of nature's fury.",
-			"backgroundImagePath": "images/ImageEncounters/shambling_mound.png",
+			"backgroundImagePath": "Images/ImageEncounters/shambling_mound.png",
 			"dialogueOptions":
 			[
 				{
@@ -21,8 +21,8 @@
 			[
 				{
 					"optionIndex": 1,
-					"experienceReward": 100,
-					"goldReward": 10,
+					"experienceReward": 15,
+					"goldReward": 125,
 					"itemRewards": []
 				}
 			]
@@ -31,13 +31,13 @@
 			"stepType": 1,
 			"enemyIndex": 0,
 			"nextStepIndex": -1,
-			"backgroundImagePath":"images/ImageEncounters/shambling_mound.png",
+			"backgroundImagePath":"Images/ImageEncounters/shambling_mound.png",
 			"rewards":
 			[
 				{
 					"optionIndex": 0,
-					"experienceReward": 20,
-					"goldReward": 100
+					"experienceReward": 15,
+					"goldReward": 125
 				}
 			]
 		}
@@ -48,9 +48,9 @@
 			"name": "Shambling Mound",
 			"strength": 21,
 			"dexterity": 10,
-			"constitution": 17,
+			"constitution": 25,
 			"intelligence": 8,
-			"imageForeground": "images/ImageEncounters/shambling_mound.png"
+			"imageForeground": "Images/ImageEncounters/shambling_mound.png"
 		}
 	]
 }

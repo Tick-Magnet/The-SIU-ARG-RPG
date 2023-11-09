@@ -5,7 +5,7 @@
 		{
 			"stepType": 0,
 			"promptText": "Amidst the enchanting beauty of an indoor garden, a playful pixie flits about, her ethereal presence bringing the blossoms to life with a mischievous charm.",
-			"backgroundImagePath": "images/ImageEncounters/pixie.png",
+			"backgroundImagePath": "Images/ImageEncounters/pixie.png",
 			"dialogueOptions":
 			[
 				{
@@ -21,8 +21,8 @@
 			[
 				{
 					"optionIndex": 1,
-					"experienceReward": 100,
-					"goldReward": 10,
+					"experienceReward": 20,
+					"goldReward": 150,
 					"itemRewards": []
 				}
 			]
@@ -31,13 +31,13 @@
 			"stepType": 1,
 			"enemyIndex": 0,
 			"nextStepIndex": -1,
-			"backgroundImagePath":"images/ImageEncounters/pixie.png",
+			"backgroundImagePath":"Images/ImageEncounters/pixie.png",
 			"rewards":
 			[
 				{
 					"optionIndex": 0,
 					"experienceReward": 20,
-					"goldReward": 100
+					"goldReward": 150
 				}
 			]
 		}
@@ -48,9 +48,9 @@
 			"name": "Pixie",
 			"strength": 5,
 			"dexterity": 21,
-			"constitution": 12,
+			"constitution": 40,
 			"intelligence": 15,
-			"imageForeground": "images/ImageEncounters/pixie.png"
+			"imageForeground": "Images/ImageEncounters/pixie.png"
 		}
 	]
 }

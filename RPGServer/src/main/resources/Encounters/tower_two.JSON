@@ -5,7 +5,7 @@
 		{
 			"stepType": 0,
 			"promptText": "Perched atop a towering spire, a fearsome red dragon guards its lair, its scorching breath a warning to all who dare approach.",
-			"backgroundImagePath": "images/ImageEncounters/red_dragon.png",
+			"backgroundImagePath": "Images/ImageEncounters/red_dragon.png",
 			"dialogueOptions":
 			[
 				{
@@ -21,8 +21,8 @@
 			[
 				{
 					"optionIndex": 1,
-					"experienceReward": 100,
-					"goldReward": 10,
+					"experienceReward": 50,
+					"goldReward": 1000,
 					"itemRewards": []
 				}
 			]
@@ -31,13 +31,13 @@
 			"stepType": 1,
 			"enemyIndex": 0,
 			"nextStepIndex": -1,
-			"backgroundImagePath":"images/ImageEncounters/red_dragon.png",
+			"backgroundImagePath":"Images/ImageEncounters/red_dragon.png",
 			"rewards":
 			[
 				{
 					"optionIndex": 0,
-					"experienceReward": 20,
-					"goldReward": 100
+					"experienceReward": 50,
+					"goldReward": 1000
 				}
 			]
 		}
@@ -48,9 +48,9 @@
 			"name": "Red Dragon",
 			"strength": 25,
 			"dexterity": 14,
-			"constitution": 20,
+			"constitution": 1000,
 			"intelligence": 19,
-			"imageForeground": "images/ImageEncounters/red_dragon.png"
+			"imageForeground": "Images/ImageEncounters/red_dragon.png"
 		}
 	]
 }

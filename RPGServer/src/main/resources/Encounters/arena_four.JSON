@@ -5,7 +5,7 @@
 		{
 			"stepType": 0,
 			"promptText": "The noble half-elven archer steps into view, her bowstring humming with precision. With a sense of honor radiating from her poised demeanor, she knocks an arrow.",
-			"backgroundImagePath": "images/ImageEncounters/archer.png",
+			"backgroundImagePath": "Images/ImageEncounters/archer.png",
 			"dialogueOptions":
 			[
 				{
@@ -21,8 +21,8 @@
 			[
 				{
 					"optionIndex": 1,
-					"experienceReward": 100,
-					"goldReward": 10,
+					"experienceReward": 20,
+					"goldReward": 150,
 					"itemRewards": []
 				}
 			]
@@ -31,13 +31,13 @@
 			"stepType": 1,
 			"enemyIndex": 0,
 			"nextStepIndex": -1,
-			"backgroundImagePath":"images/ImageEncounters/archer.png",
+			"backgroundImagePath":"Images/ImageEncounters/archer.png",
 			"rewards":
 			[
 				{
 					"optionIndex": 0,
 					"experienceReward": 20,
-					"goldReward": 100
+					"goldReward": 150
 				}
 			]
 		}
@@ -48,9 +48,9 @@
 			"name": "Archer",
 			"strength": 11,
 			"dexterity": 18,
-			"constitution": 16,
+			"constitution": 45,
 			"intelligence": 11,
-			"imageForeground": "images/ImageEncounters/archer.png"
+			"imageForeground": "Images/ImageEncounters/archer.png"
 		}
 	]
 }

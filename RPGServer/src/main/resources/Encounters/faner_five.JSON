@@ -1,11 +1,11 @@
 {
-	"encounterName": "Rouge Encounter",
+	"encounterName": "Rogue Encounter",
 	"encounterSteps":
 	[
 		{
 			"stepType": 0,
 			"promptText": "With feline grace and a glint of larceny in her eyes, the tabaxi rogue slinks into view, ready to navigate the world's shadows with deadly precision.",
-			"backgroundImagePath": "images/ImageEncounters/rouge.png",
+			"backgroundImagePath": "Images/ImageEncounters/rouge.png",
 			"dialogueOptions":
 			[
 				{
@@ -21,8 +21,8 @@
 			[
 				{
 					"optionIndex": 1,
-					"experienceReward": 100,
-					"goldReward": 10,
+					"experienceReward": 20,
+					"goldReward": 150,
 					"itemRewards": []
 				}
 			]
@@ -31,13 +31,13 @@
 			"stepType": 1,
 			"enemyIndex": 0,
 			"nextStepIndex": -1,
-			"backgroundImagePath":"images/ImageEncounters/rouge.png",
+			"backgroundImagePath":"Images/ImageEncounters/rouge.png",
 			"rewards":
 			[
 				{
 					"optionIndex": 0,
 					"experienceReward": 20,
-					"goldReward": 100
+					"goldReward": 150
 				}
 			]
 		}
@@ -45,12 +45,12 @@
 	"encounterEntities":
 	[
 		{
-			"name": "Rouge",
+			"name": "Rogue",
 			"strength": 11,
 			"dexterity": 18,
-			"constitution": 13,
+			"constitution": 45,
 			"intelligence": 15,
-			"imageForeground": "images/ImageEncounters/rouge.png"
+			"imageForeground": "Images/ImageEncounters/rouge.png"
 		}
 	]
 }

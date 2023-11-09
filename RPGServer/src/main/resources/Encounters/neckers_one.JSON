@@ -5,7 +5,7 @@
 		{
 			"stepType": 0,
 			"promptText": "Bits of broken weapons, coins, and a human skeleton are visible inside this quivering cube of slime.",
-			"backgroundImagePath": "images/ImageEncounters/gelatinous_cube.png",
+			"backgroundImagePath": "Images/ImageEncounters/gelatinous_cube.png",
 			"dialogueOptions":
 			[
 				{
@@ -21,8 +21,8 @@
 			[
 				{
 					"optionIndex": 1,
-					"experienceReward": 100,
-					"goldReward": 10,
+					"experienceReward": 35,
+					"goldReward": 450,
 					"itemRewards": []
 				}
 			]
@@ -31,13 +31,13 @@
 			"stepType": 1,
 			"enemyIndex": 0,
 			"nextStepIndex": -1,
-			"backgroundImagePath":"images/ImageEncounters/gelatinous_cube.png",
+			"backgroundImagePath":"Images/ImageEncounters/gelatinous_cube.png",
 			"rewards":
 			[
 				{
 					"optionIndex": 0,
-					"experienceReward": 20,
-					"goldReward": 100
+					"experienceReward": 35,
+					"goldReward": 450
 				}
 			]
 		}
@@ -48,9 +48,9 @@
 			"name": "Gelatinous Cube",
 			"strength": 10,
 			"dexterity": 1,
-			"constitution": 26,
+			"constitution": 200,
 			"intelligence": 1,
-			"imageForeground": "images/ImageEncounters/gelatinous_cube.png"
+			"imageForeground": "Images/ImageEncounters/gelatinous_cube.png"
 		}
 	]
 }

@@ -5,7 +5,7 @@
 		{
 			"stepType": 0,
 			"promptText": "Rising from the depths, a colossal sea serpent emerges with scales glistening like emerald, ready to engulf ships and sailors in its watery embrace.",
-			"backgroundImagePath": "images/ImageEncounters/sea_serpent.png",
+			"backgroundImagePath": "Images/ImageEncounters/sea_serpent.png",
 			"dialogueOptions":
 			[
 				{
@@ -21,8 +21,8 @@
 			[
 				{
 					"optionIndex": 1,
-					"experienceReward": 100,
-					"goldReward": 10,
+					"experienceReward": 40,
+					"goldReward": 600,
 					"itemRewards": []
 				}
 			]
@@ -31,13 +31,13 @@
 			"stepType": 1,
 			"enemyIndex": 0,
 			"nextStepIndex": -1,
-			"backgroundImagePath":"images/ImageEncounters/sea_serpent.png",
+			"backgroundImagePath":"Images/ImageEncounters/sea_serpent.png",
 			"rewards":
 			[
 				{
 					"optionIndex": 0,
-					"experienceReward": 20,
-					"goldReward": 100
+					"experienceReward": 40,
+					"goldReward": 600
 				}
 			]
 		}
@@ -48,9 +48,9 @@
 			"name": "Sea Serpent",
 			"strength": 24,
 			"dexterity": 15,
-			"constitution": 20,
+			"constitution": 350,
 			"intelligence": 10,
-			"imageForeground": "images/ImageEncounters/sea_serpent.png"
+			"imageForeground": "Images/ImageEncounters/sea_serpent.png"
 		}
 	]
 }

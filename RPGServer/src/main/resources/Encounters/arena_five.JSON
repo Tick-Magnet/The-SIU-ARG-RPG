@@ -5,7 +5,7 @@
 		{
 			"stepType": 0,
 			"promptText": "From the darkness, a twisted and grotesque drider crawls forth, its spider-like lower half propelling it with eerie grace.",
-			"backgroundImagePath": "images/ImageEncounters/drider.png",
+			"backgroundImagePath": "Images/ImageEncounters/drider.png",
 			"dialogueOptions":
 			[
 				{
@@ -21,8 +21,8 @@
 			[
 				{
 					"optionIndex": 1,
-					"experienceReward": 100,
-					"goldReward": 10,
+					"experienceReward": 25,
+					"goldReward": 200,
 					"itemRewards": []
 				}
 			]
@@ -31,13 +31,13 @@
 			"stepType": 1,
 			"enemyIndex": 0,
 			"nextStepIndex": -1,
-			"backgroundImagePath":"images/ImageEncounters/drider.png",
+			"backgroundImagePath":"Images/ImageEncounters/drider.png",
 			"rewards":
 			[
 				{
 					"optionIndex": 0,
-					"experienceReward": 20,
-					"goldReward": 100
+					"experienceReward": 25,
+					"goldReward": 200
 				}
 			]
 		}
@@ -48,9 +48,9 @@
 			"name": "Drider",
 			"strength": 24,
 			"dexterity": 10,
-			"constitution": 10,
+			"constitution": 65,
 			"intelligence": 6,
-			"imageForeground": "images/ImageEncounters/drider.png"
+			"imageForeground": "Images/ImageEncounters/drider.png"
 		}
 	]
 }

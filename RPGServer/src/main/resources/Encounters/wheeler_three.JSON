@@ -5,7 +5,7 @@
 		{
 			"stepType": 0,
 			"promptText": "Descending the crumbling stone stairs, a skeletal warrior clatters forth, its bony visage determined and haunting.",
-			"backgroundImagePath": "images/ImageEncounters/skeleton.png",
+			"backgroundImagePath": "Images/ImageEncounters/skeleton.png",
 			"dialogueOptions":
 			[
 				{
@@ -21,8 +21,8 @@
 			[
 				{
 					"optionIndex": 1,
-					"experienceReward": 100,
-					"goldReward": 10,
+					"experienceReward": 20,
+					"goldReward": 200,
 					"itemRewards": []
 				}
 			]
@@ -31,13 +31,13 @@
 			"stepType": 1,
 			"enemyIndex": 0,
 			"nextStepIndex": -1,
-			"backgroundImagePath":"images/ImageEncounters/skeleton.png",
+			"backgroundImagePath":"Images/ImageEncounters/skeleton.png",
 			"rewards":
 			[
 				{
 					"optionIndex": 0,
 					"experienceReward": 20,
-					"goldReward": 100
+					"goldReward": 200
 				}
 			]
 		}
@@ -48,9 +48,9 @@
 			"name": "Skeleton",
 			"strength": 19,
 			"dexterity": 12,
-			"constitution": 18,
+			"constitution": 50,
 			"intelligence": 4,
-			"imageForeground": "images/ImageEncounters/skeleton.png"
+			"imageForeground": "Images/ImageEncounters/skeleton.png"
 		}
 	]
 }

@@ -5,7 +5,7 @@
 		{
 			"stepType": 0,
 			"promptText": "Emerging from the forest's depths, an owlbear, a fearsome hybrid of owl and bear, looms with a menacing hoot and powerful clawed limbs.",
-			"backgroundImagePath": "images/ImageEncounters/owl_bear.png",
+			"backgroundImagePath": "Images/ImageEncounters/owl_bear.png",
 			"dialogueOptions":
 			[
 				{
@@ -21,8 +21,8 @@
 			[
 				{
 					"optionIndex": 1,
-					"experienceReward": 100,
-					"goldReward": 10,
+					"experienceReward": 35,
+					"goldReward": 450,
 					"itemRewards": []
 				}
 			]
@@ -31,13 +31,13 @@
 			"stepType": 1,
 			"enemyIndex": 0,
 			"nextStepIndex": -1,
-			"backgroundImagePath":"images/ImageEncounters/owl_bear.png",
+			"backgroundImagePath":"Images/ImageEncounters/owl_bear.png",
 			"rewards":
 			[
 				{
 					"optionIndex": 0,
-					"experienceReward": 20,
-					"goldReward": 100
+					"experienceReward": 35,
+					"goldReward": 450
 				}
 			]
 		}
@@ -48,9 +48,9 @@
 			"name": "Owl Bear",
 			"strength": 19,
 			"dexterity": 12,
-			"constitution": 18,
+			"constitution": 200,
 			"intelligence": 4,
-			"imageForeground": "images/ImageEncounters/owl_bear.png"
+			"imageForeground": "Images/ImageEncounters/owl_bear.png"
 		}
 	]
 }

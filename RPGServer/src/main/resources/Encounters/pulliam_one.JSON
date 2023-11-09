@@ -5,7 +5,7 @@
 		{
 			"stepType": 0,
 			"promptText": "Emerging from the submerged castle's depths, a trident-wielding monster surfaces, its scaly form menacing and poised for aquatic vengeance.",
-			"backgroundImagePath": "images/ImageEncounters/abomination.png",
+			"backgroundImagePath": "Images/ImageEncounters/abomination.png",
 			"dialogueOptions":
 			[
 				{
@@ -21,8 +21,8 @@
 			[
 				{
 					"optionIndex": 1,
-					"experienceReward": 100,
-					"goldReward": 10,
+					"experienceReward": 20,
+					"goldReward": 200,
 					"itemRewards": []
 				}
 			]
@@ -31,13 +31,13 @@
 			"stepType": 1,
 			"enemyIndex": 0,
 			"nextStepIndex": -1,
-			"backgroundImagePath":"images/ImageEncounters/abomination.png",
+			"backgroundImagePath":"Images/ImageEncounters/abomination.png",
 			"rewards":
 			[
 				{
 					"optionIndex": 0,
 					"experienceReward": 20,
-					"goldReward": 100
+					"goldReward": 200
 				}
 			]
 		}
@@ -48,9 +48,9 @@
 			"name": "Abomination",
 			"strength": 11,
 			"dexterity": 16,
-			"constitution": 11,
+			"constitution": 50,
 			"intelligence": 3,
-			"imageForeground": "images/ImageEncounters/abomination.png"
+			"imageForeground": "Images/ImageEncounters/abomination.png"
 		}
 	]
 }

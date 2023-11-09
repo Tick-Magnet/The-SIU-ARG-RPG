@@ -5,7 +5,7 @@
 		{
 			"stepType": 0,
 			"promptText": "Beneath the creaking bridge, a hulking and foul-tempered troll waits, its grotesque form casting a foreboding shadow over the gritty dirt.",
-			"backgroundImagePath": "images/ImageEncounters/troll.png",
+			"backgroundImagePath": "Images/ImageEncounters/troll.png",
 			"dialogueOptions":
 			[
 				{
@@ -21,8 +21,8 @@
 			[
 				{
 					"optionIndex": 1,
-					"experienceReward": 100,
-					"goldReward": 10,
+					"experienceReward": 35,
+					"goldReward": 450,
 					"itemRewards": []
 				}
 			]
@@ -31,13 +31,13 @@
 			"stepType": 1,
 			"enemyIndex": 0,
 			"nextStepIndex": -1,
-			"backgroundImagePath":"images/ImageEncounters/troll.png",
+			"backgroundImagePath":"Images/ImageEncounters/troll.png",
 			"rewards":
 			[
 				{
 					"optionIndex": 0,
-					"experienceReward": 20,
-					"goldReward": 100
+					"experienceReward": 35,
+					"goldReward": 450
 				}
 			]
 		}
@@ -48,9 +48,9 @@
 			"name": "Troll",
 			"strength": 21,
 			"dexterity": 14,
-			"constitution": 23,
+			"constitution": 225,
 			"intelligence": 7,
-			"imageForeground": "images/ImageEncounters/troll.png"
+			"imageForeground": "Images/ImageEncounters/troll.png"
 		}
 	]
 }

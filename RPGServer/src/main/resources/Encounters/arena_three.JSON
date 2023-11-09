@@ -5,7 +5,7 @@
 		{
 			"stepType": 0,
 			"promptText": "Awakening on the serene grassy plain, the colossal giant stirs, its eyes slowly opening, and a rumble of impending fury shakes the earth.",
-			"backgroundImagePath": "images/ImageEncounters/giant.png",
+			"backgroundImagePath": "Images/ImageEncounters/giant.png",
 			"dialogueOptions":
 			[
 				{
@@ -21,8 +21,8 @@
 			[
 				{
 					"optionIndex": 1,
-					"experienceReward": 100,
-					"goldReward": 10,
+					"experienceReward": 40,
+					"goldReward": 750,
 					"itemRewards": []
 				}
 			]
@@ -31,13 +31,13 @@
 			"stepType": 1,
 			"enemyIndex": 0,
 			"nextStepIndex": -1,
-			"backgroundImagePath":"images/ImageEncounters/giant.png",
+			"backgroundImagePath":"Images/ImageEncounters/giant.png",
 			"rewards":
 			[
 				{
 					"optionIndex": 0,
-					"experienceReward": 20,
-					"goldReward": 100
+					"experienceReward": 40,
+					"goldReward": 750
 				}
 			]
 		}
@@ -48,9 +48,9 @@
 			"name": "Giant",
 			"strength": 25,
 			"dexterity": 8,
-			"constitution": 19,
+			"constitution": 500,
 			"intelligence": 6,
-			"imageForeground": "images/ImageEncounters/giant.png"
+			"imageForeground": "Images/ImageEncounters/giant.png"
 		}
 	]
 }

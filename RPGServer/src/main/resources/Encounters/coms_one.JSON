@@ -5,7 +5,7 @@
 		{
 			"stepType": 0,
 			"promptText": "Emerging from the shadows, a mischievous goblin with gleaming, cunning eyes scampers forward, ready for mischief.",
-			"backgroundImagePath": "images/ImageEncounters/goblin.png",
+			"backgroundImagePath": "Images/ImageEncounters/goblin.png",
 			"dialogueOptions":
 			[
 				{
@@ -21,8 +21,8 @@
 			[
 				{
 					"optionIndex": 1,
-					"experienceReward": 100,
-					"goldReward": 10,
+					"experienceReward": 10,
+					"goldReward": 100,
 					"itemRewards": []
 				}
 			]
@@ -31,12 +31,12 @@
 			"stepType": 1,
 			"enemyIndex": 0,
 			"nextStepIndex": -1,
-			"backgroundImagePath":"images/ImageEncounters/goblin.png",
+			"backgroundImagePath":"Images/ImageEncounters/goblin.png",
 			"rewards":
 			[
 				{
 					"optionIndex": 0,
-					"experienceReward": 20,
+					"experienceReward": 10,
 					"goldReward": 100
 				}
 			]
@@ -48,9 +48,9 @@
 			"name": "Goblin",
 			"strength": 11,
 			"dexterity": 15,
-			"constitution": 12,
+			"constitution": 10,
 			"intelligence": 9,
-			"imageForeground": "images/ImageEncounters/goblin.png"
+			"imageForeground": "Images/ImageEncounters/goblin.png"
 		}
 	]
 }

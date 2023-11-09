@@ -5,7 +5,7 @@
 		{
 			"stepType": 0,
 			"promptText": "Amidst the moonlit cemetery, a spectral figure materializes between three weathered gravestones, its ethereal form an eerie testament to restless souls.",
-			"backgroundImagePath": "images/ImageEncounters/ghost.png",
+			"backgroundImagePath": "Images/ImageEncounters/ghost.png",
 			"dialogueOptions":
 			[
 				{
@@ -21,8 +21,8 @@
 			[
 				{
 					"optionIndex": 1,
-					"experienceReward": 100,
-					"goldReward": 10,
+					"experienceReward": 20,
+					"goldReward": 150,
 					"itemRewards": []
 				}
 			]
@@ -31,13 +31,13 @@
 			"stepType": 1,
 			"enemyIndex": 0,
 			"nextStepIndex": -1,
-			"backgroundImagePath":"images/ImageEncounters/ghost.png",
+			"backgroundImagePath":"Images/ImageEncounters/ghost.png",
 			"rewards":
 			[
 				{
 					"optionIndex": 0,
 					"experienceReward": 20,
-					"goldReward": 100
+					"goldReward": 150
 				}
 			]
 		}
@@ -48,9 +48,9 @@
 			"name": "Ghost",
 			"strength": 10,
 			"dexterity": 12,
-			"constitution": 10,
+			"constitution": 50,
 			"intelligence": 10,
-			"imageForeground": "images/ImageEncounters/ghost.png"
+			"imageForeground": "Images/ImageEncounters/ghost.png"
 		}
 	]
 }

@@ -5,7 +5,7 @@
 		{
 			"stepType": 0,
 			"promptText": "Standing resolute on the desolate beachfront, the enigmatic black knight exudes an aura of foreboding darkness.",
-			"backgroundImagePath": "images/ImageEncounters/black_knight.png",
+			"backgroundImagePath": "Images/ImageEncounters/black_knight.png",
 			"dialogueOptions":
 			[
 				{
@@ -21,8 +21,8 @@
 			[
 				{
 					"optionIndex": 1,
-					"experienceReward": 100,
-					"goldReward": 10,
+					"experienceReward": 25,
+					"goldReward": 250,
 					"itemRewards": []
 				}
 			]
@@ -31,13 +31,13 @@
 			"stepType": 1,
 			"enemyIndex": 0,
 			"nextStepIndex": -1,
-			"backgroundImagePath":"images/ImageEncounters/black_knight.png",
+			"backgroundImagePath":"Images/ImageEncounters/black_knight.png",
 			"rewards":
 			[
 				{
 					"optionIndex": 0,
-					"experienceReward": 20,
-					"goldReward": 100
+					"experienceReward": 25,
+					"goldReward": 250
 				}
 			]
 		}
@@ -48,9 +48,9 @@
 			"name": "Black Knight",
 			"strength": 17,
 			"dexterity": 9,
-			"constitution": 16,
+			"constitution": 90,
 			"intelligence": 12,
-			"imageForeground": "images/ImageEncounters/black_knight.png"
+			"imageForeground": "Images/ImageEncounters/black_knight.png"
 		}
 	]
 }

@@ -5,7 +5,7 @@
 		{
 			"stepType": 0,
 			"promptText": "Within the searing heat of his forge, a one-armed duergar crafts masterful weapons, his determination defying his physical limitations.",
-			"backgroundImagePath": "images/ImageEncounters/duergar.png",
+			"backgroundImagePath": "Images/ImageEncounters/duergar.png",
 			"dialogueOptions":
 			[
 				{
@@ -21,8 +21,8 @@
 			[
 				{
 					"optionIndex": 1,
-					"experienceReward": 100,
-					"goldReward": 10,
+					"experienceReward": 20,
+					"goldReward": 200,
 					"itemRewards": []
 				}
 			]
@@ -31,13 +31,13 @@
 			"stepType": 1,
 			"enemyIndex": 0,
 			"nextStepIndex": -1,
-			"backgroundImagePath":"images/ImageEncounters/duergar.png",
+			"backgroundImagePath":"Images/ImageEncounters/duergar.png",
 			"rewards":
 			[
 				{
 					"optionIndex": 0,
 					"experienceReward": 20,
-					"goldReward": 100
+					"goldReward": 200
 				}
 			]
 		}
@@ -48,9 +48,9 @@
 			"name": "Duergar",
 			"strength": 12,
 			"dexterity": 9,
-			"constitution": 15,
+			"constitution": 60,
 			"intelligence": 11,
-			"imageForeground": "images/ImageEncounters/duergar.png"
+			"imageForeground": "Images/ImageEncounters/duergar.png"
 		}
 	]
 }

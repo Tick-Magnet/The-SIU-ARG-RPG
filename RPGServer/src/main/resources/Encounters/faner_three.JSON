@@ -1,11 +1,11 @@
 {
-	"encounterName": "Kobolt Encounter",
+	"encounterName": "Kobold Encounter",
 	"encounterSteps":
 	[
 		{
 			"stepType": 0,
 			"promptText": "From the shadows, a mischievous kobold emerges, its sharp teeth and gleaming eyes hinting at cunning and mischief.",
-			"backgroundImagePath": "images/ImageEncounters/kobold.png",
+			"backgroundImagePath": "Images/ImageEncounters/kobold.png",
 			"dialogueOptions":
 			[
 				{
@@ -21,8 +21,8 @@
 			[
 				{
 					"optionIndex": 1,
-					"experienceReward": 100,
-					"goldReward": 10,
+					"experienceReward": 10,
+					"goldReward": 100,
 					"itemRewards": []
 				}
 			]
@@ -31,12 +31,12 @@
 			"stepType": 1,
 			"enemyIndex": 0,
 			"nextStepIndex": -1,
-			"backgroundImagePath":"images/ImageEncounters/kobold.png",
+			"backgroundImagePath":"Images/ImageEncounters/kobold.png",
 			"rewards":
 			[
 				{
 					"optionIndex": 0,
-					"experienceReward": 20,
+					"experienceReward": 10,
 					"goldReward": 100
 				}
 			]
@@ -45,12 +45,12 @@
 	"encounterEntities":
 	[
 		{
-			"name": "Kobolt",
+			"name": "Kobold",
 			"strength": 7,
 			"dexterity": 15,
-			"constitution": 9,
+			"constitution": 10,
 			"intelligence": 8,
-			"imageForeground": "images/ImageEncounters/kobold.png"
+			"imageForeground": "Images/ImageEncounters/kobold.png"
 		}
 	]
 }

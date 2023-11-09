@@ -5,7 +5,7 @@
 		{
 			"stepType": 0,
 			"promptText": "In the dimly lit chamber, a hulking abomination of stitched flesh and reanimated horrors shambles toward you, its lifeless eyes fixated on your impending doom.",
-			"backgroundImagePath": "images/ImageEncounters/flesh_golem.png",
+			"backgroundImagePath": "Images/ImageEncounters/flesh_golem.png",
 			"dialogueOptions":
 			[
 				{
@@ -21,8 +21,8 @@
 			[
 				{
 					"optionIndex": 1,
-					"experienceReward": 100,
-					"goldReward": 10,
+					"experienceReward": 35,
+					"goldReward": 450,
 					"itemRewards": []
 				}
 			]
@@ -31,13 +31,13 @@
 			"stepType": 1,
 			"enemyIndex": 0,
 			"nextStepIndex": -1,
-			"backgroundImagePath":"images/ImageEncounters/flesh_golem.png",
+			"backgroundImagePath":"Images/ImageEncounters/flesh_golem.png",
 			"rewards":
 			[
 				{
 					"optionIndex": 0,
-					"experienceReward": 20,
-					"goldReward": 100
+					"experienceReward": 35,
+					"goldReward": 450
 				}
 			]
 		}
@@ -48,9 +48,9 @@
 			"name": "Flesh Golem",
 			"strength": 19,
 			"dexterity": 9,
-			"constitution": 18,
+			"constitution": 200,
 			"intelligence": 6,
-			"imageForeground": "images/ImageEncounters/flesh_golem.png"
+			"imageForeground": "Images/ImageEncounters/flesh_golem.png"
 		}
 	]
 }

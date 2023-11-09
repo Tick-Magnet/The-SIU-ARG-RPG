@@ -5,7 +5,7 @@
 		{
 			"stepType": 0,
 			"promptText": "Emerging from his ramshackle hut, a crazed alchemist's disheveled appearance and wild eyes hint at a mind teetering on the brink of madness.",
-			"backgroundImagePath": "images/ImageEncounters/alchemist.png",
+			"backgroundImagePath": "Images/ImageEncounters/alchemist.png",
 			"dialogueOptions":
 			[
 				{
@@ -21,8 +21,8 @@
 			[
 				{
 					"optionIndex": 1,
-					"experienceReward": 100,
-					"goldReward": 10,
+					"experienceReward": 20,
+					"goldReward": 150,
 					"itemRewards": []
 				}
 			]
@@ -31,13 +31,13 @@
 			"stepType": 1,
 			"enemyIndex": 0,
 			"nextStepIndex": -1,
-			"backgroundImagePath":"images/ImageEncounters/alchemist.png",
+			"backgroundImagePath":"Images/ImageEncounters/alchemist.png",
 			"rewards":
 			[
 				{
 					"optionIndex": 0,
 					"experienceReward": 20,
-					"goldReward": 100
+					"goldReward": 150
 				}
 			]
 		}
@@ -48,9 +48,9 @@
 			"name": "Alchemist",
 			"strength": 9,
 			"dexterity": 12,
-			"constitution": 15,
+			"constitution": 40,
 			"intelligence": 16,
-			"imageForeground": "images/ImageEncounters/alchemist.png"
+			"imageForeground": "Images/ImageEncounters/alchemist.png"
 		}
 	]
 }

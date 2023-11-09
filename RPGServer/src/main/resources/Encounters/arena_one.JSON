@@ -5,7 +5,7 @@
 		{
 			"stepType": 0,
 			"promptText": "Amidst the twisting hedges of the labyrinth, a towering, horned minotaur emerges, its muscular frame poised to charge.",
-			"backgroundImagePath": "images/ImageEncounters/minotaur.png",
+			"backgroundImagePath": "Images/ImageEncounters/minotaur.png",
 			"dialogueOptions":
 			[
 				{
@@ -21,8 +21,8 @@
 			[
 				{
 					"optionIndex": 1,
-					"experienceReward": 100,
-					"goldReward": 10,
+					"experienceReward": 40,
+					"goldReward": 500,
 					"itemRewards": []
 				}
 			]
@@ -31,13 +31,13 @@
 			"stepType": 1,
 			"enemyIndex": 0,
 			"nextStepIndex": -1,
-			"backgroundImagePath":"images/ImageEncounters/minotaur.png",
+			"backgroundImagePath":"Images/ImageEncounters/minotaur.png",
 			"rewards":
 			[
 				{
 					"optionIndex": 0,
-					"experienceReward": 20,
-					"goldReward": 100
+					"experienceReward": 40,
+					"goldReward": 500
 				}
 			]
 		}
@@ -48,9 +48,9 @@
 			"name": "Minotaur",
 			"strength": 19,
 			"dexterity": 10,
-			"constitution": 15,
+			"constitution": 250,
 			"intelligence": 7,
-			"imageForeground": "images/ImageEncounters/minotaur.png"
+			"imageForeground": "Images/ImageEncounters/minotaur.png"
 		}
 	]
 }

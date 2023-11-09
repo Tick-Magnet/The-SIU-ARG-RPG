@@ -5,7 +5,7 @@
 		{
 			"stepType": 0,
 			"promptText": "Lurking between the bookshelves, a cunning mimic disguises itself as an innocuous chest, ready to ensnare unsuspecting intruders.",
-			"backgroundImagePath": "images/ImageEncounters/mimic_two.png",
+			"backgroundImagePath": "Images/ImageEncounters/mimic_two.png",
 			"dialogueOptions":
 			[
 				{
@@ -21,8 +21,8 @@
 			[
 				{
 					"optionIndex": 1,
-					"experienceReward": 100,
-					"goldReward": 10,
+					"experienceReward": 30,
+					"goldReward": 300,
 					"itemRewards": []
 				}
 			]
@@ -31,13 +31,13 @@
 			"stepType": 1,
 			"enemyIndex": 0,
 			"nextStepIndex": -1,
-			"backgroundImagePath":"images/ImageEncounters/mimic_two.png",
+			"backgroundImagePath":"Images/ImageEncounters/mimic_two.png",
 			"rewards":
 			[
 				{
 					"optionIndex": 0,
-					"experienceReward": 20,
-					"goldReward": 100
+					"experienceReward": 30,
+					"goldReward": 300
 				}
 			]
 		}
@@ -48,9 +48,9 @@
 			"name": "Mimic",
 			"strength": 19,
 			"dexterity": 12,
-			"constitution": 17, 
+			"constitution": 100, 
 			"intelligence": 10,
-			"imageForeground": "images/ImageEncounters/mimic_two.png"
+			"imageForeground": "Images/ImageEncounters/mimic_two.png"
 		}
 	]
 }

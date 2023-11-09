@@ -5,7 +5,7 @@
 		{
 			"stepType": 0,
 			"promptText": "Slithering silently through the dense forest undergrowth, a massive green serpent with venomous intent pokes from the shadows.",
-			"backgroundImagePath": "images/ImageEncounters/snake.png",
+			"backgroundImagePath": "Images/ImageEncounters/snake.png",
 			"dialogueOptions":
 			[
 				{
@@ -21,8 +21,8 @@
 			[
 				{
 					"optionIndex": 1,
-					"experienceReward": 100,
-					"goldReward": 10,
+					"experienceReward": 20,
+					"goldReward": 125,
 					"itemRewards": []
 				}
 			]
@@ -31,13 +31,13 @@
 			"stepType": 1,
 			"enemyIndex": 0,
 			"nextStepIndex": -1,
-			"backgroundImagePath":"images/ImageEncounters/snake.png",
+			"backgroundImagePath":"Images/ImageEncounters/snake.png",
 			"rewards":
 			[
 				{
 					"optionIndex": 0,
 					"experienceReward": 20,
-					"goldReward": 100
+					"goldReward": 125
 				}
 			]
 		}
@@ -48,9 +48,9 @@
 			"name": "Snake",
 			"strength": 17,
 			"dexterity": 17,
-			"constitution": 12,
+			"constitution": 35,
 			"intelligence": 3,
-			"imageForeground": "images/ImageEncounters/snake.png"
+			"imageForeground": "Images/ImageEncounters/snake.png"
 		}
 	]
 }

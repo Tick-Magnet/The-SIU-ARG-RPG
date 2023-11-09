@@ -5,7 +5,7 @@
 		{
 			"stepType": 0,
 			"promptText": "A massive creature of living stone and earth rises from the ground, its form shifting and solidifying as it prepares to protect its elemental domain.",
-			"backgroundImagePath": "images/ImageEncounters/earth_elemental.png",
+			"backgroundImagePath": "Images/ImageEncounters/earth_elemental.png",
 			"dialogueOptions":
 			[
 				{
@@ -21,8 +21,8 @@
 			[
 				{
 					"optionIndex": 1,
-					"experienceReward": 100,
-					"goldReward": 10,
+					"experienceReward": 45,
+					"goldReward": 850,
 					"itemRewards": []
 				}
 			]
@@ -31,13 +31,13 @@
 			"stepType": 1,
 			"enemyIndex": 0,
 			"nextStepIndex": -1,
-			"backgroundImagePath":"images/ImageEncounters/earth_elemental.png",
+			"backgroundImagePath":"Images/ImageEncounters/earth_elemental.png",
 			"rewards":
 			[
 				{
 					"optionIndex": 0,
-					"experienceReward": 20,
-					"goldReward": 100
+					"experienceReward": 45,
+					"goldReward": 850
 				}
 			]
 		}
@@ -48,9 +48,9 @@
 			"name": "Earth Elemental",
 			"strength": 20,
 			"dexterity": 8,
-			"constitution": 17,
+			"constitution": 750,
 			"intelligence": 4,
-			"imageForeground": "images/ImageEncounters/earth_elemental.png"
+			"imageForeground": "Images/ImageEncounters/earth_elemental.png"
 		}
 	]
 }

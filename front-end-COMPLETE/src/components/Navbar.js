@@ -167,7 +167,7 @@ function Navbar() {
               <h1><center>Log In</center></h1>
               <form className="login-form" onSubmit={handleLoginSubmit}>
                 <label htmlFor="email">Username: </label>
-                <input value={email} onChange={(e) => setEmail(e.target.value)} type="text" placeholder="johndoe" id="email" name="email" />
+                <input value={email} onChange={(e) => setEmail(e.target.value)} type="text" placeholder="Xx_NoobSlayer435_xX" id="email" name="email" />
                 <label htmlFor="password">Password: </label>
                 <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="********" id="password" name="password" />
                 <div className='logIn-btn'>

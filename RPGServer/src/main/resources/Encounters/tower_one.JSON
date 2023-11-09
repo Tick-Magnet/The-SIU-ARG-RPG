@@ -5,7 +5,7 @@
 		{
 			"stepType": 0,
 			"promptText": "From the ashen clouds, a formidable gray dragon descends, its ancient scales exuding an aura of wisdom and power.",
-			"backgroundImagePath": "images/ImageEncounters/gray_dragon.png",
+			"backgroundImagePath": "Images/ImageEncounters/gray_dragon.png",
 			"dialogueOptions":
 			[
 				{
@@ -21,8 +21,8 @@
 			[
 				{
 					"optionIndex": 1,
-					"experienceReward": 100,
-					"goldReward": 10,
+					"experienceReward": 50,
+					"goldReward": 950,
 					"itemRewards": []
 				}
 			]
@@ -31,13 +31,13 @@
 			"stepType": 1,
 			"enemyIndex": 0,
 			"nextStepIndex": -1,
-			"backgroundImagePath":"images/ImageEncounters/gray_dragon.png",
+			"backgroundImagePath":"Images/ImageEncounters/gray_dragon.png",
 			"rewards":
 			[
 				{
 					"optionIndex": 0,
-					"experienceReward": 20,
-					"goldReward": 100
+					"experienceReward": 50,
+					"goldReward": 950
 				}
 			]
 		}
@@ -48,9 +48,9 @@
 			"name": "Gray Dragon",
 			"strength": 27,
 			"dexterity": 10,
-			"constitution": 21,
+			"constitution": 900,
 			"intelligence": 20,
-			"imageForeground": "images/ImageEncounters/gray_dragon.png"
+			"imageForeground": "Images/ImageEncounters/gray_dragon.png"
 		}
 	]
 }

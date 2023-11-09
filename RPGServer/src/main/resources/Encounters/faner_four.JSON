@@ -5,7 +5,7 @@
 		{
 			"stepType": 0,
 			"promptText": "Amidst the desolation of the abandoned castle, a ghoul's malevolent hunger awakens, its wretched presence lurking in the darkest corners.",
-			"backgroundImagePath": "images/ImageEncounters/ghoul.png",
+			"backgroundImagePath": "Images/ImageEncounters/ghoul.png",
 			"dialogueOptions":
 			[
 				{
@@ -21,8 +21,8 @@
 			[
 				{
 					"optionIndex": 1,
-					"experienceReward": 100,
-					"goldReward": 10,
+					"experienceReward": 20,
+					"goldReward": 150,
 					"itemRewards": []
 				}
 			]
@@ -31,13 +31,13 @@
 			"stepType": 1,
 			"enemyIndex": 0,
 			"nextStepIndex": -1,
-			"backgroundImagePath":"images/ImageEncounters/ghoul.png",
+			"backgroundImagePath":"Images/ImageEncounters/ghoul.png",
 			"rewards":
 			[
 				{
 					"optionIndex": 0,
 					"experienceReward": 20,
-					"goldReward": 100
+					"goldReward": 150
 				}
 			]
 		}
@@ -48,9 +48,9 @@
 			"name": "Ghoul",
 			"strength": 13,
 			"dexterity": 15,
-			"constitution": 10,
+			"constitution": 55,
 			"intelligence": 7,
-			"imageForeground": "images/ImageEncounters/ghoul.png"
+			"imageForeground": "Images/ImageEncounters/ghoul.png"
 		}
 	]
 }
