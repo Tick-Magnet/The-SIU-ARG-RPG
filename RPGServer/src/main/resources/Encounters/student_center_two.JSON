@@ -1,0 +1,56 @@
+{
+	"encounterName": "Bar Encounter",
+	"encounterSteps":
+	[
+		{
+			"stepType": 0,
+			"promptText": "Amidst the raucous tavern, a stumbling drunkard slurs his words and swings a wild fist, igniting a chaotic bar brawl with one reckless shout.",
+			"backgroundImagePath": "images/ImageEncounters/drunkard.png",
+			"dialogueOptions":
+			[
+				{
+					"optionText": "Attack!",
+					"nextStepIndex": 1
+				},
+				{
+					"optionText": "Run Away",
+					"nextStepIndex": 1
+				}
+			],
+			"rewards":
+			[
+				{
+					"optionIndex": 1,
+					"experienceReward": 100,
+					"goldReward": 10,
+					"itemRewards": []
+				}
+			]
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0,
+			"nextStepIndex": -1,
+			"backgroundImagePath":"images/ImageEncounters/drunkard.png",
+			"rewards":
+			[
+				{
+					"optionIndex": 0,
+					"experienceReward": 20,
+					"goldReward": 100
+				}
+			]
+		}
+	],
+	"encounterEntities":
+	[
+		{
+			"name": "Drunkard",
+			"strength": 13,
+			"dexterity": 9,
+			"constitution": 15,
+			"intelligence": 7,
+			"imageForeground": "images/ImageEncounters/drunkard.png"
+		}
+	]
+}

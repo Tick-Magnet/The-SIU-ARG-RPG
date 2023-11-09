@@ -1,0 +1,56 @@
+{
+	"encounterName": "Beholder Encounter",
+	"encounterSteps":
+	[
+		{
+			"stepType": 0,
+			"promptText": "Within the grand dungeon hall, a beholder hovers ominously, its many eyes fixated on intruders with a kaleidoscope of deadly intent.",
+			"backgroundImagePath": "images/ImageEncounters/beholder.png",
+			"dialogueOptions":
+			[
+				{
+					"optionText": "Attack!",
+					"nextStepIndex": 1
+				},
+				{
+					"optionText": "Run Away",
+					"nextStepIndex": 1
+				}
+			],
+			"rewards":
+			[
+				{
+					"optionIndex": 1,
+					"experienceReward": 100,
+					"goldReward": 10,
+					"itemRewards": []
+				}
+			]
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0,
+			"nextStepIndex": -1,
+			"backgroundImagePath":"images/ImageEncounters/beholder.png",
+			"rewards":
+			[
+				{
+					"optionIndex": 0,
+					"experienceReward": 20,
+					"goldReward": 100
+				}
+			]
+		}
+	],
+	"encounterEntities":
+	[
+		{
+			"name": "Beholder",
+			"strength": 10,
+			"dexterity": 14,
+			"constitution": 18,
+			"intelligence": 17,
+			"imageForeground": "images/ImageEncounters/beholder.png"
+		}
+	]
+}

@@ -1,0 +1,56 @@
+{
+	"encounterName": "Kobolt Encounter",
+	"encounterSteps":
+	[
+		{
+			"stepType": 0,
+			"promptText": "From the shadows, a mischievous kobold emerges, its sharp teeth and gleaming eyes hinting at cunning and mischief.",
+			"backgroundImagePath": "images/ImageEncounters/kobold.png",
+			"dialogueOptions":
+			[
+				{
+					"optionText": "Attack!",
+					"nextStepIndex": 1
+				},
+				{
+					"optionText": "Run Away",
+					"nextStepIndex": 1
+				}
+			],
+			"rewards":
+			[
+				{
+					"optionIndex": 1,
+					"experienceReward": 100,
+					"goldReward": 10,
+					"itemRewards": []
+				}
+			]
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0,
+			"nextStepIndex": -1,
+			"backgroundImagePath":"images/ImageEncounters/kobold.png",
+			"rewards":
+			[
+				{
+					"optionIndex": 0,
+					"experienceReward": 20,
+					"goldReward": 100
+				}
+			]
+		}
+	],
+	"encounterEntities":
+	[
+		{
+			"name": "Kobolt",
+			"strength": 7,
+			"dexterity": 15,
+			"constitution": 9,
+			"intelligence": 8,
+			"imageForeground": "images/ImageEncounters/kobold.png"
+		}
+	]
+}
