@@ -61,7 +61,8 @@ public class LoginController
 		String username = (String)payload.get("username");
 		String password = (String)payload.get("password");
 		UserAccount tempAccount = userAccountRepository.findByUsername(username);
-		password = password + tempAccount.getPasswordSalt();
+		if(tempAccount != null)
+			password = password + tempAccount.getPasswordSalt();
 
 		SessionToken token = null;
 		SecureRandom tokenGen = new SecureRandom();
@@ -94,7 +95,7 @@ public class LoginController
 			tempAccount.setTokenExpiration(token.getExpirationDate());
 			userAccountRepository.save(tempAccount);
 		}
-		else if(tempAccount.isBanned())
+		else if(tempAccount!= null && tempAccount.isBanned())
 		{
 			output.put("valid", false);
 			String message = "Your account has been suspended for the following reason:\n" + tempAccount.banReason +

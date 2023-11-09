@@ -64,6 +64,7 @@ class APICallContainer
             output.sessionToken = currentToken;
             output.userRole = postResult.userRole;
             output.characterCreated = postResult.characterCreated;
+            console.log(postResult.characterCreated);
         }
         }
 
@@ -280,18 +281,14 @@ async login(inputUsername, inputPassword)
          {
          		//this.checkToken(inputUsername);
          		var url = "";
-         		url = url.concat(apiURL, "/getInventory");
-         		axios.post(url,
+         		url = url.concat(apiURL, "/sellItem");
+         		var result = axios.post(url,
          		{
          			username: inputUsername,
          			token: inputToken,
          			index: inputIndex
          		})
-         		.then(function (response)
-         		{
-         			console.log(response.data);
-         			return response.data;
-         		});
+                return result.data;
          }
 }
 

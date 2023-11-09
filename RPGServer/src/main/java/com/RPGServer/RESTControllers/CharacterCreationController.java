@@ -54,8 +54,8 @@ public class CharacterCreationController
                 System.out.println("Part 2");
                 try
                 {
-                    characterClass = CharacterType.CharacterClass.valueOf((String) payload.get("characterClass"));
-                    characterRace = CharacterType.CharacterRace.valueOf((String) payload.get("characterRace"));
+                    characterClass = CharacterType.CharacterClass.valueOf(((String) payload.get("characterClass")).toUpperCase());
+                    characterRace = CharacterType.CharacterRace.valueOf(((String) payload.get("characterRace")).toUpperCase());
                 } catch (IllegalArgumentException exception) {
 
                 }
