@@ -9,8 +9,8 @@
     background-image: url('/public/Images/stoneWall.png');
     background-size: cover; 
     margin: -40px;
-    margin-left: 0px;
-    margin-right: 0px;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .enemyImage{
@@ -50,17 +50,26 @@
     border-radius: 15px; 
     background-image: url('/public/Images/stoneButton.png'); 
     background-size: cover; 
-    
+    background-position-y: 10%;
   }
   
-
   .rpgNavbar a:hover {
     transform: scale(1.20); 
     transition: background-color 0.3s, transform 0.3s; 
     color: gold;
   }
 
-
+.musicButt {
+    width: 70vw;
+    height: 7vh;
+    background-image: url('/public/Images/stoneButton.png'); 
+    background-size: cover;  
+    color: whitesmoke;
+    background-color: black;
+    border-radius: 15px;
+    font-weight: bold;
+    font-family: 'Papyrus', sans-serif; 
+}
 
 .rpgBackgroundDiv { /* Delete Later */
 

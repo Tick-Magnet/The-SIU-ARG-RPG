@@ -138,22 +138,20 @@ function Navbar() {
             return(
                 <li className="navItem"><Link to="/Admin"> Admin Dashboard </Link> </li>
             );
-        }
-
+            }
     }
 
     return(
 
     <>
+
         <ul className="rpgNavbar">
             <li className="navItem"><Link to="/"> Home </Link> </li>
             <InventoryButton />
             <AdminDashboard />
             <li className="navItem" onClick = {() => setMapPopup(true)}><a> Map </a> </li>
-            <li className="navItem"><Link to="/Contact"> Contact Information </Link> </li>
 
             <LoginButton />
-
 
         </ul>
     <Popup trigger={mapPopup} setTrigger={setMapPopup}>
