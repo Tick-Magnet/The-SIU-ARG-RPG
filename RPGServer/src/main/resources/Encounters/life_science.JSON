@@ -1,0 +1,56 @@
+{
+	"encounterName": "Flesh Golem Encounter",
+	"encounterSteps":
+	[
+		{
+			"stepType": 0,
+			"promptText": "In the dimly lit chamber, a hulking abomination of stitched flesh and reanimated horrors shambles toward you, its lifeless eyes fixated on your impending doom.",
+			"backgroundImagePath": "images/ImageEncounters/flesh_golem.png",
+			"dialogueOptions":
+			[
+				{
+					"optionText": "Attack!",
+					"nextStepIndex": 1
+				},
+				{
+					"optionText": "Run Away",
+					"nextStepIndex": 1
+				}
+			],
+			"rewards":
+			[
+				{
+					"optionIndex": 1,
+					"experienceReward": 100,
+					"goldReward": 10,
+					"itemRewards": []
+				}
+			]
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0,
+			"nextStepIndex": -1,
+			"backgroundImagePath":"images/ImageEncounters/flesh_golem.png",
+			"rewards":
+			[
+				{
+					"optionIndex": 0,
+					"experienceReward": 20,
+					"goldReward": 100
+				}
+			]
+		}
+	],
+	"encounterEntities":
+	[
+		{
+			"name": "Flesh Golem",
+			"strength": 19,
+			"dexterity": 9,
+			"constitution": 18,
+			"intelligence": 6,
+			"imageForeground": "images/ImageEncounters/flesh_golem.png"
+		}
+	]
+}

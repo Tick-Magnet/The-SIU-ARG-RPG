@@ -1,0 +1,37 @@
+{
+	"encounterName": "Horseman Encounter",
+	"encounterSteps":
+	[
+		{
+			"stepType": 0,
+			"promptText": "Beneath the scorching sun, a mysterious hooded horseman stands alone on the weathered bridge, their presence an enigma in the blazing daylight.",
+			"dialogueOptions":
+			[
+				{
+					"optionText": "Attack",
+					"nextStepIndex": 1
+				},
+				{
+					"optionText": "Run",
+					"nextStepIndex": 1
+				}
+			] 
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0
+		}
+	],
+	"encounterEntities":
+	[
+		{
+			"name": "Horseman",
+			"strength": 18,
+			"dexterity": 10,
+			"constitution": 15,
+			"intelligence": 13,
+			"imageForeground": "horseman.png",
+			"imageBackground": "bridge_two.png"
+		}
+	] 
+}

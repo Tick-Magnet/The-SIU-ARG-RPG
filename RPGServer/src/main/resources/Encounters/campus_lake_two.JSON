@@ -1,0 +1,56 @@
+{
+	"encounterName": "Witch Encounter",
+	"encounterSteps":
+	[
+		{
+			"stepType": 0,
+			"promptText": "Emerging from her eerie hut in the heart of the forest, a mysterious witch shrouded in secrets steps into the dappled sunlight.",
+			"backgroundImagePath": "images/ImageEncounters/witch.png",
+			"dialogueOptions":
+			[
+				{
+					"optionText": "Attack!",
+					"nextStepIndex": 1
+				},
+				{
+					"optionText": "Run Away",
+					"nextStepIndex": 1
+				}
+			],
+			"rewards":
+			[
+				{
+					"optionIndex": 1,
+					"experienceReward": 100,
+					"goldReward": 10,
+					"itemRewards": []
+				}
+			]
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0,
+			"nextStepIndex": -1,
+			"backgroundImagePath":"images/ImageEncounters/witch.png",
+			"rewards":
+			[
+				{
+					"optionIndex": 0,
+					"experienceReward": 20,
+					"goldReward": 100
+				}
+			]
+		}
+	],
+	"encounterEntities":
+	[
+		{
+			"name": "Witch",
+			"strength": 8,
+			"dexterity": 18,
+			"constitution": 18,
+			"intelligence": 23,
+			"imageForeground": "images/ImageEncounters/witch.png"
+		}
+	]
+}

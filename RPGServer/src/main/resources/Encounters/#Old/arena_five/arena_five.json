@@ -1,0 +1,37 @@
+{
+	"encounterName": "Drider Encounter",
+	"encounterSteps":
+	[
+		{
+			"stepType": 0,
+			"promptText": "From the darkness, a twisted and grotesque drider crawls forth, its spider-like lower half propelling it with eerie grace.",
+			"dialogueOptions":
+			[
+				{
+					"optionText": "Attack",
+					"nextStepIndex": 1
+				},
+				{
+					"optionText": "Run",
+					"nextStepIndex": 1
+				}
+			] 
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0
+		}
+	],
+	"encounterEntities":
+	[
+		{
+			"name": "Drider",
+			"strength": 24,
+			"dexterity": 10,
+			"constitution": 10,
+			"intelligence": 6,
+			"imageForeground": "drider.png",
+			"imageBackground": "arena_cave.png"
+		}
+	] 
+}

@@ -1,0 +1,56 @@
+{
+	"encounterName": "Archer Encounter",
+	"encounterSteps":
+	[
+		{
+			"stepType": 0,
+			"promptText": "The noble half-elven archer steps into view, her bowstring humming with precision. With a sense of honor radiating from her poised demeanor, she knocks an arrow.",
+			"backgroundImagePath": "images/ImageEncounters/archer.png",
+			"dialogueOptions":
+			[
+				{
+					"optionText": "Attack!",
+					"nextStepIndex": 1
+				},
+				{
+					"optionText": "Run Away",
+					"nextStepIndex": 1
+				}
+			],
+			"rewards":
+			[
+				{
+					"optionIndex": 1,
+					"experienceReward": 100,
+					"goldReward": 10,
+					"itemRewards": []
+				}
+			]
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0,
+			"nextStepIndex": -1,
+			"backgroundImagePath":"images/ImageEncounters/archer.png",
+			"rewards":
+			[
+				{
+					"optionIndex": 0,
+					"experienceReward": 20,
+					"goldReward": 100
+				}
+			]
+		}
+	],
+	"encounterEntities":
+	[
+		{
+			"name": "Archer",
+			"strength": 11,
+			"dexterity": 18,
+			"constitution": 16,
+			"intelligence": 11,
+			"imageForeground": "images/ImageEncounters/archer.png"
+		}
+	]
+}

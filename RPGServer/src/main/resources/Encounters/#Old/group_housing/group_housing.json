@@ -1,0 +1,37 @@
+{
+	"encounterName": "Ghost Encounter Two",
+	"encounterSteps":
+	[
+		{
+			"stepType": 0,
+			"promptText": "In the shadow of his decrepit homestead, a resolute ghost materializes, guarding his crumbling abode with a spectral determination.",
+			"dialogueOptions":
+			[
+				{
+					"optionText": "Attack",
+					"nextStepIndex": 1
+				},
+				{
+					"optionText": "Run",
+					"nextStepIndex": 1
+				}
+			] 
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0
+		}
+	],
+	"encounterEntities":
+	[
+		{
+			"name": "Ghost",
+			"strength": 10,
+			"dexterity": 12,
+			"constitution": 10,
+			"intelligence": 10,
+			"imageForeground": "ghost_two.png",
+			"imageBackground": "group_housing.png"
+		}
+	] 
+}

@@ -13,8 +13,8 @@
 
 .popup-inner {
     position: relative;
-    padding: 32px;
-    width: 80%;
+    padding: 64px;
+    width: 92%;
     background-image: url('/public/Images/Paperback.jpg');
     background-size: cover;     
     border-radius: 15px; 

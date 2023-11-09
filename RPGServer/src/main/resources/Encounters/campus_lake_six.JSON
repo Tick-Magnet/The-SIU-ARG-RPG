@@ -1,0 +1,56 @@
+{
+	"encounterName": "Orc Encounter",
+	"encounterSteps":
+	[
+		{
+			"stepType": 0,
+			"promptText": "Toweringly fierce, an imposing orc sentinel stands guard over the bridge, a formidable obstacle in your path.",
+			"backgroundImagePath": "images/ImageEncounters/orc.png",
+			"dialogueOptions":
+			[
+				{
+					"optionText": "Attack!",
+					"nextStepIndex": 1
+				},
+				{
+					"optionText": "Run Away",
+					"nextStepIndex": 1
+				}
+			],
+			"rewards":
+			[
+				{
+					"optionIndex": 1,
+					"experienceReward": 100,
+					"goldReward": 10,
+					"itemRewards": []
+				}
+			]
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0,
+			"nextStepIndex": -1,
+			"backgroundImagePath":"images/ImageEncounters/orc.png",
+			"rewards":
+			[
+				{
+					"optionIndex": 0,
+					"experienceReward": 20,
+					"goldReward": 100
+				}
+			]
+		}
+	],
+	"encounterEntities":
+	[
+		{
+			"name": "Orc",
+			"strength": 16,
+			"dexterity": 12,
+			"constitution": 16,
+			"intelligence": 7,
+			"imageForeground": "images/ImageEncounters/orc.png"
+		}
+	]
+}

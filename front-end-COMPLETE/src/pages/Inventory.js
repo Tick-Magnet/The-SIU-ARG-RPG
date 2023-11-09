@@ -21,6 +21,7 @@ const loginInfo = useContext(LoginInfoContext);
         {
             return(
                 <>
+                <div className='inventory'>
                     <p>Level: {character.level}</p>
                     <p>Gold: {character.gold}</p>
                     <p>Health: {character.health}</p>
@@ -28,8 +29,8 @@ const loginInfo = useContext(LoginInfoContext);
                     <p>Strength: {character.strength} </p>
                     <p>Dexterity: {character.dexterity} </p>
                     <p>Constitution: {character.constitution}</p>
-                    <p>Intelligence: {character.intelligence}</p>
-
+                    <p>Intelligence: {character.intelligence}</p>  
+                </div>
                 </>
             );
         }
@@ -50,11 +51,12 @@ const loginInfo = useContext(LoginInfoContext);
                 {
                     return(
                         <>
-                            <p>Description: {currentItem.item.itemDescription} </p>
-                            <p>Item Type: {currentItem.item.itemType}</p>
-                            <p>Item Grade: {currentItem.item.itemGrade}</p>
-                            <p>Gold Value: {currentItem.item.goldValue}</p>
-
+                            <div className='inventory'>
+                                <p>Description: {currentItem.item.itemDescription} </p>
+                                <p>Item Type: {currentItem.item.itemType}</p>
+                                <p>Item Grade: {currentItem.item.itemGrade}</p>
+                                <p>Gold Value: {currentItem.item.goldValue}</p>
+                            </div>
                         </>
                     );
                 }
@@ -76,8 +78,11 @@ const loginInfo = useContext(LoginInfoContext);
 
         return (
             <>
+            <div className='inventory'>
                 <p className="inventoryItem" onClick={() => setDisplayCurrentItem(!displayCurrentItem)}>{props.item}</p>
                 <ItemDetails />
+            </div>
+                
             </>
         );
     }
@@ -110,7 +115,7 @@ const loginInfo = useContext(LoginInfoContext);
         {
             return(
                 <>
-                    <p>Loading inventory </p>
+                    <div className='inventory'><p>Loading inventory </p></div>
                 </>
             );
         }
@@ -118,12 +123,15 @@ const loginInfo = useContext(LoginInfoContext);
         {
             return(
                 <>
-                    <h2>Character</h2>
-                        <CharacterInfo />
-                    <h2>Items</h2>
+                <div className='inventory'>
+                     <h2>- Player Stats -</h2>
+                     <div className='rpgTextSection'><CharacterInfo /></div>
+                        
+                    <h2>- Items -</h2>
                      <ul>
                      {currentInventory.inventory.map((option, index) => <InventoryItem item={option} index={index} />)}
                      </ul>
+                </div>
                 </>
             );
         }
@@ -131,7 +139,7 @@ const loginInfo = useContext(LoginInfoContext);
     else
     {
         return(
-            <p> Please login to view inventory </p>
+            <div className='inventory'><p> Please login to view inventory </p></div>
         );
     }
 }
