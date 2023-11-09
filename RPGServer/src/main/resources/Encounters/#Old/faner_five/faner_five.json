@@ -1,0 +1,37 @@
+{
+	"encounterName": "Rouge Encounter",
+	"encounterSteps":
+	[
+		{
+			"stepType": 0,
+			"promptText": "With feline grace and a glint of larceny in her eyes, the tabaxi rogue slinks into view, ready to navigate the world's shadows with deadly precision.",
+			"dialogueOptions":
+			[
+				{
+					"optionText": "Attack",
+					"nextStepIndex": 1
+				},
+				{
+					"optionText": "Run",
+					"nextStepIndex": 1
+				}
+			] 
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0
+		}
+	],
+	"encounterEntities":
+	[
+		{
+			"name": "Rouge",
+			"strength": 11,
+			"dexterity": 18,
+			"constitution": 13,
+			"intelligence": 15,
+			"imageForeground": "rouge.png",
+			"imageBackground": "faner_four.png"
+		}
+	] 
+}

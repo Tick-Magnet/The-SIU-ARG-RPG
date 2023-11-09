@@ -1,0 +1,56 @@
+{
+	"encounterName": "Medusa Encounter",
+	"encounterSteps":
+	[
+		{
+			"stepType": 0,
+			"promptText": "Stepping out from behind a petrified stone statue, a malevolent medusa reveals her serpentine hair and petrifying gaze, ready to ensnare unwary adventurers.",
+			"backgroundImagePath": "images/ImageEncounters/medusa.png",
+			"dialogueOptions":
+			[
+				{
+					"optionText": "Attack!",
+					"nextStepIndex": 1
+				},
+				{
+					"optionText": "Run Away",
+					"nextStepIndex": 1
+				}
+			],
+			"rewards":
+			[
+				{
+					"optionIndex": 1,
+					"experienceReward": 100,
+					"goldReward": 10,
+					"itemRewards": []
+				}
+			]
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0,
+			"nextStepIndex": -1,
+			"backgroundImagePath":"images/ImageEncounters/medusa.png",
+			"rewards":
+			[
+				{
+					"optionIndex": 0,
+					"experienceReward": 20,
+					"goldReward": 100
+				}
+			]
+		}
+	],
+	"encounterEntities":
+	[
+		{
+			"name": "Medusa",
+			"strength": 10,
+			"dexterity": 15,
+			"constitution": 18,
+			"intelligence": 12,
+			"imageForeground": "images/ImageEncounters/medusa.png"
+		}
+	]
+}

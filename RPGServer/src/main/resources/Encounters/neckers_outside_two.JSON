@@ -1,0 +1,56 @@
+{
+	"encounterName": "Manticore Encounter",
+	"encounterSteps":
+	[
+		{
+			"stepType": 0,
+			"promptText": "In a deep pit, a fierce and frustrated manticore with its leonine body and spiked tail, struggles against its confinement with a menacing glare.",
+			"backgroundImagePath": "images/ImageEncounters/manticore.png",
+			"dialogueOptions":
+			[
+				{
+					"optionText": "Attack!",
+					"nextStepIndex": 1
+				},
+				{
+					"optionText": "Run Away",
+					"nextStepIndex": 1
+				}
+			],
+			"rewards":
+			[
+				{
+					"optionIndex": 1,
+					"experienceReward": 100,
+					"goldReward": 10,
+					"itemRewards": []
+				}
+			]
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0,
+			"nextStepIndex": -1,
+			"backgroundImagePath":"images/ImageEncounters/manticore.png",
+			"rewards":
+			[
+				{
+					"optionIndex": 0,
+					"experienceReward": 20,
+					"goldReward": 100
+				}
+			]
+		}
+	],
+	"encounterEntities":
+	[
+		{
+			"name": "Manticore",
+			"strength": 21,
+			"dexterity": 10,
+			"constitution": 17,
+			"intelligence": 8,
+			"imageForeground": "images/ImageEncounters/manticore.png"
+		}
+	]
+}

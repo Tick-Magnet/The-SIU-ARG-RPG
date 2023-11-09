@@ -1,0 +1,56 @@
+{
+	"encounterName": "Drider Encounter",
+	"encounterSteps":
+	[
+		{
+			"stepType": 0,
+			"promptText": "From the darkness, a twisted and grotesque drider crawls forth, its spider-like lower half propelling it with eerie grace.",
+			"backgroundImagePath": "images/ImageEncounters/drider.png",
+			"dialogueOptions":
+			[
+				{
+					"optionText": "Attack!",
+					"nextStepIndex": 1
+				},
+				{
+					"optionText": "Run Away",
+					"nextStepIndex": 1
+				}
+			],
+			"rewards":
+			[
+				{
+					"optionIndex": 1,
+					"experienceReward": 100,
+					"goldReward": 10,
+					"itemRewards": []
+				}
+			]
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0,
+			"nextStepIndex": -1,
+			"backgroundImagePath":"images/ImageEncounters/drider.png",
+			"rewards":
+			[
+				{
+					"optionIndex": 0,
+					"experienceReward": 20,
+					"goldReward": 100
+				}
+			]
+		}
+	],
+	"encounterEntities":
+	[
+		{
+			"name": "Drider",
+			"strength": 24,
+			"dexterity": 10,
+			"constitution": 10,
+			"intelligence": 6,
+			"imageForeground": "images/ImageEncounters/drider.png"
+		}
+	]
+}

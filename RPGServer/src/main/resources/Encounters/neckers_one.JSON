@@ -1,0 +1,56 @@
+{
+	"encounterName": "Gelatinous Cube Encounter",
+	"encounterSteps":
+	[
+		{
+			"stepType": 0,
+			"promptText": "Bits of broken weapons, coins, and a human skeleton are visible inside this quivering cube of slime.",
+			"backgroundImagePath": "images/ImageEncounters/gelatinous_cube.png",
+			"dialogueOptions":
+			[
+				{
+					"optionText": "Attack!",
+					"nextStepIndex": 1
+				},
+				{
+					"optionText": "Run Away",
+					"nextStepIndex": 1
+				}
+			],
+			"rewards":
+			[
+				{
+					"optionIndex": 1,
+					"experienceReward": 100,
+					"goldReward": 10,
+					"itemRewards": []
+				}
+			]
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0,
+			"nextStepIndex": -1,
+			"backgroundImagePath":"images/ImageEncounters/gelatinous_cube.png",
+			"rewards":
+			[
+				{
+					"optionIndex": 0,
+					"experienceReward": 20,
+					"goldReward": 100
+				}
+			]
+		}
+	],
+	"encounterEntities":
+	[
+		{
+			"name": "Gelatinous Cube",
+			"strength": 10,
+			"dexterity": 1,
+			"constitution": 26,
+			"intelligence": 1,
+			"imageForeground": "images/ImageEncounters/gelatinous_cube.png"
+		}
+	]
+}

@@ -13,10 +13,6 @@
     margin-right: 0;
 }
 
-.enemyImage{
-    width: 25vw;
-    height: auto;
-}
 
 .rpgNavbar .navItem {
     float: left;
@@ -98,3 +94,85 @@
     background-color: white;
 }
 
+
+
+
+.inventory{
+    padding: 24px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-family: papyrus;
+    color: whitesmoke;
+}
+
+
+
+
+.main {
+    padding: 32px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-family: papyrus;
+    color: whitesmoke;
+  }
+  
+  #title {
+      text-decoration: bold;
+      text-decoration: underline;
+  }
+  
+  #rewards {
+      margin: 16px;
+      height: fit-content;
+      border: black solid 5px;
+      background-image: url('/public/Images/stoneTablet.png'); 
+      background-size: cover; 
+      background-repeat: no-repeat;
+      color: whitesmoke;
+      font-size: 7vw;
+  }
+  
+  #rewards ul li {
+      text-indent: -50px;
+  }
+  
+  #enemyStats {
+      display: flex;
+      justify-content: space-between;
+  }
+  
+  .enemyImage{
+      width: 70vw;
+      height: auto;
+  }
+  
+  .optionsList {
+      width: 100%;
+      height: 20vh;   
+      list-style-type: upper-roman;
+      border: 2px solid;
+      background-color: black;
+      border-radius: 15px; 
+      border-color: darkgray;
+        
+     
+  }
+  
+  .optionsList li{
+      width: 80%;
+      height: 20%;
+      font-size: 5vw;
+      text-decoration: bold;
+      margin-top: 1.5vh;
+      background-image: url('/public/Images/stoneButton.png'); 
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      padding: 10px; /* Adjust the padding to control the size of the button */
+      border: none;
+      color: white;
+      cursor: pointer;
+     
+  }
