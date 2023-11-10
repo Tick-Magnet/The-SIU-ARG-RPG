@@ -179,7 +179,7 @@ public class Encounter
 					int enemyIndex = tempNode.get("enemyIndex").asInt();
 					int nextStepIndex;
 					try {
-						nextStepIndex = tempNode.get("enemyIndex").asInt();
+						nextStepIndex = tempNode.get("nextStepIndex").asInt();
 					}
 					catch (Exception e)
 					{
