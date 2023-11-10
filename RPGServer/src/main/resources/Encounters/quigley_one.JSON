@@ -48,7 +48,7 @@
 			"name": "Vampire",
 			"strength": 16,
 			"dexterity": 18,
-			"constitution": 50,
+			"constitution": 150,
 			"intelligence": 15,
 			"imageForeground": "Images/ImageEncounters/vampire.png"
 		}

@@ -56,18 +56,22 @@ public class QRCodeRedeemController
 						ItemFactory itemFactory = new ItemFactory();
 						//Grant player account the item reward
 						//Create new item
-						try
-						{
-							Item tempItem = itemFactory.getItem(qrCode.itemDefinitionPath);
+						try {
+							if (qrCode.itemDefinitionPath != null)
+							{
+								Item tempItem = itemFactory.getItem(qrCode.itemDefinitionPath);
+								result.put("item", tempItem);
+								account.playerCharacter.addItem(tempItem);
+							}
 							result.put("type", 0);
-							result.put("item", tempItem);
+
 							result.put("message", "Item redeemed");
 							result.put("goldReward", qrCode.goldReward);
 							result.put("experienceReward", qrCode.experienceReward);
 							result.put("backgroundImagePath", qrCode.backgroundImagePath);
 							account.playerCharacter.applyExperience(qrCode.experienceReward);
 							account.playerCharacter.gold += qrCode.goldReward;
-							account.playerCharacter.addItem(tempItem);
+
 							userAccountRepository.save(account);
 						}
 						catch (IOException e)
