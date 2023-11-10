@@ -176,7 +176,16 @@ public class Encounter
 				break;
 				//Combat step
 				case 1:
-					encounterSteps[i] = new CombatStep(tempNode.get("enemyIndex").asInt(), tempNode.get("nextStepIndex").asInt());
+					int enemyIndex = tempNode.get("enemyIndex").asInt();
+					int nextStepIndex;
+					try {
+						nextStepIndex = tempNode.get("enemyIndex").asInt();
+					}
+					catch (Exception e)
+					{
+						nextStepIndex = -1;
+					}
+					encounterSteps[i] = new CombatStep(enemyIndex, nextStepIndex);
 					encounterSteps[i].parentEncounter = this;
 					try {
 						encounterSteps[i].backgroundImagePath = tempNode.get("backgroundImagePath").asText();

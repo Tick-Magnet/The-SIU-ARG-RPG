@@ -37,5 +37,7 @@ public class QRCodeEntity
 	public String encounterDefinitionPath;
 	public String itemDefinitionPath;
 
+	public String backgroundImagePath;
+
 
 }

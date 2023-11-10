@@ -2,6 +2,7 @@ package com.RPGServer;
 
 import com.RPGServer.EncounterSystem.Encounter;
 import com.RPGServer.ItemSystem.*;
+import com.RPGServer.Services.DiscordWebhookService;
 import org.apache.catalina.User;
 import org.springframework.shell.standard.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,8 @@ public class ShellCommands
 	
 	@Autowired
 	private UserAccountRepository userAccountRepository;
+	@Autowired
+	private DiscordWebhookService discordWebhookService;
 	
 	@ShellMethod(key = "test")
 	public String test(@ShellOption(defaultValue = "test") String input)
@@ -24,6 +27,13 @@ public class ShellCommands
 		return input;
 	}
 
+	@ShellMethod(key = "outputDiscord")
+	public String outputDiscord(String input)
+	{
+		discordWebhookService.outputDiscord(input);
+
+		return "output sent to discord";
+	}
 	@ShellMethod(key = "ban")
 	public String ban(String username, String banReason, int minutes)
 	{

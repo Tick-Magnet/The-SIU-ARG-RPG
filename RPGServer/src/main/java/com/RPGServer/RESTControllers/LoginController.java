@@ -2,6 +2,7 @@ package com.RPGServer.RESTControllers;
 
 
 import com.RPGServer.Security.RateLimitService;
+import com.RPGServer.Services.DiscordWebhookService;
 import com.RPGServer.SessionToken;
 import com.RPGServer.UserAccount;
 import com.RPGServer.UserAccountRepository;
@@ -43,6 +44,8 @@ public class LoginController
 
 	@Autowired
 	private RateLimitService rateLimitService;
+	@Autowired
+	private DiscordWebhookService discordWebhookService;
 	
 	@PostMapping("/login")
 	public Map<String,Object> login(@RequestBody Map<String, Object> payload, HttpServletRequest request) throws NoSuchAlgorithmException
@@ -58,7 +61,8 @@ public class LoginController
 		String username = (String)payload.get("username");
 		String password = (String)payload.get("password");
 		UserAccount tempAccount = userAccountRepository.findByUsername(username);
-		password = password + tempAccount.getPasswordSalt();
+		if(tempAccount != null)
+			password = password + tempAccount.getPasswordSalt();
 
 		SessionToken token = null;
 		SecureRandom tokenGen = new SecureRandom();
@@ -75,6 +79,7 @@ public class LoginController
 		{
 			System.out.println("Old token: " + tempAccount.getSessionToken());
 			System.out.println("Sucessful login for" + username);
+			//discordWebhookService.outputDiscord(username + " has logged in");
 			//Generate a 32 byte token for future API access for user
 			byte[] tokenArray = new byte[32];
 			tokenGen.nextBytes(tokenArray);
@@ -90,7 +95,7 @@ public class LoginController
 			tempAccount.setTokenExpiration(token.getExpirationDate());
 			userAccountRepository.save(tempAccount);
 		}
-		else if(tempAccount.isBanned())
+		else if(tempAccount!= null && tempAccount.isBanned())
 		{
 			output.put("valid", false);
 			String message = "Your account has been suspended for the following reason:\n" + tempAccount.banReason +

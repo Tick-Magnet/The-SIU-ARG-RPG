@@ -140,13 +140,30 @@ function Navbar() {
             );
             }
     }
-
+    function CharacterButton()
+    {
+        console.log(loginInfo.characterCreated);
+        console.log(loginInfo);
+        if(loginInfo.loggedIn == true && loginInfo.characterCreated != true)
+        {
+            return(
+                <>
+                    <li className="navItem"><Link to="/CreateCharacter"> Create Character </Link> </li>
+                </>
+            );
+        }
+        else
+        {
+            return null;
+        }
+    }
     return(
 
     <>
 
         <ul className="rpgNavbar">
             <li className="navItem"><Link to="/"> Home </Link> </li>
+            <CharacterButton />
             <InventoryButton />
             <AdminDashboard />
             <li className="navItem" onClick = {() => setMapPopup(true)}><a> Map </a> </li>

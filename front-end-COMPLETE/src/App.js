@@ -36,6 +36,7 @@ function App()
                 setSessionToken(value.sessionToken);
                 setIsLoggedIn(value.loggedIn);
                 setCharacterCreated(value.characterCreated);
+                console.log(value.characterCreated);
                 setUserRole(value.userRole);
                 console.log(value.userRole);
 

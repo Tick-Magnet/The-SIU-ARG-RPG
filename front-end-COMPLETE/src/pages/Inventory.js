@@ -14,7 +14,16 @@ const [currentInventory, setCurrentInventory] = useState(null);
 const [character, setCharacter] = useState(null);
 const [characterRequested, setCharacterRequested] = useState(false);
 const loginInfo = useContext(LoginInfoContext);
+const [redraw, setRedraw] = useState(false);
 
+    function ItemList()
+    {
+    return(
+        <ul>
+            {currentInventory.inventory.map((option, index) => <InventoryItem item={option} index={index} redraw={redraw} />)}
+        </ul>
+        );
+    }
     function CharacterInfo()
     {
         if(character != null)
@@ -35,13 +44,24 @@ const loginInfo = useContext(LoginInfoContext);
             );
         }
     }
+
     function InventoryItem(props)
     {
         const[waitingItem, setWaitingItem] = useState(true);
         const [currentItem, setCurrentItem] = useState(null);
         const [displayCurrentItem, setDisplayCurrentItem] = useState(false);
 
-
+           function sellItem(index)
+            {
+                var result = APICallContainer.sellItem(loginInfo.username, loginInfo.sessionToken, index).then(
+                    function(value)
+                    {
+                        setCurrentInventory(null);
+                        setCurrentItem(null);
+                        setRedraw(!redraw);
+                    }
+                );
+            }
         function ItemDetails()
         {
 
@@ -51,12 +71,13 @@ const loginInfo = useContext(LoginInfoContext);
                 {
                     return(
                         <>
-                            <div className='inventory'>
-                                <p>Description: {currentItem.item.itemDescription} </p>
-                                <p>Item Type: {currentItem.item.itemType}</p>
-                                <p>Item Grade: {currentItem.item.itemGrade}</p>
-                                <p>Gold Value: {currentItem.item.goldValue}</p>
-                            </div>
+
+                            <p>Description: {currentItem.item.itemDescription} </p>
+                            <p>Item Type: {currentItem.item.itemType}</p>
+                            <p>Item Grade: {currentItem.item.itemGrade}</p>
+                            <p>Gold Value: {currentItem.item.goldValue}</p>
+                            <p onClick={() => sellItem(props.index)} > Sell Item </p>
+
                         </>
                     );
                 }
@@ -119,19 +140,19 @@ const loginInfo = useContext(LoginInfoContext);
                 </>
             );
         }
-        else
+        else if (currentInventory != null)
         {
             return(
                 <>
+
                 <div className='inventory'>
                      <h2>- Player Stats -</h2>
                      <div className='rpgTextSection'><CharacterInfo /></div>
                         
                     <h2>- Items -</h2>
-                     <ul>
-                     {currentInventory.inventory.map((option, index) => <InventoryItem item={option} index={index} />)}
-                     </ul>
+                     <ItemList />
                 </div>
+
                 </>
             );
         }

@@ -64,6 +64,7 @@ class APICallContainer
             output.sessionToken = currentToken;
             output.userRole = postResult.userRole;
             output.characterCreated = postResult.characterCreated;
+            console.log(postResult.characterCreated);
         }
         }
 
@@ -212,7 +213,7 @@ async login(inputUsername, inputPassword)
         console.log(result);
         return result.data;
     }
-       async createQRCode(inputUsername, inputToken, inputType, inputColorType, inputItemDefinitionPath, inputEncounterDefinitionPath, experience, gold)
+       async createQRCode(inputUsername, inputToken, inputType, inputColorType, inputItemDefinitionPath, inputEncounterDefinitionPath, experience, gold, backgroundImagePath)
                 {
                 		//this.checkToken(inputUsername);
                 		var url = "";
@@ -226,7 +227,8 @@ async login(inputUsername, inputPassword)
                 			encounterDefinitionPath: inputEncounterDefinitionPath,
                 			itemDefinitionPath: inputItemDefinitionPath,
                             experienceReward: experience,
-                            goldReward: gold
+                            goldReward: gold,
+                            backgroundImagePath: backgroundImagePath
                 		})
                 	return result.data;
                 }
@@ -240,8 +242,7 @@ async login(inputUsername, inputPassword)
         		{
         			username: inputUsername,
         			token: inputToken
-        		})
-
+        		});
         		return result.data
         }
     async inspectItemSlot(inputUsername, inputToken, inputIndex)
@@ -280,18 +281,14 @@ async login(inputUsername, inputPassword)
          {
          		//this.checkToken(inputUsername);
          		var url = "";
-         		url = url.concat(apiURL, "/getInventory");
-         		axios.post(url,
+         		url = url.concat(apiURL, "/sellItem");
+         		var result = axios.post(url,
          		{
          			username: inputUsername,
          			token: inputToken,
          			index: inputIndex
          		})
-         		.then(function (response)
-         		{
-         			console.log(response.data);
-         			return response.data;
-         		});
+                return result.data;
          }
 }
 

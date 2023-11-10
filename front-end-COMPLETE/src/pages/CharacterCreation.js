@@ -29,7 +29,8 @@ function CreateCharacter() {
                     function(value)
                     {
                         setCharacter(value);
-                        if(value.creationComplete == true)
+                        console.log(value);
+                        if(value.data.character.creationComplete == true)
                         {
                             loginInfo.setCharacterCreated(true);
                         }
