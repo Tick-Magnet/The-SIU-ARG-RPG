@@ -73,10 +73,12 @@ public class CombatStep extends EncounterStep
 		if(enemy.health > 0)
 		{
 			player.applyDamage(enemy.figureDamage());
+			parentEncounter.playerUpdated = true;
 		}
 		//Figure damage from entities stats
 		combatUpdate.enemyHealth = enemy.health;
 		combatUpdate.playerHealth = player.getHealth();
+
 
 		//If player health is zero, end encounter
 		if(player.getHealth() <= 0)
