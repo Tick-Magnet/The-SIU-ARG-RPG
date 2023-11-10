@@ -51,7 +51,7 @@ const Footer = () => {
   return (
     <footer style={footerStyle} className="footer">
       <div className='footerImage'>
-
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Papyrus" />  
         <audio className="myMusic" loop>
           <source src={musicSrc}/>
         </audio>
