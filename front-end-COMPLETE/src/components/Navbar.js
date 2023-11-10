@@ -202,7 +202,7 @@ function Navbar() {
                 <p>{registerError}</p>
               <form className="register-form" onSubmit={handleRegisterSubmit}>
                 <label htmlFor="name">Username: </label>
-                <input onChange={(e) => setName(e.target.value)} placeholder="John Doe" id="name" name="name" />
+                <input onChange={(e) => setName(e.target.value)} placeholder="Xx_NoobSlayer435_xX" id="name" name="name" />
                 <label htmlFor="email">Email: </label>
                 <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Placeholder@email.com" id="email" name="email" />
                 <label htmlFor="password">Password: </label>
