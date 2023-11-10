@@ -48,10 +48,10 @@ export const Item = (props) => {
 
       <Popup trigger={loginPopup} setTrigger={setLoginPopup}>
         <div className='auth-form-container'>
-          <h1>Log In</h1>
+          <h1>Log In?</h1>
           <form className="login-form" onSubmit={handleSubmit}>            
-            <label htmlFor="email">Email: </label>
-            <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Placeholder@email.com" id="email" name="email" />
+            <label htmlFor="email">Username: </label>
+            <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="johndoe" id="email" name="email" />
             <label htmlFor="password">Password: </label>
             <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="********" id="password" name="password" />
             <button type="submit">Log In</button>

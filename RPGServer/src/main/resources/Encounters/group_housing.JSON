@@ -1,0 +1,56 @@
+{
+	"encounterName": "Ghost Encounter Two",
+	"encounterSteps":
+	[
+		{
+			"stepType": 0,
+			"promptText": "In the shadow of his decrepit homestead, a resolute ghost materializes, guarding his crumbling abode with a spectral determination.",
+			"backgroundImagePath": "Images/ImageEncounters/ghost_two.png",
+			"dialogueOptions":
+			[
+				{
+					"optionText": "Attack!",
+					"nextStepIndex": 1
+				},
+				{
+					"optionText": "Run Away",
+					"nextStepIndex": 1
+				}
+			],
+			"rewards":
+			[
+				{
+					"optionIndex": 1,
+					"experienceReward": 20,
+					"goldReward": 150,
+					"itemRewards": []
+				}
+			]
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0,
+			"nextStepIndex": -1,
+			"backgroundImagePath":"Images/ImageEncounters/ghost_two.png",
+			"rewards":
+			[
+				{
+					"optionIndex": 0,
+					"experienceReward": 20,
+					"goldReward": 150
+				}
+			]
+		}
+	],
+	"encounterEntities":
+	[
+		{
+			"name": "Ghost",
+			"strength": 10,
+			"dexterity": 12,
+			"constitution": 50,
+			"intelligence": 10,
+			"imageForeground": "Images/ImageEncounters/ghost_two.png"
+		}
+	]
+}

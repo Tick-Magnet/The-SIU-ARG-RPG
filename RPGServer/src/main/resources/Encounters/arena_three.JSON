@@ -1,0 +1,56 @@
+{
+	"encounterName": "Giant Encounter",
+	"encounterSteps":
+	[
+		{
+			"stepType": 0,
+			"promptText": "Awakening on the serene grassy plain, the colossal giant stirs, its eyes slowly opening, and a rumble of impending fury shakes the earth.",
+			"backgroundImagePath": "Images/ImageEncounters/giant.png",
+			"dialogueOptions":
+			[
+				{
+					"optionText": "Attack!",
+					"nextStepIndex": 1
+				},
+				{
+					"optionText": "Run Away",
+					"nextStepIndex": 1
+				}
+			],
+			"rewards":
+			[
+				{
+					"optionIndex": 1,
+					"experienceReward": 40,
+					"goldReward": 750,
+					"itemRewards": []
+				}
+			]
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0,
+			"nextStepIndex": -1,
+			"backgroundImagePath":"Images/ImageEncounters/giant.png",
+			"rewards":
+			[
+				{
+					"optionIndex": 0,
+					"experienceReward": 40,
+					"goldReward": 750
+				}
+			]
+		}
+	],
+	"encounterEntities":
+	[
+		{
+			"name": "Giant",
+			"strength": 25,
+			"dexterity": 8,
+			"constitution": 500,
+			"intelligence": 6,
+			"imageForeground": "Images/ImageEncounters/giant.png"
+		}
+	]
+}

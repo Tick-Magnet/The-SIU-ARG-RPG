@@ -1,0 +1,56 @@
+{
+	"encounterName": "Mimic One Encounter",
+	"encounterSteps":
+	[
+		{
+			"stepType": 0,
+			"promptText": "Lurking outside the dark elf castle, a cunning mimic disguises itself as an innocuous chest, ready to ensnare unsuspecting intruders.",
+			"backgroundImagePath": "Images/ImageEncounters/mimic_one.png",
+			"dialogueOptions":
+			[
+				{
+					"optionText": "Attack!",
+					"nextStepIndex": 1
+				},
+				{
+					"optionText": "Run Away",
+					"nextStepIndex": 1
+				}
+			],
+			"rewards":
+			[
+				{
+					"optionIndex": 1,
+					"experienceReward": 30,
+					"goldReward": 300,
+					"itemRewards": []
+				}
+			]
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0,
+			"nextStepIndex": -1,
+			"backgroundImagePath":"Images/ImageEncounters/mimic_one.png",
+			"rewards":
+			[
+				{
+					"optionIndex": 0,
+					"experienceReward": 30,
+					"goldReward": 300
+				}
+			]
+		}
+	],
+	"encounterEntities":
+	[
+		{
+			"name": "Mimic",
+			"strength": 19,
+			"dexterity": 12,
+			"constitution": 100, 
+			"intelligence": 10,
+			"imageForeground": "Images/ImageEncounters/mimic_one.png"
+		}
+	]
+}

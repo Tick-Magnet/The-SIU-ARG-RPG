@@ -1,0 +1,56 @@
+{
+	"encounterName": "Gladiator Encounter",
+	"encounterSteps":
+	[
+		{
+			"stepType": 0,
+			"promptText": "A battle-hardened gladiator steps into the arena, the roar of the crowd fueling their determination for victory or an honorable death.",
+			"backgroundImagePath": "Images/ImageEncounters/gladiator.png",
+			"dialogueOptions":
+			[
+				{
+					"optionText": "Attack!",
+					"nextStepIndex": 1
+				},
+				{
+					"optionText": "Run Away",
+					"nextStepIndex": 1
+				}
+			],
+			"rewards":
+			[
+				{
+					"optionIndex": 1,
+					"experienceReward": 20,
+					"goldReward": 200,
+					"itemRewards": []
+				}
+			]
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0,
+			"nextStepIndex": -1,
+			"backgroundImagePath":"Images/ImageEncounters/gladiator.png",
+			"rewards":
+			[
+				{
+					"optionIndex": 0,
+					"experienceReward": 20,
+					"goldReward": 200
+				}
+			]
+		}
+	],
+	"encounterEntities":
+	[
+		{
+			"name": "Gladiator",
+			"strength": 17,
+			"dexterity": 16,
+			"constitution": 80,
+			"intelligence": 11,
+			"imageForeground": "Images/ImageEncounters/gladiator.png"
+		}
+	]
+}

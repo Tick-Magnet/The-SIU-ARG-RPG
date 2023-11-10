@@ -1,0 +1,56 @@
+{
+	"encounterName": "Minotaur Encounter",
+	"encounterSteps":
+	[
+		{
+			"stepType": 0,
+			"promptText": "Amidst the twisting hedges of the labyrinth, a towering, horned minotaur emerges, its muscular frame poised to charge.",
+			"backgroundImagePath": "Images/ImageEncounters/minotaur.png",
+			"dialogueOptions":
+			[
+				{
+					"optionText": "Attack!",
+					"nextStepIndex": 1
+				},
+				{
+					"optionText": "Run Away",
+					"nextStepIndex": 1
+				}
+			],
+			"rewards":
+			[
+				{
+					"optionIndex": 1,
+					"experienceReward": 40,
+					"goldReward": 500,
+					"itemRewards": []
+				}
+			]
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0,
+			"nextStepIndex": -1,
+			"backgroundImagePath":"Images/ImageEncounters/minotaur.png",
+			"rewards":
+			[
+				{
+					"optionIndex": 0,
+					"experienceReward": 40,
+					"goldReward": 500
+				}
+			]
+		}
+	],
+	"encounterEntities":
+	[
+		{
+			"name": "Minotaur",
+			"strength": 19,
+			"dexterity": 10,
+			"constitution": 250,
+			"intelligence": 7,
+			"imageForeground": "Images/ImageEncounters/minotaur.png"
+		}
+	]
+}

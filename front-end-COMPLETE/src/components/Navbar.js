@@ -138,8 +138,7 @@ function Navbar() {
             return(
                 <li className="navItem"><Link to="/Admin"> Admin Dashboard </Link> </li>
             );
-        }
-
+            }
     }
     function CharacterButton()
     {
@@ -161,16 +160,15 @@ function Navbar() {
     return(
 
     <>
+
         <ul className="rpgNavbar">
             <li className="navItem"><Link to="/"> Home </Link> </li>
             <CharacterButton />
             <InventoryButton />
             <AdminDashboard />
             <li className="navItem" onClick = {() => setMapPopup(true)}><a> Map </a> </li>
-            <li className="navItem"><Link to="/Contact"> Contact Information </Link> </li>
 
             <LoginButton />
-
 
         </ul>
     <Popup trigger={mapPopup} setTrigger={setMapPopup}>
@@ -185,12 +183,12 @@ function Navbar() {
             <div className='auth-form-container'>
               <h1><center>Log In</center></h1>
               <form className="login-form" onSubmit={handleLoginSubmit}>
-                <label htmlFor="email">Email: </label>
-                <input value={email} onChange={(e) => setEmail(e.target.value)} type="text" placeholder="username" id="email" name="email" />
+                <label htmlFor="email">Username: </label>
+                <input value={email} onChange={(e) => setEmail(e.target.value)} type="text" placeholder="Xx_NoobSlayer435_xX" id="email" name="email" />
                 <label htmlFor="password">Password: </label>
                 <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="********" id="password" name="password" />
                 <div className='logIn-btn'>
-                    <button type="submit">Log In</button>
+                    <br></br><button type="submit">Log In</button>
                 </div>
                 <p>{loginError}</p>
                 <button onClick={() => toRegister()} className='link-button'>Don't have an account? Register here.</button>
@@ -209,8 +207,8 @@ function Navbar() {
                 <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Placeholder@email.com" id="email" name="email" />
                 <label htmlFor="password">Password: </label>
                 <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="********" id="password" name="password" />
-                <button type="submit">Register</button>
-                <button onClick={() => toLogin()} className='link-button'>Already have an account? Login here.</button>
+                <br></br><button type="submit">Register</button>
+                <br></br><button onClick={() => toLogin()} className='link-button'>Already have an account? Login here.</button>
               </form>
             </div>
           </Popup>

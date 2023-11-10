@@ -12,21 +12,27 @@ function HomePage ()
             </div>
         
             <div className="rpgTextSection">
-                <h2>Game Description</h2>
+                <h2>- Welcome Hero -</h2>
                 <p>
-                    The SIU ARG RPG is a DND inspired role playing game where players will scan QR codes spread around campus
-                    to gather items and fight monsters. After scanning the QR code, the player will either receive the items
-                    or have the option of starting the encounter from the QR code.
+                    Embark on a quest as your very own custom RPG hero. 🗡️
+                    Scan QR codes to uncover magical items, challenge monstrous creatures, and weave your own legend across campus!
+                    To play, login to register an account, create a character, and start scanning QR Codes across campus. 
                 </p>
-                <h2> Locations </h2>
+                <h2>- Locations -</h2>
                 <p>
-                    QR codes can be found in several locations throughout campus. A map of locations can be displayed by selecting the Map option from
-                    the navigation bar
+                    QR codes have been scattered all across campus and come in three forms. Monsters to fight, treasure to collect, and bonfires to rest at.
+                    Simply scan the QR code with your phone's camera and follow the hyperlink to interact with the game.
                 </p>
-                <h2>Length of event </h2>
+                <h2>Event Details</h2>
                 <p>
-                    The event is expected to take place (release date). The game will be running for one week but may be extended
-                    depending on engagement.
+                    THE SIU ARG RPG servers and QR codes will be maintained from 11/13 - 11/17 (2023). 
+                    Join us at 9:00 A.M. Faner Plaza on the 13th for the official launch. 
+                    Please always remain mindful when scanning QR codes. When in doubt don't scan.
+                </p>
+                <h2>Playtesting / Troubleshooting</h2>
+                <p>
+                    If you don't see the verification email in your inbox look, into your spam/junk folders.
+                    If you find a broken QR code, please reach out to us.
                 </p>
             </div>
         </main>

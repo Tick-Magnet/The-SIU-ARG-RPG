@@ -1,0 +1,37 @@
+{
+	"encounterName": "Duergar Encounter",
+	"encounterSteps":
+	[
+		{
+			"stepType": 0,
+			"promptText": "Within the searing heat of his forge, a one-armed duergar crafts masterful weapons, his determination defying his physical limitations.",
+			"dialogueOptions":
+			[
+				{
+					"optionText": "Attack",
+					"nextStepIndex": 1
+				},
+				{
+					"optionText": "Run",
+					"nextStepIndex": 1
+				}
+			] 
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0
+		}
+	],
+	"encounterEntities":
+	[
+		{
+			"name": "Duergar",
+			"strength": 12,
+			"dexterity": 9,
+			"constitution": 15,
+			"intelligence": 11,
+			"imageForeground": "duergar.png",
+			"imageBackground": "pulliam_two.png"
+		}
+	] 
+}

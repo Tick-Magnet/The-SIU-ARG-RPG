@@ -1,0 +1,56 @@
+{
+	"encounterName": "Noble Encounter",
+	"encounterSteps":
+	[
+		{
+			"stepType": 0,
+			"promptText": "With a regal grace and a determined glint in their eye, the noble descends the grand stairwell, prepared to defend his honor with blade in hand.",
+			"backgroundImagePath": "Images/ImageEncounters/noble.png",
+			"dialogueOptions":
+			[
+				{
+					"optionText": "Attack!",
+					"nextStepIndex": 1
+				},
+				{
+					"optionText": "Run Away",
+					"nextStepIndex": 1
+				}
+			],
+			"rewards":
+			[
+				{
+					"optionIndex": 1,
+					"experienceReward": 25,
+					"goldReward": 200,
+					"itemRewards": []
+				}
+			]
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0,
+			"nextStepIndex": -1,
+			"backgroundImagePath":"Images/ImageEncounters/noble.png",
+			"rewards":
+			[
+				{
+					"optionIndex": 0,
+					"experienceReward": 25,
+					"goldReward": 200
+				}
+			]
+		}
+	],
+	"encounterEntities":
+	[
+		{
+			"name": "Noble",
+			"strength": 13,
+			"dexterity": 15,
+			"constitution": 65,
+			"intelligence": 16,
+			"imageForeground": "Images/ImageEncounters/noble.png"
+		}
+	]
+}

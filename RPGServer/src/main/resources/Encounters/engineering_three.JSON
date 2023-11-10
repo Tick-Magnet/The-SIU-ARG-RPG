@@ -1,0 +1,56 @@
+{
+	"encounterName": "Gnome Encounter",
+	"encounterSteps":
+	[
+		{
+			"stepType": 0,
+			"promptText": "A diminutive gnome warrior strides forth, their spirit as fierce as their weapon, proving that bravery comes in all sizes.",
+			"backgroundImagePath": "Images/ImageEncounters/gnome.png",
+			"dialogueOptions":
+			[
+				{
+					"optionText": "Attack!",
+					"nextStepIndex": 1
+				},
+				{
+					"optionText": "Run Away",
+					"nextStepIndex": 1
+				}
+			],
+			"rewards":
+			[
+				{
+					"optionIndex": 1,
+					"experienceReward": 10,
+					"goldReward": 420,
+					"itemRewards": []
+				}
+			]
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0,
+			"nextStepIndex": -1,
+			"backgroundImagePath":"Images/ImageEncounters/gnome.png",
+			"rewards":
+			[
+				{
+					"optionIndex": 0,
+					"experienceReward": 10,
+					"goldReward": 420
+				}
+			]
+		}
+	],
+	"encounterEntities":
+	[
+		{
+			"name": "Gnome",
+			"strength": 5,
+			"dexterity": 6,
+			"constitution": 15,
+			"intelligence": 16,
+			"imageForeground": "Images/ImageEncounters/gnome.png"
+		}
+	]
+}

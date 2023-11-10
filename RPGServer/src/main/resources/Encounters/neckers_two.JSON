@@ -1,0 +1,56 @@
+{
+	"encounterName": "Wyvern Encounter",
+	"encounterSteps":
+	[
+		{
+			"stepType": 0,
+			"promptText": "Atop the crumbling castle wall, a menacing wyvern perches, its wings outstretched, and a predatory glint in its reptilian eyes.",
+			"backgroundImagePath": "Images/ImageEncounters/wyvern.png",
+			"dialogueOptions":
+			[
+				{
+					"optionText": "Attack!",
+					"nextStepIndex": 1
+				},
+				{
+					"optionText": "Run Away",
+					"nextStepIndex": 1
+				}
+			],
+			"rewards":
+			[
+				{
+					"optionIndex": 1,
+					"experienceReward": 40,
+					"goldReward": 800,
+					"itemRewards": []
+				}
+			]
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0,
+			"nextStepIndex": -1,
+			"backgroundImagePath":"Images/ImageEncounters/wyvern.png",
+			"rewards":
+			[
+				{
+					"optionIndex": 0,
+					"experienceReward": 40,
+					"goldReward": 800
+				}
+			]
+		}
+	],
+	"encounterEntities":
+	[
+		{
+			"name": "Wyvern",
+			"strength": 19,
+			"dexterity": 12,
+			"constitution": 600,
+			"intelligence": 7,
+			"imageForeground": "Images/ImageEncounters/wyvern.png"
+		}
+	]
+}

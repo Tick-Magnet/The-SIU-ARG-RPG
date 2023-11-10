@@ -1,0 +1,56 @@
+{
+	"encounterName": "Ghost Encounter",
+	"encounterSteps":
+	[
+		{
+			"stepType": 0,
+			"promptText": "Amidst the moonlit cemetery, a spectral figure materializes between three weathered gravestones, its ethereal form an eerie testament to restless souls.",
+			"backgroundImagePath": "Images/ImageEncounters/ghost.png",
+			"dialogueOptions":
+			[
+				{
+					"optionText": "Attack!",
+					"nextStepIndex": 1
+				},
+				{
+					"optionText": "Run Away",
+					"nextStepIndex": 1
+				}
+			],
+			"rewards":
+			[
+				{
+					"optionIndex": 1,
+					"experienceReward": 20,
+					"goldReward": 150,
+					"itemRewards": []
+				}
+			]
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0,
+			"nextStepIndex": -1,
+			"backgroundImagePath":"Images/ImageEncounters/ghost.png",
+			"rewards":
+			[
+				{
+					"optionIndex": 0,
+					"experienceReward": 20,
+					"goldReward": 150
+				}
+			]
+		}
+	],
+	"encounterEntities":
+	[
+		{
+			"name": "Ghost",
+			"strength": 10,
+			"dexterity": 12,
+			"constitution": 50,
+			"intelligence": 10,
+			"imageForeground": "Images/ImageEncounters/ghost.png"
+		}
+	]
+}

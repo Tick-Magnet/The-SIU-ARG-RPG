@@ -1,0 +1,56 @@
+{
+	"encounterName": "Vampire Encounter",
+	"encounterSteps":
+	[
+		{
+			"stepType": 0,
+			"promptText": "In the tranquil blue of the evening, a regal vampire stands before her ominous manor, her presence exuding an air of timeless elegance.",
+			"backgroundImagePath": "Images/ImageEncounters/vampire.png",
+			"dialogueOptions":
+			[
+				{
+					"optionText": "Attack!",
+					"nextStepIndex": 1
+				},
+				{
+					"optionText": "Run Away",
+					"nextStepIndex": 1
+				}
+			],
+			"rewards":
+			[
+				{
+					"optionIndex": 1,
+					"experienceReward": 20,
+					"goldReward": 200,
+					"itemRewards": []
+				}
+			]
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0,
+			"nextStepIndex": -1,
+			"backgroundImagePath":"Images/ImageEncounters/vampire.png",
+			"rewards":
+			[
+				{
+					"optionIndex": 0,
+					"experienceReward": 20,
+					"goldReward": 200
+				}
+			]
+		}
+	],
+	"encounterEntities":
+	[
+		{
+			"name": "Vampire",
+			"strength": 16,
+			"dexterity": 18,
+			"constitution": 50,
+			"intelligence": 15,
+			"imageForeground": "Images/ImageEncounters/vampire.png"
+		}
+	]
+}

@@ -81,41 +81,52 @@ function RedeemQRPage ()
             {
                 return(
                     <>
-                        <p>dialogue</p>
-                        <p>{currentStep.promptText}</p>
-                        <img className="enemyImage" src={currentStep.backgroundImagePath} />
-                        <ul>
-                        {currentStep.choices.map((option, index) => <InputSelector optionText={option} optionIndex={index}/>)}
-                        </ul>
-                    </>
-                );
-            }
-            else if(currentStep.stepType == 1)
-            {
-                return(
+
+                        <div className="main">
+                            <p>{currentStep.promptText}</p>
+                            <img className="enemyImage" src={currentStep.backgroundImagePath} />
+                            <ul className="optionsList">
+                            {currentStep.choices.map((option, index) => <InputSelector optionText={option} optionIndex={index}/>)}
+                            </ul>
+                        </div>
+                        </>
+                    );
+                }
+                else if(currentStep.stepType == 1)
+                {
+                    return(
+                        <>
+                        <div className="main">
+                            <p id="enemyStats">
+                                <span>Enemy: {currentStep.enemyName} </span>
+                                <span>Enemy Health: {currentStep.enemyHealth}</span>
+                            </p>
+                            <img className="enemyImage" src={currentStep.enemyImagePath} />
+                            <p>Player Health: {currentStep.playerHealth} </p>
+                            <ul className="optionsList">
+                            {currentStep.choices.map((option, index) => <InputSelector optionText={option} optionIndex={index}/>)}
+                            </ul>
+                        </div>
+                        </>
+                    );
+                }
+                else if(currentStep.stepType == 3)
+                {
+                    return(
+
                     <>
-                        <p>combat</p>
-                        <img className="enemyImage" src={currentStep.enemyImagePath} />
-                        <p>Enemy Name: {currentStep.enemyName} </p>
-                        <p>Enemy Health: {currentStep.enemyHealth} </p>
-                        <p>Player Health: {currentStep.playerHealth} </p>
+                    <div className="main" id="rewards">
+                        <h3 id="title">Loot!</h3>
+                        <p>Gold: {currentStep.goldReward} </p>
+                        <p>Experience: {currentStep.experienceReward} </p>
+                        
+                        {/* Code for if Items are implemented.
+                        <p style={{textDecoration:"underline"}}> Items: </p>
                         <ul>
-                        {currentStep.choices.map((option, index) => <InputSelector optionText={option} optionIndex={index}/>)}
+                            {currentStep.itemList.map((option, index) => <li> {option} </li>)}
                         </ul>
-                    </>
-                );
-            }
-            else if(currentStep.stepType == 3)
-            {
-                return(
-                <>
-                    <p>End of encounter Rewards</p>
-                    <p>Gold Reward: {currentStep.goldReward} </p>
-                    <p>Experience Gained: {currentStep.experienceReward} </p>
-                    <p> Items Rewarded: </p>
-                    <ul>
-                        {currentStep.itemList.map((option, index) => <li> {option} </li>)}
-                    </ul>
+                        */}
+                    </div>
                 </>
                 );
             }

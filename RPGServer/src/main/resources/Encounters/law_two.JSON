@@ -1,0 +1,56 @@
+{
+	"encounterName": "Dark Elf Encounter",
+	"encounterSteps":
+	[
+		{
+			"stepType": 0,
+			"promptText": "Amidst the ancient tomes of their subterranean library, a stealthy dark elf silently weaves through the shadows, seeking forbidden knowledge.",
+			"backgroundImagePath": "Images/ImageEncounters/dark_elf.png",
+			"dialogueOptions":
+			[
+				{
+					"optionText": "Attack!",
+					"nextStepIndex": 1
+				},
+				{
+					"optionText": "Run Away",
+					"nextStepIndex": 1
+				}
+			],
+			"rewards":
+			[
+				{
+					"optionIndex": 1,
+					"experienceReward": 20,
+					"goldReward": 200,
+					"itemRewards": []
+				}
+			]
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0,
+			"nextStepIndex": -1,
+			"backgroundImagePath":"Images/ImageEncounters/dark_elf.png",
+			"rewards":
+			[
+				{
+					"optionIndex": 0,
+					"experienceReward": 20,
+					"goldReward": 200
+				}
+			]
+		}
+	],
+	"encounterEntities":
+	[
+		{
+			"name": "Dark Elf",
+			"strength": 19,
+			"dexterity": 12,
+			"constitution": 60, 
+			"intelligence": 10,
+			"imageForeground": "Images/ImageEncounters/dark_elf.png"
+		}
+	]
+}

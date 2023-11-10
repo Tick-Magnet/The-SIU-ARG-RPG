@@ -1,0 +1,56 @@
+{
+	"encounterName": "Dire Wolf Encounter",
+	"encounterSteps":
+	[
+		{
+			"stepType": 0,
+			"promptText": "Emerging from the shadows, a massive dire wolf with primal hunger gleaming in its eyes prowls with an aura of untamed ferocity.",
+			"backgroundImagePath": "Images/ImageEncounters/wolf.png",
+			"dialogueOptions":
+			[
+				{
+					"optionText": "Attack!",
+					"nextStepIndex": 1
+				},
+				{
+					"optionText": "Run Away",
+					"nextStepIndex": 1
+				}
+			],
+			"rewards":
+			[
+				{
+					"optionIndex": 1,
+					"experienceReward": 15,
+					"goldReward": 125,
+					"itemRewards": []
+				}
+			]
+		},
+		{
+			"stepType": 1,
+			"enemyIndex": 0,
+			"nextStepIndex": -1,
+			"backgroundImagePath":"Images/ImageEncounters/wolf.png",
+			"rewards":
+			[
+				{
+					"optionIndex": 0,
+					"experienceReward": 15,
+					"goldReward": 125
+				}
+			]
+		}
+	],
+	"encounterEntities":
+	[
+		{
+			"name": "Dire Wolf",
+			"strength": 19,
+			"dexterity": 15,
+			"constitution": 25, 
+			"intelligence": 3,
+			"imageForeground": "Images/ImageEncounters/wolf.png"
+		}
+	]
+}
