@@ -181,12 +181,17 @@ function RedeemQRPage ()
         }
         else if(redeemResult.type == 2)
         {
-            return(
-                <>
-                    <img src={redeemResult.backgroundImage} />
-                    <p>You have been fully healed</p>
-
-                </>
+            return (
+              <>
+                <img src={redeemResult.backgroundImagePath} />
+                <p style={{
+                  color: 'white',
+                  fontFamily: 'Papyrus, fantasy',
+                  textAlign: 'center'
+                }}>
+                  You have been fully healed
+                </p>
+              </>
             );
         }
 
