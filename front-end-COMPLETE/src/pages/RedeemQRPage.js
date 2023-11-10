@@ -82,6 +82,7 @@ function RedeemQRPage ()
                 return(
                     <>
                         <p>dialogue</p>
+                        <p>{currentStep.promptText}</p>
                         <img className="enemyImage" src={currentStep.backgroundImagePath} />
                         <ul>
                         {currentStep.choices.map((option, index) => <InputSelector optionText={option} optionIndex={index}/>)}
@@ -166,6 +167,16 @@ function RedeemQRPage ()
                 <p>encounter</p>
                 <EncounterHandler />
             </div>
+            );
+        }
+        else if(redeemResult.type == 2)
+        {
+            return(
+                <>
+                    <img src={redeemResult.backgroundImage} />
+                    <p>You have been fully healed</p>
+
+                </>
             );
         }
 

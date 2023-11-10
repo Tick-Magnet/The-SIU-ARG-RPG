@@ -213,7 +213,7 @@ async login(inputUsername, inputPassword)
         console.log(result);
         return result.data;
     }
-       async createQRCode(inputUsername, inputToken, inputType, inputColorType, inputItemDefinitionPath, inputEncounterDefinitionPath, experience, gold)
+       async createQRCode(inputUsername, inputToken, inputType, inputColorType, inputItemDefinitionPath, inputEncounterDefinitionPath, experience, gold, backgroundImagePath)
                 {
                 		//this.checkToken(inputUsername);
                 		var url = "";
@@ -227,7 +227,8 @@ async login(inputUsername, inputPassword)
                 			encounterDefinitionPath: inputEncounterDefinitionPath,
                 			itemDefinitionPath: inputItemDefinitionPath,
                             experienceReward: experience,
-                            goldReward: gold
+                            goldReward: gold,
+                            backgroundImagePath: backgroundImagePath
                 		})
                 	return result.data;
                 }

@@ -14,7 +14,7 @@ import java.util.UUID;
 public class EncounterManagementService
 {
     //Five minutes in milliseconds
-    private static final int ENCOUNTER_CLEANUP_RATE = 60000 * 5;
+    private static final int ENCOUNTER_CLEANUP_RATE = 60000 * 1;
 
     //Scheduled method that goes through encounters int the hashmap and removes ones that should be deleted
     @Scheduled(fixedRate = ENCOUNTER_CLEANUP_RATE, initialDelay = ENCOUNTER_CLEANUP_RATE)

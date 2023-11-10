@@ -22,7 +22,7 @@ function AdminPage()
         var data = new FormData(e.target);
         var entries = Object.fromEntries(data.entries());
         console.log(entries);
-        var result = APICallContainer.createQRCode(loginInfo.username, loginInfo.sessionToken, parseInt(entries.type), parseInt(entries.colorType), entries.itemDefinitionPath, entries.encounterDefinitionPath, parseInt(entries.experienceReward), parseInt(entries.goldReward)).then(
+        var result = APICallContainer.createQRCode(loginInfo.username, loginInfo.sessionToken, parseInt(entries.type), parseInt(entries.colorType), entries.itemDefinitionPath, entries.encounterDefinitionPath, parseInt(entries.experienceReward), parseInt(entries.goldReward), entries.backgroundImagePath).then(
             function(value)
             {
                 console.log(value);
@@ -49,6 +49,8 @@ function AdminPage()
                     <input name="experienceReward" type="number" />
                     <label> Color Type </label>
                     <input name="colorType" type="number" />
+                    <label> Background Image Path (healing only) </label>
+                    <input name="backgroundImagePath" type="text" />
                     <button type="submit">Generate</button>
 
                 </form>
