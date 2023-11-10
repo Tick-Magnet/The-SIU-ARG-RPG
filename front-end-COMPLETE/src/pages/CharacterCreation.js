@@ -67,7 +67,47 @@ function CreateCharacter() {
           <input type='image' src='./Images/help.png' alt='help' className='helpButt' onClick={() => setHelpPopup(true)} />
 
           <Popup trigger={helpPopup} setTrigger={setHelpPopup}>
-            {/* ... Your existing Popup content ... */}
+            <h3>Race Bonuses</h3>
+            <ul>
+              <li>Dwarf</li>
+              <ul>
+                <li>+1 Con</li>
+                <li>+1 Str</li>
+                <li>-1 Dex</li>
+              </ul>
+              <li>Elf</li>
+              <ul>
+                <li>+1 Dex</li>
+                <li>+1 Int</li>
+                <li>-1 Str</li>
+              </ul>
+              <ul>Human</ul>
+                <li>No Change</li>
+            </ul>
+
+            <h3>Class Stats</h3>
+            <ul>
+              <li>Barbarian</li>
+              <ul>
+                <li>Strong: Str</li>
+                <li>Weak: Int</li>
+              </ul>
+              <li>Knight</li>
+              <ul>
+                <li>Strong: Con</li>
+                <li>Weak: Dex</li>
+              </ul>
+              <li>Rogue</li>
+              <ul>
+                <li>Strong: Dex</li>
+                <li>Weak: Str</li>
+              </ul>
+              <li>Wizard</li>
+              <ul>
+                <li>Strong: Int</li>
+                <li>Weak: Con</li>
+              </ul>
+            </ul>
           </Popup>
         </main>
       </div>
