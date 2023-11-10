@@ -242,8 +242,7 @@ async login(inputUsername, inputPassword)
         		{
         			username: inputUsername,
         			token: inputToken
-        		})
-
+        		});
         		return result.data
         }
     async inspectItemSlot(inputUsername, inputToken, inputIndex)
