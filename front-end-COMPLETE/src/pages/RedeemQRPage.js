@@ -175,7 +175,6 @@ function RedeemQRPage ()
         {
             return(
             <div>
-                <p>encounter</p>
                 <EncounterHandler />
             </div>
             );
