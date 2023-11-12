@@ -59,6 +59,9 @@ public class RegisterController
 		{
 			//Set username
 			tempUser.setUsername(username);
+			//Saving early to prevent a double send from user
+			//Waiting for email to send takes too long, front end should be written to prevent double sending this call as well
+			userAccountRepository.save(tempUser);
 			//Set user password
 			tempUser.setPassword(password);
 			//Set user email

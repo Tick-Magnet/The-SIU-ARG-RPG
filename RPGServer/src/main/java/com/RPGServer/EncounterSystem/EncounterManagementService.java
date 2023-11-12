@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Iterator;
 import java.util.UUID;
 
@@ -26,7 +27,7 @@ public class EncounterManagementService
             System.out.println("Cleaning up ");
             //Get Encounter object using key inside iterator
             Encounter currentEncounter = RpgServerApplication.encounterMap.get(iterator.next());
-            if(currentEncounter.encounterComplete && currentEncounter.expiration.isBefore(LocalDateTime.now()))
+            if(currentEncounter.timeout.isBefore(LocalDateTime.now(ZoneId.of("UTC"))) || (currentEncounter.encounterComplete && currentEncounter.expiration.isBefore(LocalDateTime.now(ZoneId.of("UTC")))))
             {
                 System.out.println("Encounter removed with UUID: " + currentEncounter.uuid.toString());
                 RpgServerApplication.encounterMap.remove(currentEncounter.uuid);

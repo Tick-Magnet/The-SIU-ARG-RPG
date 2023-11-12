@@ -28,6 +28,19 @@ function Navbar() {
 
   const [loginError, setLoginError] = useState(null);
   const [registerError, setRegisterError] = useState(null);
+  const [registerButtonVisible, setRegisterButtonVisible] = useState(true);
+
+  function RegisterButton()
+  {
+    if(registerButtonVisible)
+    {
+        return(
+          <>
+             <br></br><button type="submit">Register</button>
+          </>
+        );
+    }
+  }
 
    const handleLoginSubmit = (e) => {
       e.preventDefault();
@@ -62,6 +75,7 @@ function Navbar() {
 
     const handleRegisterSubmit = (e) => {
         e.preventDefault();
+        setRegisterButtonVisible(false);
         var response = APICallContainer.register(name, email, pass).then(
             function(value)
             {
@@ -72,6 +86,7 @@ function Navbar() {
                 else
                 {
                     setRegisterError(value.status);
+                    setRegisterButtonVisible(true);
                 }
             }
         );
@@ -93,6 +108,7 @@ function Navbar() {
         loginInfo.setUsername(null);
         loginInfo.setSessionToken(null);
         loginInfo.setLoggedIn(false);
+        setRegisterButtonVisible(true);
         APICallContainer.logout();
     }
 
@@ -207,8 +223,10 @@ function Navbar() {
                 <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Placeholder@email.com" id="email" name="email" />
                 <label htmlFor="password">Password: </label>
                 <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="********" id="password" name="password" />
-                <br></br><button type="submit">Register</button>
+                <RegisterButton />
                 <br></br><button onClick={() => toLogin()} className='link-button'>Already have an account? Login here.</button>
+
+                <p> After registering, check your email for a verification link. The email may appear in your junk mail folder </p>
               </form>
             </div>
           </Popup>

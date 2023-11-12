@@ -27,7 +27,8 @@ public class Encounter
 {
 	@Autowired
 	private UserAccountRepository userAccountRepository;
-	private static final int EXPIRATION_MINUTES = 3;
+	private static final int EXPIRATION_MINUTES = 5;
+	private static final int TIME_OUT_MINUTES = 15;
 
 	public boolean playerUpdated;
 	public String encounterName;
@@ -46,6 +47,7 @@ public class Encounter
 	
 	//Time after encounter object is eligible to be deleted from the encounter hashmap
 	public LocalDateTime expiration;
+	public LocalDateTime timeout;
 
 	//Rewards to be granted to player on completion of encounter
 	public ArrayList<Reward> encounterRewards;
@@ -87,6 +89,7 @@ public class Encounter
 		playerAccount = user;
 		ObjectMapper objectMapper = new ObjectMapper();
 		uuid = UUID.randomUUID();
+		timeout = LocalDateTime.now(ZoneId.of("UTC")).plusMinutes(TIME_OUT_MINUTES);
 		encounterRewards = new ArrayList<Reward>();
 		ItemFactory itemFactory = new ItemFactory();
 		playerUpdated = false;
