@@ -27,6 +27,21 @@ public class ShellCommands
 		return input;
 	}
 
+	@ShellMethod(key = "overrideVerify")
+	public String overrideVerify(@ShellOption String input)
+	{
+		String output = "Could not find account with that username";
+
+		UserAccount user = userAccountRepository.findByUsername(input);
+		if(user != null)
+		{
+			user.setVerified(true);
+			output = "user account verified";
+			userAccountRepository.save(user);
+		}
+
+		return output;
+	}
 	@ShellMethod(key = "outputDiscord")
 	public String outputDiscord(String input)
 	{
