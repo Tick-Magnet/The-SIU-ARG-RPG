@@ -2,12 +2,14 @@ package com.RPGServer.RESTControllers;
 
 import com.RPGServer.QRCodeEntity;
 import com.RPGServer.QRCodeRepository;
+import com.RPGServer.Security.RateLimitService;
 import com.RPGServer.UserAccount;
 import com.RPGServer.UserAccountRepository;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,6 +26,8 @@ import java.util.Map;
 @RestController
 public class QRCodeCreatorController
 {
+    @Autowired
+    private RateLimitService rateLimitService;
     private final static String TYPE_0_BASE_PATH_GREEN = "/images/treasureGreen.png";
     private final static String TYPE_0_BASE_PATH_YELLOW = "/images/treasureYellow.png";
     private final static String TYPE_0_BASE_PATH_RED = "/images/treasureRed.png";
@@ -39,9 +43,15 @@ public class QRCodeCreatorController
     @Autowired
     private UserAccountRepository userAccountRepository;
     @PostMapping("/createQRCode")
-    public Map<String,Object> createQR(@RequestBody Map<String, Object> payload)throws Exception
+    public Map<String,Object> createQR(@RequestBody Map<String, Object> payload, HttpServletRequest request)throws Exception
     {
+
         HashMap<String, Object> output = new HashMap<String, Object>();
+        if(rateLimitService.filterIP(request.getRemoteAddr(), RateLimitService.CallType.NORMAL) == false)
+        {
+            output.put("message", "Blocked for exceeding API limits");
+            return output;
+        }
         //Obtain fields from payload
         String username = (String)payload.get("username");
         String token = (String)payload.get("token");
