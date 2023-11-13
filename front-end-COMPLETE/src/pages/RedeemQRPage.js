@@ -19,9 +19,9 @@ function RedeemQRPage ()
         if(loginInfo.loggedIn == false)
         {
             return(
-                <>
+                <div className="main">
                     <h1>Please login to redeem</h1>
-                </>
+                </div>
             );
         }
         else
