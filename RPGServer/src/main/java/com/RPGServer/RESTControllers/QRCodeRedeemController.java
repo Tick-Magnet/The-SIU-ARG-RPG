@@ -4,6 +4,8 @@ import com.RPGServer.*;
 import com.RPGServer.EncounterSystem.Encounter;
 import com.RPGServer.ItemSystem.Item;
 import com.RPGServer.ItemSystem.ItemFactory;
+import com.RPGServer.Security.RateLimitService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,17 +28,26 @@ public class QRCodeRedeemController
 	
 	@Autowired
 	private QRCodeRepository qrCodeRepository;
+	@Autowired
+	private RateLimitService rateLimitService;
 	
 	//Using UUID for QR code token, not as secure but easier to include in a URL
 	@PostMapping("/redeemQR")
-	public Map<String,Object> redeem(@RequestBody Map<String, Object> payload)
+	public Map<String,Object> redeem(@RequestBody Map<String, Object> payload, HttpServletRequest request)
 	{
+		HashMap<String, Object> result = new HashMap<String,Object>();
+		if(rateLimitService.filterIP(request.getRemoteAddr(),RateLimitService.CallType.NORMAL) == false)
+		{
+			result.put("message", "Blocked for exceeding API limits");
+			return result;
+		}
+
 		//Read JSON values from HTTP payload
 		String username = (String)payload.get("username");
 		UUID uuid = UUID.fromString((String)payload.get("uuid"));
 		String sessionToken = (String)payload.get("sessionToken");
 
-		HashMap<String, Object> result = new HashMap<String,Object>();
+
 		//Retrieve user account by username
 		UserAccount account = userAccountRepository.findByUsername(username);
 		//Verify account session token

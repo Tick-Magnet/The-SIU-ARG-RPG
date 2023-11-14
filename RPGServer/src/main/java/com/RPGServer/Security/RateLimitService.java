@@ -2,6 +2,7 @@ package com.RPGServer.Security;
 
 import ch.qos.logback.core.net.server.Client;
 import com.RPGServer.RpgServerApplication;
+import com.RPGServer.Services.DiscordWebhookService;
 import jakarta.persistence.Cacheable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.internal.LoadingCache;
@@ -18,11 +19,15 @@ import java.util.concurrent.Future;
 @Service
 public class RateLimitService
 {
+    @Autowired
+    private DiscordWebhookService discordWebhookService;
+
     public enum CallType
     {
         NORMAL,
         LOGIN,
-        BAD_LOGIN
+        BAD_LOGIN,
+        REGISTER
     }
     //RESET COUNTER VALUES
     //Reset counter for failed logins each hour
@@ -35,7 +40,8 @@ public class RateLimitService
     //Amount of bad password attempts allowed per reset cycle
     private static final int BAD_PASSWORD_LIMIT = 40;
     //Amount of API calls allowed per reset cycle
-    private static final int GENERAL_API_LIMIT = 80;
+    private static final int GENERAL_API_LIMIT = 65;
+    private static final int REGISTER_API_LIMIT = 15;
 
 
     //Thread pool for filter threads
@@ -95,6 +101,7 @@ public class RateLimitService
                         //Block api call
                         allow = false;
                         System.out.println("Blocking " + clientIP.IP + " for too many password attempts");
+                        discordWebhookService.outputDiscord("Blocking " + clientIP.IP + " for too many password attempts");
                     }
                     break;
                 case NORMAL:
@@ -102,10 +109,21 @@ public class RateLimitService
                     if(clientIP.APICalls >= GENERAL_API_LIMIT)
                     {
                         allow = false;
+                        discordWebhookService.outputDiscord("Blocking " + clientIP.IP + " for exceeding API limit");
                     }
                     break;
                 case BAD_LOGIN:
                     clientIP.failedLogins++;
+                    break;
+                case REGISTER:
+                    clientIP.registerCalls++;
+                    if(clientIP.registerCalls >+ REGISTER_API_LIMIT)
+                    {
+                        allow = false;
+                        System.out.println("Blocking " + clientIP.IP + " for too many register calls");
+                        discordWebhookService.outputDiscord("Blocking " + clientIP.IP + " for too many register calls");
+                    }
+                    break;
                 default:
                     break;
             }
@@ -127,6 +145,7 @@ public class RateLimitService
             //Get ClientIP object using key inside iterator
             ClientIP tempIP = RpgServerApplication.clientIPMap.get(iterator.next());
             tempIP.failedLogins = 0;
+            tempIP.registerCalls = 0;
         }
     }
     //Reset counters in cached ip addresses for general API calls

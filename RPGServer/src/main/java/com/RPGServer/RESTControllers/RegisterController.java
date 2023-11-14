@@ -2,9 +2,11 @@ package com.RPGServer.RESTControllers;
 
 import java.util.concurrent.atomic.AtomicLong;
 
+import com.RPGServer.Security.RateLimitService;
 import com.RPGServer.UserAccount;
 import com.RPGServer.UserAccountRepository;
 import com.RPGServer.PlayerCharacter;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,12 +37,15 @@ public class RegisterController
 	
 	@Autowired
 	private JavaMailSender mailSender;
+
+	@Autowired
+	private RateLimitService rateLimitService;
 	
 	final private int MIN_PASSWORD_LENGTH = 8;
 	final private String MAIL_USER_NAME = "CS435RPGProject";
 	
 	@PostMapping("/register")
-	public RegistrationResult register(@RequestBody Map<String, Object> payload) throws NoSuchAlgorithmException
+	public RegistrationResult register(@RequestBody Map<String, Object> payload, HttpServletRequest request) throws NoSuchAlgorithmException
 	{
 		String username = (String)payload.get("username");
 		String email = (String)payload.get("email");
@@ -57,6 +62,10 @@ public class RegisterController
 		//check if password is valid
 		if(isValidPassword(password) && usernameAvailable)
 		{
+			if(rateLimitService.filterIP(request.getRemoteAddr(), RateLimitService.CallType.REGISTER) == false)
+			{
+				return new RegistrationResult(false, "Too many accounts created from this IP address, please try again later");
+			}
 			//Set username
 			tempUser.setUsername(username);
 
@@ -79,7 +88,7 @@ public class RegisterController
 				verifyMessage.setTo(email);
 				verifyMessage.setText("Click on the link to activate your account\n" + "http://localhost:8080/verify/" + username + "/" + token.toString());
 				verifyMessage.setSubject("CS435 RPG Email Verification");
-				mailSender.send(verifyMessage);
+				//mailSender.send(verifyMessage);
 
 				//Write new user account to database
 				//NEED TO DO THIS BEFORE SENDING EMAIL. EMAIL BEING SENT EVEN ON JAKARATA EXCEPTIONS

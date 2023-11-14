@@ -18,6 +18,7 @@ public class ClientIP
     {
         failedLogins = 0;
         APICalls = 0;
+        registerCalls = 0;
         lastSeen = Instant.now();
     }
 
@@ -26,6 +27,7 @@ public class ClientIP
     public int failedLogins;
 
     public int APICalls;
+    public int registerCalls;
 
     public Instant lastSeen;
 
